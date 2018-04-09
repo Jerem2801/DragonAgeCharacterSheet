@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">DragonAgeCharacterSheet</string>
+    <string name="app_name">Dragon Age Personnage</string>
+    <string name="create_character">Créer un Personnage</string>
 </resources>
