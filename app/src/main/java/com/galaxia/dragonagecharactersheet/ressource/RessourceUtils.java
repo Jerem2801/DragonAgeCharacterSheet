@@ -20,13 +20,13 @@ public class RessourceUtils {
 
     }
 
-    public static List<String> getData(Context context, String path){
+    public static List<String> getData(Context context, String path,boolean firstLineIsModel){
         List<String> data = new ArrayList<>();
         InputStream is = null;
 
         try {
             is = context.getAssets().open(path);
-            data = ReaderUtils.readFileWithList(is);
+            data = ReaderUtils.readFileWithList(is,firstLineIsModel);
         } catch (IOException e) {
            LoggerUtils.log(context,e.getMessage());
         }

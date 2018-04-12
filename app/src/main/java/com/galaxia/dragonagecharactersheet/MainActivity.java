@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.galaxia.dragonagecharactersheet.data.DataPool;
 import com.galaxia.dragonagecharactersheet.log.LoggerUtils;
 import com.galaxia.dragonagecharactersheet.ressource.RessourcePath;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
         logoView = findViewById(R.id.main_image_logo);
         Bitmap logo = RessourceUtils.getImage(MainActivity.this, RessourcePath.LOGO_PATH);
         logoView.setImageBitmap(logo);
+
+        DataPool dataPool = DataPool.getInstance(MainActivity.this);
     }
 
     public void createCharacterActivity(View view){

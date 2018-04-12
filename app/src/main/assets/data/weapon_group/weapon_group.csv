@@ -1,0 +1,12 @@
+Id;Name;Description;Attribute for Attack
+axes;Haches;;strength
+bludgeons;Contondantes;;strength
+bows;Arcs;;dexterity
+brawling;Bagarre;;dexterity
+dueling;Duel;;dexterity
+heavy_blades;Lames Lourdes;;strength
+lances;Lances d'Arçon;;strength
+light_blades;Lames Légères;;dexterity
+polearms;Hast;;strength
+spears;Lances;;dexterity
+staves;Bâtons;;dexterity

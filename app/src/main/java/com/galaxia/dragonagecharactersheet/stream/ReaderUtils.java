@@ -18,7 +18,7 @@ public class ReaderUtils {
 
     }
 
-    public static List<String> readFileWithList(InputStream is)  {
+    public static List<String> readFileWithList(InputStream is,boolean firstLineIsModel)  {
         List<String> lines = new ArrayList<>();
         BufferedReader br = null;
         InputStreamReader isr = null;
@@ -27,8 +27,13 @@ public class ReaderUtils {
             isr = new InputStreamReader(is);
             br = new BufferedReader(isr);
             String line;
+            boolean firstLine = true;
             while(( line = br.readLine()) != null ) {
-                lines.add(line);
+                if(firstLineIsModel && firstLine){
+                    firstLine = false;
+                }else{
+                    lines.add(line);
+                }
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();

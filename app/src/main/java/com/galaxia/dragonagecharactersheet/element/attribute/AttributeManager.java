@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class AttributeManager {
 
-    private static final String ATTRIBUTE_DIR = RessourcePath.DATA_PATH + "/attribute/";
+    private static final String ATTRIBUTE_DIR = RessourcePath.DATA_PATH + "attribute/";
     private static final String ATTRIBUTE_CSV_PATH = ATTRIBUTE_DIR + "attribute.csv";
 
     private static final int ID = 0;
@@ -26,7 +26,7 @@ public class AttributeManager {
     public static Map<String,Attribute> getAttribute(Context context){
         Map<String,Attribute> attributes = new HashMap<>();
 
-        List<String> data = RessourceUtils.getData(context,ATTRIBUTE_CSV_PATH);
+        List<String> data = RessourceUtils.getData(context,ATTRIBUTE_CSV_PATH,true);
 
         for(String line : data){
             String[] splitData = line.split(RessourceConstant.SEPARATOR);
