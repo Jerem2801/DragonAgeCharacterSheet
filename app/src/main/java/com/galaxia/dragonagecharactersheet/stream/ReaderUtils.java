@@ -18,6 +18,31 @@ public class ReaderUtils {
 
     }
 
+    public static List<String> readFileWithList(InputStream is)  {
+        List<String> lines = new ArrayList<>();
+        BufferedReader br = null;
+        InputStreamReader isr = null;
+
+        try {
+            isr = new InputStreamReader(is);
+            br = new BufferedReader(isr);
+            String line;
+            while(( line = br.readLine()) != null ) {
+                lines.add(line);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            StreamUtils.close(br,isr,is);
+        }
+
+        return lines;
+    }
+
+
+
     public static String readFile(Context context, String fileName)  {
         String content = "";
         BufferedReader br = null;
@@ -39,7 +64,7 @@ public class ReaderUtils {
         } catch (IOException e) {
             e.getMessage();
         }finally {
-            close(br,isr,fis);
+            StreamUtils.close(br,isr,fis);
         }
 
         return content;
@@ -66,7 +91,7 @@ public class ReaderUtils {
         } catch (IOException e) {
             content = e.getMessage();
         }finally {
-            close(br,isr,fis);
+            StreamUtils.close(br,isr,fis);
         }
 
         return content;
@@ -91,63 +116,11 @@ public class ReaderUtils {
         } catch (IOException e) {
             content = e.getMessage();
         }finally {
-            close(br,isr,is);
+            StreamUtils.close(br,isr,is);
         }
         return content;
     }
 
-    public static List<String> readFileWithList(InputStream is)  {
-        List<String> lines = new ArrayList<>();
-        BufferedReader br = null;
-        InputStreamReader isr = null;
-        try {
-            isr = new InputStreamReader(is);
-            br = new BufferedReader(isr);
-            String line;
-            while(( line = br.readLine()) != null ) {
-                lines.add(line);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally {
-            close(br,isr,is);
-        }
-        return lines;
-    }
-
-    private static void close(BufferedReader br,InputStreamReader isr, FileInputStream fis){
-        try {
-            if(br != null){
-                br.close();
-            }
-            if(isr != null){
-                isr.close();
-            }
-            if(fis != null){
-                fis.close();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private static void close(BufferedReader br,InputStreamReader isr, InputStream is){
-        try {
-            if(br != null){
-                br.close();
-            }
-            if(isr != null){
-                isr.close();
-            }
-            if(is != null){
-                is.close();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
 
 }
