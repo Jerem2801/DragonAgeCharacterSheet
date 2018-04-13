@@ -17,7 +17,7 @@ public class UiUtils {
     }
 
     public static void setSpinnerRace(Context context, Spinner spinner, List<Race> races){
-        ArrayAdapter<Race> adapter = new ArrayAdapter<>(context.getApplicationContext(), R.layout.support_simple_spinner_dropdown_item, races);
+        ArrayAdapter<Race> adapter = new ArrayAdapter<>(context.getApplicationContext(), R.layout.custom_spinner, races);
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }

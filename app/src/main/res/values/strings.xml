@@ -2,4 +2,6 @@
     <string name="app_name">Dragon Age Personnage</string>
     <string name="create_character">Créer un Personnage</string>
     <string name="choose_race">Choix de la Race</string>
+    <string name="name">Nom :</string>
+    <string name="description">Description :</string>
 </resources>
