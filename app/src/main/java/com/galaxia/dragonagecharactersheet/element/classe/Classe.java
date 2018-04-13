@@ -1,11 +1,15 @@
 package com.galaxia.dragonagecharactersheet.element.classe;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.galaxia.dragonagecharactersheet.element.attribute.Attribute;
 import com.galaxia.dragonagecharactersheet.element.weapongroup.WeaponGroup;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Classe {
+public class Classe implements Parcelable {
 
     private String id;
     private String name;
@@ -95,4 +99,47 @@ public class Classe {
     public String toString() {
         return name;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.id);
+        dest.writeString(this.name);
+        dest.writeString(this.description);
+        dest.writeInt(this.initialHealth);
+        dest.writeList(this.primaryAttributes);
+        dest.writeList(this.secondaryAttributes);
+        dest.writeList(this.weaponGroupStarting);
+        dest.writeString(this.imagePath);
+    }
+
+    protected Classe(Parcel in) {
+        this.id = in.readString();
+        this.name = in.readString();
+        this.description = in.readString();
+        this.initialHealth = in.readInt();
+        this.primaryAttributes = new ArrayList<Attribute>();
+        in.readList(this.primaryAttributes, Attribute.class.getClassLoader());
+        this.secondaryAttributes = new ArrayList<Attribute>();
+        in.readList(this.secondaryAttributes, Attribute.class.getClassLoader());
+        this.weaponGroupStarting = new ArrayList<WeaponGroup>();
+        in.readList(this.weaponGroupStarting, WeaponGroup.class.getClassLoader());
+        this.imagePath = in.readString();
+    }
+
+    public static final Parcelable.Creator<Classe> CREATOR = new Parcelable.Creator<Classe>() {
+        @Override
+        public Classe createFromParcel(Parcel source) {
+            return new Classe(source);
+        }
+
+        @Override
+        public Classe[] newArray(int size) {
+            return new Classe[size];
+        }
+    };
 }

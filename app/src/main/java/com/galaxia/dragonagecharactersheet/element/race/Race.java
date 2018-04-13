@@ -1,10 +1,14 @@
 package com.galaxia.dragonagecharactersheet.element.race;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.galaxia.dragonagecharactersheet.element.classe.Classe;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class Race {
+public class Race implements Parcelable {
 
     private String id;
     private String name;
@@ -74,4 +78,41 @@ public class Race {
     public String toString() {
         return name;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.id);
+        dest.writeString(this.name);
+        dest.writeString(this.description);
+        dest.writeInt(this.initialSpeed);
+        dest.writeList(this.classeAvailable);
+        dest.writeString(this.imagePath);
+    }
+
+    protected Race(Parcel in) {
+        this.id = in.readString();
+        this.name = in.readString();
+        this.description = in.readString();
+        this.initialSpeed = in.readInt();
+        this.classeAvailable = new ArrayList<Classe>();
+        in.readList(this.classeAvailable, Classe.class.getClassLoader());
+        this.imagePath = in.readString();
+    }
+
+    public static final Parcelable.Creator<Race> CREATOR = new Parcelable.Creator<Race>() {
+        @Override
+        public Race createFromParcel(Parcel source) {
+            return new Race(source);
+        }
+
+        @Override
+        public Race[] newArray(int size) {
+            return new Race[size];
+        }
+    };
 }

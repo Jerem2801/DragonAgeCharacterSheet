@@ -1,8 +1,11 @@
 package com.galaxia.dragonagecharactersheet.element.weapongroup;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.galaxia.dragonagecharactersheet.element.attribute.Attribute;
 
-public class WeaponGroup {
+public class WeaponGroup implements Parcelable {
 
     private String id;
     private String name;
@@ -52,4 +55,36 @@ public class WeaponGroup {
     public String toString() {
         return name;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(this.id);
+        dest.writeString(this.name);
+        dest.writeString(this.description);
+        dest.writeParcelable(this.attributeForAttack, flags);
+    }
+
+    protected WeaponGroup(Parcel in) {
+        this.id = in.readString();
+        this.name = in.readString();
+        this.description = in.readString();
+        this.attributeForAttack = in.readParcelable(Attribute.class.getClassLoader());
+    }
+
+    public static final Parcelable.Creator<WeaponGroup> CREATOR = new Parcelable.Creator<WeaponGroup>() {
+        @Override
+        public WeaponGroup createFromParcel(Parcel source) {
+            return new WeaponGroup(source);
+        }
+
+        @Override
+        public WeaponGroup[] newArray(int size) {
+            return new WeaponGroup[size];
+        }
+    };
 }

@@ -1,9 +1,17 @@
 <resources>
     <string name="app_name">Dragon Age Personnage</string>
     <string name="create_character">Créer un Personnage</string>
+
     <string name="choose_race">Choix de la Race</string>
-    <string name="name">Nom :</string>
     <string name="description">Description :</string>
     <string name="speed">Indice de Rapidité :</string>
     <string name="classe_available">Classes Possible :</string>
+    <string name="next_to_classe">Continuer vers le choix de la Classe</string>
+
+    <string name="choose_classe">Choix de la Classe</string>
+    <string name="health">Indice de Santé :</string>
+    <string name="weapon_group">Groupes d\'Armes :</string>
+    <string name="primary_attributes">Attributs Principaux :</string>
+    <string name="secondary_attributes">Attributs Secondaires :</string>
+    <string name="next_to_background">Continuer vers le choix de l\'Historique</string>
 </resources>

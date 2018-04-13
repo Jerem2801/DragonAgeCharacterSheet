@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void createCharacterActivity(View view){
        Intent gameActivity = new Intent(MainActivity.this, ChooseRaceActivity.class);
-        startActivity(gameActivity);
+       startActivity(gameActivity);
     }
 
 

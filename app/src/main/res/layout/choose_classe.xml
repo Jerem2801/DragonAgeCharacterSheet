@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".controller.create.ChooseRaceActivity">
+    tools:context=".controller.create.ChooseClasseActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,13 +22,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/choose_race"
+                android:text="@string/choose_classe"
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:layout_gravity="center" />
 
             <Spinner
-                android:id="@+id/choose_race_spinner"
+                android:id="@+id/choose_classe_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
@@ -70,7 +70,7 @@
                     android:layout_marginLeft="16dp" />
 
                 <com.bluejamesbond.text.DocumentView
-                    android:id="@+id/choose_race_description_txt"
+                    android:id="@+id/choose_classe_description_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
@@ -105,10 +105,10 @@
                             android:textStyle="bold"
                             android:textSize="16sp"
                             android:textColor="@color/colorPrimary"
-                            android:text="@string/speed" />
+                            android:text="@string/health" />
 
                         <TextView
-                            android:id="@+id/choose_race_speed_txt"
+                            android:id="@+id/choose_classe_health_txt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/colorPrimaryDark"
@@ -131,10 +131,10 @@
                             android:textStyle="bold"
                             android:textSize="16sp"
                             android:textColor="@color/colorPrimary"
-                            android:text="@string/classe_available" />
+                            android:text="@string/weapon_group" />
 
                         <TextView
-                            android:id="@+id/choose_race_classe_available_txt"
+                            android:id="@+id/choose_classe_weapon_group_txt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
@@ -149,7 +149,7 @@
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/choose_race_image"
+                    android:id="@+id/choose_classe_image"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"/>
@@ -157,16 +157,14 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/choose_race_btn_classe_activity"
+                android:id="@+id/choose_classe_btn_background_activity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:gravity="center"
-                android:onClick="chooseClasseActivity"
-                android:text="@string/next_to_classe" />
+                android:text="@string/next_to_background" />
 
         </LinearLayout>
-
 
     </ScrollView>
 

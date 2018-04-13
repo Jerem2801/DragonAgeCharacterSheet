@@ -1,8 +1,8 @@
 package com.galaxia.dragonagecharactersheet.controller.create;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -12,9 +12,11 @@ import android.widget.TextView;
 import com.bluejamesbond.text.DocumentView;
 import com.bluejamesbond.text.style.TextAlignment;
 import com.galaxia.dragonagecharactersheet.R;
+import com.galaxia.dragonagecharactersheet.controller.ActivityConstant;
 import com.galaxia.dragonagecharactersheet.data.DataPool;
 import com.galaxia.dragonagecharactersheet.element.race.Race;
 import com.galaxia.dragonagecharactersheet.element.race.RaceUiManager;
+import com.galaxia.dragonagecharactersheet.player.Player;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
 import com.galaxia.dragonagecharactersheet.ui.UiUtils;
 import com.galaxia.dragonagecharactersheet.ui.ViewFormaterString;
@@ -61,7 +63,7 @@ public class ChooseRaceActivity extends AppCompatActivity {
 
                 descriptionText.setText(ViewFormaterString.setLineSeparator(race.getDescription()));
                 descriptionText.getDocumentLayoutParams().setTextAlignment(TextAlignment.JUSTIFIED);
-                speedText.setText(RaceUiManager.setInitialSpeed(race));
+                speedText.setText(String.valueOf(race.getInitialSpeed()));
                 classeAvailableList.setText(RaceUiManager.setClasseAvailable(race));
                 raceImage.setImageBitmap(RessourceUtils.getImage(ChooseRaceActivity.this,race.getImagePath()));
             }
@@ -72,6 +74,15 @@ public class ChooseRaceActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    public void chooseClasseActivity(View view){
+        Intent classeActivity = new Intent(ChooseRaceActivity.this, ChooseClasseActivity.class);
+        Race race = (Race) racesSpinner.getSelectedItem();
+        Player player= new Player();
+        player.setRace(race);
+        classeActivity.putExtra(ActivityConstant.EXTRA_PLAYER,player);
+        startActivity(classeActivity);
     }
 
 

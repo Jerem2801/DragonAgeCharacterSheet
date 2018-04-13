@@ -21,11 +21,6 @@ public class RaceUiManager {
     }
 
 
-    public static String setInitialSpeed(Race race) {
-        Attribute dexterity = AttributeManager.getAttribute(AttributeEnum.DEXTERITY);
-        return String.valueOf(race.getInitialSpeed());
-    }
-
     public static String setClasseAvailable(Race race) {
         List<Classe> classeAvailable = race.getClasseAvailable();
         StringBuilder builder = new StringBuilder();
