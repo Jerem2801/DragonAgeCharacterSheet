@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         logoView.setImageBitmap(logo);
 
         //set the data in a singleton
-        DataPool dataPool = DataPool.getInstance(MainActivity.this);
+        DataPool dataPool = DataPool.initialize(MainActivity.this);
     }
 
     public void createCharacterActivity(View view){

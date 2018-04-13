@@ -3,8 +3,8 @@ package com.galaxia.dragonagecharactersheet.ui;
 
 public class ViewFormaterString {
 
-    private static final String SEPARATOR = "&";
-    private static final String LINE_SEPARATOR = "\n";
+    public static final String SEPARATOR = "&";
+    public static final String LINE_SEPARATOR = "\n";
 
     private ViewFormaterString(){
 

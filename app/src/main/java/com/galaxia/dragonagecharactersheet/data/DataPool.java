@@ -51,10 +51,14 @@ public class DataPool {
         this.races = races;
     }
 
-    public synchronized static DataPool getInstance(Context context){
+    public synchronized static DataPool initialize(Context context){
         if(dataPool == null){
             dataPool = DataPoolManager.getDataLoader(context);
         }
+        return dataPool;
+    }
+
+    public synchronized static DataPool getInstance(){
         return dataPool;
     }
 

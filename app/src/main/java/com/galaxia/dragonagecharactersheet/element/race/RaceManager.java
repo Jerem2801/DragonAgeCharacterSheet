@@ -16,7 +16,7 @@ public class RaceManager {
 
     private static final String RACE_DIR = RessourcePath.DATA_PATH + "race/";
     private static final String RACE_CSV_PATH = RACE_DIR + "race.csv";
-    private static final String RACE_IMAGE_DIR = RACE_DIR + "race/";
+    private static final String RACE_IMAGE_DIR = RACE_DIR + "image/";
 
     private static final int ID = 0;
     private static final int NAME = 1;

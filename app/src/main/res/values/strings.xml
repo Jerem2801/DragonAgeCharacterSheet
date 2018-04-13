@@ -4,4 +4,6 @@
     <string name="choose_race">Choix de la Race</string>
     <string name="name">Nom :</string>
     <string name="description">Description :</string>
+    <string name="speed">Indice de Rapidité :</string>
+    <string name="classe_available">Classes Possible :</string>
 </resources>

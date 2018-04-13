@@ -18,7 +18,6 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:orientation="vertical"
             android:background="@drawable/custom_border">
 
@@ -34,7 +33,8 @@
                 android:id="@+id/choose_race_spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginLeft="12dp"
                 android:gravity="center"
                 android:layout_gravity="center"/>
 
@@ -53,6 +53,7 @@
                 android:layout_marginStart="8dp"
                 android:text="@string/description"
                 android:textStyle="bold"
+                android:textSize="16sp"
                 android:textColor="@color/colorPrimary"
                 android:layout_marginLeft="16dp" />
 
@@ -63,69 +64,71 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
-                android:layout_gravity="center_vertical|right"
                 />
 
         </LinearLayout>
 
         <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        android:background="@drawable/custom_border">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:background="@drawable/custom_border">
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/choose_race_txt_speed"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
+                        android:layout_marginTop="16dp"
                         android:textStyle="bold"
+                        android:textSize="16sp"
                         android:textColor="@color/colorPrimary"
-                        android:text="Rapidité :" />
+                        android:text="@string/speed" />
 
                     <TextView
-                        android:id="@+id/choose_race_view_speed"
+                        android:id="@+id/choose_race_speed_txt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/colorPrimaryDark"
                         android:layout_marginTop="4dp"
-                        android:layout_marginLeft="16dp" />
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="8dp" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="24dp"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/choose_race_txt_classe_available"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="8dp"
                         android:textStyle="bold"
+                        android:textSize="16sp"
                         android:textColor="@color/colorPrimary"
-                        android:text="Classe possible :" />
+                        android:text="@string/classe_available" />
 
                     <TextView
-                        android:id="@+id/choose_race_view_classe_available"
+                        android:id="@+id/choose_race_classe_available_txt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
+                        android:textColor="@color/colorPrimaryDark"
                         android:layout_marginLeft="16dp" />
 
                 </LinearLayout>
@@ -135,18 +138,8 @@
             <ImageView
                 android:id="@+id/choose_race_image"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/choose_race_specification"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="vertical"
-            android:background="@drawable/custom_border">
 
         </LinearLayout>
 
@@ -155,7 +148,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
             android:gravity="center"
             android:text="Continuer vers le choix de la Classe" />
 

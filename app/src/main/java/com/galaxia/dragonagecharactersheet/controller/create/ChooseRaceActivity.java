@@ -5,12 +5,15 @@ import android.os.Bundle;
 import android.text.Layout;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.galaxia.dragonagecharactersheet.R;
 import com.galaxia.dragonagecharactersheet.data.DataPool;
 import com.galaxia.dragonagecharactersheet.element.race.Race;
+import com.galaxia.dragonagecharactersheet.element.race.RaceUiManager;
+import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
 import com.galaxia.dragonagecharactersheet.ui.UiUtils;
 import com.galaxia.dragonagecharactersheet.ui.ViewFormaterString;
 
@@ -21,6 +24,9 @@ public class ChooseRaceActivity extends AppCompatActivity {
 
     private Spinner racesSpinner;
     private TextView descriptionText;
+    private TextView speedText;
+    private TextView classeAvailableList;
+    private ImageView raceImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +35,9 @@ public class ChooseRaceActivity extends AppCompatActivity {
 
         racesSpinner = findViewById(R.id.choose_race_spinner);
         descriptionText = findViewById(R.id.choose_race_description_txt);
+        speedText = findViewById(R.id.choose_race_speed_txt);
+        classeAvailableList = findViewById(R.id.choose_race_classe_available_txt);
+        raceImage = findViewById(R.id.choose_race_image);
 
         initializeSpinner();
         onSelectedItem();
@@ -36,7 +45,7 @@ public class ChooseRaceActivity extends AppCompatActivity {
 
 
     private void initializeSpinner() {
-        List<Race> races = new ArrayList(DataPool.getInstance(ChooseRaceActivity.this).getRaces().values());
+        List<Race> races = new ArrayList(DataPool.getInstance().getRaces().values());
         UiUtils.setSpinnerRace(ChooseRaceActivity.this, racesSpinner,races);
     }
 
@@ -48,9 +57,10 @@ public class ChooseRaceActivity extends AppCompatActivity {
 
                 Race race = (Race) racesSpinner.getItemAtPosition(position);
 
-
                 descriptionText.setText(ViewFormaterString.setLineSeparator(race.getDescription()));
-
+                speedText.setText(RaceUiManager.setInitialSpeed(race));
+                classeAvailableList.setText(RaceUiManager.setClasseAvailable(race));
+                raceImage.setImageBitmap(RessourceUtils.getImage(ChooseRaceActivity.this,race.getImagePath()));
             }
 
             @Override

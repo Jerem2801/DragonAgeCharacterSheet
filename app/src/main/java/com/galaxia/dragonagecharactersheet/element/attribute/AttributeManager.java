@@ -2,6 +2,7 @@ package com.galaxia.dragonagecharactersheet.element.attribute;
 
 import android.content.Context;
 
+import com.galaxia.dragonagecharactersheet.data.DataPool;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceConstant;
 import com.galaxia.dragonagecharactersheet.ressource.RessourcePath;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
@@ -39,6 +40,12 @@ public class AttributeManager {
         }
 
         return attributes;
+    }
+
+    public static Attribute getAttribute(AttributeEnum attribute){
+        DataPool instance = DataPool.getInstance();
+        Map<String, Attribute> attributes = instance.getAttributes();
+        return attributes.get(attribute.getId());
     }
 
 
