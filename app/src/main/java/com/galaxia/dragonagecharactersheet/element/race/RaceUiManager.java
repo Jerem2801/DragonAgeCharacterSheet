@@ -30,12 +30,8 @@ public class RaceUiManager {
         List<Classe> classeAvailable = race.getClasseAvailable();
         StringBuilder builder = new StringBuilder();
         for(Classe classe : classeAvailable){
-            if(builder.length() == 0){
-                builder.append(classe.getName());
-            }else{
-                builder.append(", "+classe.getName());
-            }
-            //builder.append(ViewFormaterString.LINE_SEPARATOR);
+            builder.append(classe.getName());
+            builder.append(ViewFormaterString.LINE_SEPARATOR);
         }
         return builder.toString().trim();
     }

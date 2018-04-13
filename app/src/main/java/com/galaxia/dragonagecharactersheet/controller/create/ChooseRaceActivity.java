@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.bluejamesbond.text.DocumentView;
+import com.bluejamesbond.text.style.TextAlignment;
 import com.galaxia.dragonagecharactersheet.R;
 import com.galaxia.dragonagecharactersheet.data.DataPool;
 import com.galaxia.dragonagecharactersheet.element.race.Race;
@@ -23,7 +25,7 @@ import java.util.List;
 public class ChooseRaceActivity extends AppCompatActivity {
 
     private Spinner racesSpinner;
-    private TextView descriptionText;
+    private DocumentView descriptionText;
     private TextView speedText;
     private TextView classeAvailableList;
     private ImageView raceImage;
@@ -58,6 +60,7 @@ public class ChooseRaceActivity extends AppCompatActivity {
                 Race race = (Race) racesSpinner.getItemAtPosition(position);
 
                 descriptionText.setText(ViewFormaterString.setLineSeparator(race.getDescription()));
+                descriptionText.getDocumentLayoutParams().setTextAlignment(TextAlignment.JUSTIFIED);
                 speedText.setText(RaceUiManager.setInitialSpeed(race));
                 classeAvailableList.setText(RaceUiManager.setClasseAvailable(race));
                 raceImage.setImageBitmap(RessourceUtils.getImage(ChooseRaceActivity.this,race.getImagePath()));
