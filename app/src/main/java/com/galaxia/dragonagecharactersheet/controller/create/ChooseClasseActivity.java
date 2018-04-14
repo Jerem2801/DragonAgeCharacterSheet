@@ -31,6 +31,8 @@ public class ChooseClasseActivity extends AppCompatActivity {
     private TextView healthText;
     private TextView weaponGroupList;
     private ImageView classeImage;
+    private TextView primaryAttributesList;
+    private TextView secondaryAttributesList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,8 @@ public class ChooseClasseActivity extends AppCompatActivity {
         healthText= findViewById(R.id.choose_classe_health_txt);
         weaponGroupList = findViewById(R.id.choose_classe_weapon_group_txt);
         classeImage = findViewById(R.id.choose_classe_image);
+        primaryAttributesList = findViewById(R.id.choose_classe_primary_attributes_txt);
+        secondaryAttributesList = findViewById(R.id.choose_classe_secondary_attributes_txt);
 
         initializeSpinner(race);
         onSelectedItem();
@@ -66,9 +70,15 @@ public class ChooseClasseActivity extends AppCompatActivity {
 
                 descriptionText.setText(ViewFormaterString.setLineSeparator(classe.getDescription()));
                 descriptionText.getDocumentLayoutParams().setTextAlignment(TextAlignment.JUSTIFIED);
+
                 healthText.setText(String.valueOf(classe.getInitialHealth()));
                 weaponGroupList.setText(ClasseUiManager.setWeaponGroup(classe));
                 classeImage.setImageBitmap(RessourceUtils.getImage(ChooseClasseActivity.this,classe.getImagePath()));
+
+                primaryAttributesList.setText(ClasseUiManager.setAttributeList(classe.getPrimaryAttributes()));
+                secondaryAttributesList.setText(ClasseUiManager.setAttributeList(classe.getSecondaryAttributes()));
+
+
             }
 
             @Override
