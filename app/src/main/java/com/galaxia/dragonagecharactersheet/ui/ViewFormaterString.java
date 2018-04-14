@@ -5,6 +5,7 @@ public class ViewFormaterString {
 
     public static final String SEPARATOR = "&";
     public static final String LINE_SEPARATOR = "\n";
+    public static final String COMMA = ", ";
 
     private ViewFormaterString(){
 

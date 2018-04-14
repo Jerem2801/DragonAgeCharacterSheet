@@ -28,6 +28,7 @@ public class ChooseRaceActivity extends AppCompatActivity {
 
     private Spinner racesSpinner;
     private DocumentView descriptionText;
+    private DocumentView speedExplainText;
     private TextView speedText;
     private TextView classeAvailableList;
     private ImageView raceImage;
@@ -39,6 +40,7 @@ public class ChooseRaceActivity extends AppCompatActivity {
 
         racesSpinner = findViewById(R.id.choose_race_spinner);
         descriptionText = findViewById(R.id.choose_race_description_txt);
+        speedExplainText = findViewById(R.id.choose_race_speed_explain_txt);
         speedText = findViewById(R.id.choose_race_speed_txt);
         classeAvailableList = findViewById(R.id.choose_race_classe_available_txt);
         raceImage = findViewById(R.id.choose_race_image);
@@ -63,7 +65,11 @@ public class ChooseRaceActivity extends AppCompatActivity {
 
                 descriptionText.setText(ViewFormaterString.setLineSeparator(race.getDescription()));
                 descriptionText.getDocumentLayoutParams().setTextAlignment(TextAlignment.JUSTIFIED);
-                speedText.setText(String.valueOf(race.getInitialSpeed()));
+
+                speedExplainText.setText(getString(R.string.speed_explain));
+                speedExplainText.getDocumentLayoutParams().setTextAlignment(TextAlignment.JUSTIFIED);
+
+                speedText.setText(RaceUiManager.setSpeed(race,getString(R.string.speed_race)));
                 classeAvailableList.setText(RaceUiManager.setClasseAvailable(race));
                 raceImage.setImageBitmap(RessourceUtils.getImage(ChooseRaceActivity.this,race.getImagePath()));
             }
