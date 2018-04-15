@@ -24,7 +24,7 @@ public class AttributeManager {
 
     }
 
-    public static Map<String,Attribute> getAttribute(Context context){
+    public static Map<String,Attribute> getAttributeData(Context context){
         Map<String,Attribute> attributes = new HashMap<>();
 
         List<String> data = RessourceUtils.getData(context,ATTRIBUTE_CSV_PATH,true);
@@ -42,7 +42,7 @@ public class AttributeManager {
         return attributes;
     }
 
-    public static Attribute getAttribute(AttributeEnum attribute){
+    public static Attribute getAttributeData(AttributeEnum attribute){
         DataPool instance = DataPool.getInstance();
         Map<String, Attribute> attributes = instance.getAttributes();
         return attributes.get(attribute.getId());

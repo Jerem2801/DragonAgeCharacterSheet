@@ -13,7 +13,7 @@
     <string name="choose_classe">Choix de la Classe</string>
     <string name="health">Santé de départ</string>
     <string name="health_explain">La Santé mesure la bonne forme physique de votre personnage. Le choix de la classe détermine la Santé de départ.</string>
-    <string name="health_classe">Santé d\'un %2s = %2s + %2s + 1d6.</string>
+    <string name="health_classe">Santé = %2s + %2s + 1d6.</string>
     <string name="weapon_group">Groupes d\'Armes</string>
     <string name="weapon_group_explain">Votre classe détermine les armes que votre personnage sait utiliser. Les armes sont divisées en groupes et cette entrée vous précise à l’utilisation desquelles votre personnage est formé.</string>
     <string name="primary_attributes">Attributs Principaux</string>
@@ -21,4 +21,6 @@
     <string name="secondary_attributes">Attributs Secondaires</string>
     <string name="secondary_attributes_explain">Chaque classe a cinq attributs secondaires. Ces attributs ne sont pas aussi importants que les attributs principaux, mais tous peuvent être utiles dans les circonstances adéquates.</string>
     <string name="next_to_background">Continuer vers le choix de l\'Historique</string>
+
+
 </resources>

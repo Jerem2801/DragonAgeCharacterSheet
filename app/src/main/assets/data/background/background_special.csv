@@ -1,0 +1,5 @@
+Background Id;Type;Choice
+walking_sea_raider;nation;antivan&orlesian&rivaini
+seheron_convert;nation;rivaini
+low_born_dwarf;caste;merchant&miner&servant.
+high_born_dwarf;caste;artisan&smith&warrior

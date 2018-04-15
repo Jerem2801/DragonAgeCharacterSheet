@@ -3,13 +3,16 @@ package com.galaxia.dragonagecharactersheet.element.attribute;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Attribute implements Parcelable {
+import com.galaxia.dragonagecharactersheet.element.background.backgroundtable.backgroundbonus.BackgroundBonus;
+
+public class Attribute extends BackgroundBonus implements Parcelable  {
 
     private String id;
     private String name;
     private String description;
 
     public Attribute(String id, String name, String description) {
+        super();
         this.id = id;
         this.name = name;
         this.description = description;

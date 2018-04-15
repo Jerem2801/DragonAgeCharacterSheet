@@ -18,7 +18,7 @@ public class RaceUiManager {
     public static String setSpeed(Race race,String phrase){
         String name = race.getName();
         String speed = String.valueOf(race.getInitialSpeed());
-        Attribute attribute = AttributeManager.getAttribute(AttributeEnum.DEXTERITY);
+        Attribute attribute = AttributeManager.getAttributeData(AttributeEnum.DEXTERITY);
         String dexterity = attribute.getName();
         return String.format(phrase, name,speed,dexterity);
     }

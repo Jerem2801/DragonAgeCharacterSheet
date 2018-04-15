@@ -32,7 +32,7 @@ public class ClasseManager {
 
     }
 
-    public static Map<String,Classe> getClasse(Context context,Map<String,Attribute> attributes,Map<String,WeaponGroup> weaponGroups){
+    public static Map<String,Classe> getClasseData(Context context, Map<String,Attribute> attributes, Map<String,WeaponGroup> weaponGroups){
         Map<String,Classe> classes = new HashMap<>();
 
         List<String> data = RessourceUtils.getData(context,CLASSE_CSV_PATH,true);

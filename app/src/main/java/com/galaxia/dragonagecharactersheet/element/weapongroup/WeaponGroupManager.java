@@ -25,7 +25,7 @@ public class WeaponGroupManager {
 
     }
 
-    public static Map<String,WeaponGroup> getWeaponGroup(Context context,Map<String,Attribute> attributes){
+    public static Map<String,WeaponGroup> getWeaponGroupData(Context context, Map<String,Attribute> attributes){
         Map<String,WeaponGroup> weaponGroups = new HashMap<>();
 
         List<String> data = RessourceUtils.getData(context,WEAPON_GROUP_CSV_PATH,true);

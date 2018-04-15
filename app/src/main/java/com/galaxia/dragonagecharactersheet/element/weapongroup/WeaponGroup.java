@@ -4,8 +4,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.galaxia.dragonagecharactersheet.element.attribute.Attribute;
+import com.galaxia.dragonagecharactersheet.element.background.backgroundtable.backgroundbonus.BackgroundBonus;
 
-public class WeaponGroup implements Parcelable {
+public class WeaponGroup extends BackgroundBonus implements Parcelable {
 
     private String id;
     private String name;

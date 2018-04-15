@@ -1,0 +1,81 @@
+Id;Name;Description;Link Attribute
+bludgeons;Armes contondantes;combattre à l’aide d’armes du groupe des Armes contondantes.;strength
+polearms;Armes d’hast;combattre à l’aide d’armes du groupe des Armes d’hast.;strength
+brawling;Bagarre;combattre à l’aide d’armes du groupe de Bagarre.;dexterity
+staves;Bâtons;combattre à l’aide d’armes du groupe des Bâtons.;dexterity
+running;Course;se déplacer rapidement à la fois lors de sprints et de marathons.;constitution
+dueling;Duel;combattre à l’aide d’armes du groupe des Armes de duel.;dexterity
+axes;Haches;combattre à l’aide d’armes du groupe des Haches.;strength
+light_blades;Lames légères;combattre à l’aide d’armes du groupe des Lames.;dexterity
+heavy blades;Lames lourdes;combattre à l’aide d’armes du groupe des Lames lourdes.;strength
+spears;Lances;combattre à l’aide d’armes du groupe des Lances.;strength
+lances;Lances d’arçon;combattre à l’aide d’armes du groupe des Lances d’arçon.;strength
+acrobatics;Acrobatie;exécuter des manoeuvres de gymnastique, d’équilibre et de chute contrôlée.;dexterity
+bows;Arcs;combattre à l’aide d’armes du groupe des Arcs.;dexterity
+crafting;Artisanat;créer des objets grâce à des aptitudes manuelles comme la sculpture, l’ébénisterie ou le soufflage du verre.;dexterity
+brewing;Brasserie;produire de la bière, du vin et d’autres mixtures.;cunning
+calligraphy;Calligraphie;écrire avec assurance et élégance.;dexterity
+rowing;Canotage;faire avancer un bateau à la rame.;constitution
+cartography;Cartographie;tracer et lire des cartes.;cunning
+driving;Conduite d’attelage;diriger des chariots, des charrettes et autres véhicules à roues.;strength
+natural_lore;Connaissance de la nature;connaître la faune et la flore de Thédas.;cunning
+cultural_lore;Connaissance des cultures;connaître les traditions et les croyances de diverses cultures.;cunning
+poison_lore;Connaissance des poisons;connaître les poisons, leur utilisation et leur préparation.;cunning
+historical_lore;Connaissances historiques;connaître les événements importants et les personnalités influentes des temps passés.;cunning
+military_lore;Connaissances militaires;connaître la stratégie, la tactique et leurs applications les plus connues.;cunning
+musical_lore;Connaissances musicales;connaître les traditions musicales et les chansons.;cunning
+arcane_lore;Connaissances mystiques;connaître la magie, ses traditions et l’Immatériel.;cunning
+religious_lore;Connaissances religieuses;connaître les traditions et pratiques religieuses, notamment celles de la Chantrie.;cunning
+courage;Courage;surmonter sa peur face à l’adversité.;willpower
+creation;Création;comprendre les arcanes de l’école de magie de Création.;magic
+lock_picking;Crochetage;ouvrir des serrures sans en utiliser les clefs.;dexterity
+cryptography;Cryptographie;créer et déchiffrer des codes et des messages codés.;cunning
+disguise;Déguisement;donner l’impression d’être quelqu’un d’autre ou d’appartenir à une autre catégorie de personnes.;communication
+detect_darkspawn;Détection des engeances;la capacité des gardes des ombres à sentir les engeances proches. Seuls les gardes des ombres peuvent prendre cette compétence.;perception
+stealth;Discrétion;se déplacer silencieusement tout en restant hors de vue.;dexterity
+writing;Écriture;s’exprimer par écrit.;cunning
+primal;Éléments;comprendre les arcanes de l’école de magie des Éléments.;magic
+empathy;Empathie;discerner les sentiments et les émotions des autres.;perception
+enchantment;Enchantement;comprendre les techniques permettant d’enchanter des objets magiques. Pour pouvoir enchanter soi-même des objets, il faut être soit un nain, soit un membre des Apaisés.;cunning
+stamina;Endurance;supporter la fatigue, la maladie et les privations.;constitution
+entropy;Entropie;comprendre les arcanes de l’école de magie d’Entropie.;magic
+riding;Équitation;diriger une monture comme un cheval ou un poney.;dexterity
+climbing;Escalade;grimper aux murs et autres obstacles verticaux.;strength
+legerdemain;Escamotage;utiliser des tours de passe-passe pour tromper les autres, cacher des objets et faire les poches des gens.;dexterity
+spirit;Esprit;comprendre les arcanes de l’école de magie d’Esprit.;magic
+etiquette;Étiquette;connaître les conventions sociales de diverses cultures.;communication
+evaluation;Évaluation;déterminer la valeur de marchandises et d’objets d’art.;cunning
+faith;Foi;puiser une force intérieure dans les convictions spirituelles ou morales.;willpower
+smithing;Forge;fabriquer des objets en métal, des armes aux bijoux.;strength
+searching;Fouille;trouver les choses qui sont cachées ou peu évidentes.;perception
+drinking;Grand buveur;consommer de grandes quantités d’alcools en évitant le contrecoup.;constitution
+grenades;Grenades;effectuer des attaques à distance à l’aide de grenades.;dexterity
+heraldry;Héraldique;connaître les blasons et les lignées régnantes.;cunning
+engineering;Ingénierie;connaître les aspects pratiques de la construction, de l’architecture et de l’invention.;cunning
+initiative;Initiative;agir rapidement dans les situations tendues.;dexterity
+intimidation;Intimidation;prendre l’ascendant sur les autres par la présence physique et les menaces.;strength
+investigation;Investigation;interroger des gens pour en obtenir des informations, trouver et analyser des indices.;communication
+gambling;Jeu;jouer aux jeux de hasard et en tirer des bénéfices.;communication
+self_discipline;Maîtrise de soi;concentrer son énergie mentale ou contrôler ses impulsions et ses émotions.;willpower
+bargaining;Marchandage;négocier avec les autres et conclure des marchés.;communication
+leadership;Meneur d’hommes;guider, diriger et inspirer les autres.;communication
+morale;Moral;maintenir la bonne humeur et la confiance en soi ou en son groupe. Les PNJ utilisent cette compétence plus souvent que les personnages joueurs.;willpower
+swimming;Natation;se déplacer dans l’eau et se maintenir à la surface.;constitution
+smelling;Odorat;utiliser ses perceptions olfactives.;perception
+navigation;Orientation;planifier et suivre un itinéraire d’un lieu à un autre.;cunning
+hearing;Ouïe;utiliser ses perceptions auditives.;perception
+persuasion;Persuasion;convaincre les autres de se rallier à son point de vue.;communication
+traps;Pièges;détecter et désamorcer les pièges et autres systèmes mécaniques.;dexterity
+tracking;Pistage;suivre des traces et d’autres signes d’un passage.;perception
+qun;Qun;connaître la philosophie du peuple qunari.;cunning
+research;Recherches;mener une investigation systématique, généralement à l’aide de témoignages, d’archives et de livres.;cunning
+blood;Sang;comprendre l’art interdit de la Magie du sang.;magic
+jumping;Saut;bondir avec ou sans élan.;strength
+seduction;Séduction;jouer des coups décisifs au jeu de l’amour.;communication
+animal_handling;Soin des animaux;interagir avec les animaux et s’occuper d’eux.;communication
+healing;Soins;aider les blessés et les malades.;cunning
+performance;Spectacle;divertir un public grâce à son talent artistique.;communication
+arcane_lance;Trait mystique;utiliser la capacité de classe de mage du même nom.;magic
+deception;Tromperie;mentir aux esprits moins alertes que vous et les rouler.;communication
+might;Vigueur;accomplir des tours de force comme soulever ou brandir des objets lourds.;strength
+seeing;Vue;utiliser ses perceptions visuelles.;perception

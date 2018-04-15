@@ -16,7 +16,6 @@ import com.galaxia.dragonagecharactersheet.controller.ActivityConstant;
 import com.galaxia.dragonagecharactersheet.element.classe.Classe;
 import com.galaxia.dragonagecharactersheet.element.classe.ClasseUiManager;
 import com.galaxia.dragonagecharactersheet.element.race.Race;
-import com.galaxia.dragonagecharactersheet.element.race.RaceUiManager;
 import com.galaxia.dragonagecharactersheet.player.Player;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
 import com.galaxia.dragonagecharactersheet.ui.UiUtils;
@@ -41,7 +40,7 @@ public class ChooseClasseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.choose_race_v2);
+        setContentView(R.layout.choose_classe);
 
         Intent intent = getIntent();
         Player player = intent.getParcelableExtra(ActivityConstant.EXTRA_PLAYER);

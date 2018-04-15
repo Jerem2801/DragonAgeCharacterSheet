@@ -29,7 +29,7 @@ public class RaceManager {
 
     }
 
-    public static Map<String,Race> getRace(Context context, Map<String,Classe> classes){
+    public static Map<String,Race> getRaceData(Context context, Map<String,Classe> classes){
         Map<String,Race> races = new HashMap<>();
 
         List<String> data = RessourceUtils.getData(context,RACE_CSV_PATH,true);

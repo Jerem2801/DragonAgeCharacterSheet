@@ -10,7 +10,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:paddingTop="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="8dp"
         android:orientation="vertical" >
 
         <LinearLayout
@@ -46,12 +49,22 @@
         android:clipToPadding="false"
         android:fillViewport="false"
         android:scrollbars="none"
-        android:padding="16dp">
+        android:paddingTop="8dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="16dp"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/choose_classe_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="16dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -65,17 +78,19 @@
                     android:layout_marginStart="8dp"
                     android:text="@string/description"
                     android:textStyle="bold"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:textColor="@color/colorPrimary"
                     android:layout_marginLeft="16dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/custom_line"></LinearLayout>
 
                 <com.bluejamesbond.text.DocumentView
                     android:id="@+id/choose_classe_description_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
                     />
 
             </LinearLayout>
@@ -84,128 +99,139 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:orientation="horizontal"
-                android:background="@drawable/custom_border">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:layout_marginTop="16dp"
-                            android:textStyle="bold"
-                            android:textSize="16sp"
-                            android:textColor="@color/colorPrimary"
-                            android:text="@string/health" />
-
-                        <TextView
-                            android:id="@+id/choose_classe_health_txt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:layout_marginTop="12dp"
-                            android:layout_gravity="center"
-                            android:textSize="24sp" />
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="8dp"
-                            android:textStyle="bold"
-                            android:textSize="16sp"
-                            android:textColor="@color/colorPrimary"
-                            android:text="@string/weapon_group" />
-
-                        <TextView
-                            android:id="@+id/choose_classe_weapon_group_txt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:layout_gravity="center"
-                            android:layout_marginBottom="8dp"
-                            android:textSize="20sp"
-                            android:textColor="@color/colorPrimaryDark"
-                            />
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/choose_classe_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:paddingBottom="16dp"
                 android:orientation="vertical"
-                android:layout_marginTop="16dp"
                 android:background="@drawable/custom_border">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="@string/primary_attributes"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="4dp"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimary"
+                    android:text="@string/health" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/custom_line"></LinearLayout>
+
+                <com.bluejamesbond.text.DocumentView
+                    android:id="@+id/choose_classe_health_explain_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+                <TextView
+                    android:id="@+id/choose_classe_health_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_marginTop="12dp"
                     android:textStyle="bold"
                     android:textSize="16sp"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="16dp"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
                     android:textColor="@color/colorPrimary"
-                    android:layout_marginLeft="16dp" />
+                    android:text="@string/weapon_group" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/custom_line"></LinearLayout>
+
+                <com.bluejamesbond.text.DocumentView
+                    android:id="@+id/choose_classe_weapon_group_explain_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
+
+                <TextView
+                    android:id="@+id/choose_classe_weapon_group_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimary"
+                    android:layout_marginTop="12dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="16dp"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:textColor="@color/colorPrimary"
+                    android:text="@string/primary_attributes" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/custom_line"></LinearLayout>
+
+                <com.bluejamesbond.text.DocumentView
+                    android:id="@+id/choose_classe_primary_attributes_explain_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
 
                 <TextView
                     android:id="@+id/choose_classe_primary_attributes_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    />
+                    android:textColor="@color/colorPrimary"
+                    android:layout_marginTop="12dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="@string/secondary_attributes"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="16dp"
                     android:textStyle="bold"
-                    android:textSize="16sp"
+                    android:textSize="20sp"
                     android:textColor="@color/colorPrimary"
-                    android:layout_marginLeft="16dp" />
+                    android:text="@string/secondary_attributes" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/custom_line"></LinearLayout>
+
+                <com.bluejamesbond.text.DocumentView
+                    android:id="@+id/choose_classe_secondary_attributes_explain_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    />
 
                 <TextView
                     android:id="@+id/choose_classe_secondary_attributes_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
-                    />
+                    android:textColor="@color/colorPrimary"
+                    android:layout_marginTop="12dp"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"/>
 
             </LinearLayout>
 
             <Button
-                android:id="@+id/choose_classe_btn_background_activity"
+                android:id="@+id/choose_race_btn_classe_activity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -213,6 +239,7 @@
                 android:text="@string/next_to_background" />
 
         </LinearLayout>
+
 
     </ScrollView>
 

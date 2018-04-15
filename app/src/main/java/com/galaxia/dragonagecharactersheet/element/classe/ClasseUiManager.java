@@ -15,11 +15,10 @@ public class ClasseUiManager {
     }
 
     public static String setHeatlh(Classe classe,String phrase){
-        String name = classe.getName();
         String health = String.valueOf(classe.getInitialHealth());
-        Attribute attribute = AttributeManager.getAttribute(AttributeEnum.CONSTITUTION);
+        Attribute attribute = AttributeManager.getAttributeData(AttributeEnum.CONSTITUTION);
         String constitution = attribute.getName();
-        return String.format(phrase, name,health,constitution);
+        return String.format(phrase, health,constitution);
     }
 
     public static String setWeaponGroup(Classe classe) {
