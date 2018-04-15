@@ -17,7 +17,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".controller.create.ChooseRaceActivity" />
-        <activity android:name=".controller.create.ChooseClasseActivity"></activity>
+        <activity android:name=".controller.create.ChooseClasseActivity" />
+        <activity android:name=".controller.create.ChooseBackgroundActivity"></activity>
     </application>
 
 </manifest>

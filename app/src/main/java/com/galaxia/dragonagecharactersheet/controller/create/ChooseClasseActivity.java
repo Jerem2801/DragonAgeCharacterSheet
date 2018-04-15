@@ -36,6 +36,7 @@ public class ChooseClasseActivity extends AppCompatActivity {
     private TextView primaryAttributesList;
     private DocumentView secondaryAttributesExplain;
     private TextView secondaryAttributesList;
+    private Player player;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,7 @@ public class ChooseClasseActivity extends AppCompatActivity {
         setContentView(R.layout.choose_classe);
 
         Intent intent = getIntent();
-        Player player = intent.getParcelableExtra(ActivityConstant.EXTRA_PLAYER);
+        player = intent.getParcelableExtra(ActivityConstant.EXTRA_PLAYER);
         Race race = player.getRace();
 
         classesSpinner = findViewById(R.id.choose_classe_spinner);
@@ -108,5 +109,13 @@ public class ChooseClasseActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    public void chooseBackgroundActivity(View view){
+        Intent classeActivity = new Intent(ChooseClasseActivity.this, ChooseBackgroundActivity.class);
+        Classe Classe = (Classe) classesSpinner.getSelectedItem();
+        player.setClasse(Classe);
+        classeActivity.putExtra(ActivityConstant.EXTRA_PLAYER,player);
+        startActivity(classeActivity);
     }
 }

@@ -3,6 +3,7 @@ package com.galaxia.dragonagecharactersheet.element.background;
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.galaxia.dragonagecharactersheet.data.DataPool;
 import com.galaxia.dragonagecharactersheet.element.attribute.Attribute;
 import com.galaxia.dragonagecharactersheet.element.background.backgroundtable.BackgroundTable;
 import com.galaxia.dragonagecharactersheet.element.classe.Classe;
@@ -76,7 +77,6 @@ public class BackgroundManager {
                 imagePath = BACKGROUND_IMAGE_DIR + imageFileName;
             }
 
-
             List<BackgroundTable> backgroundTable = backgroundTables.get(id);
 
             Background background = new Background(id,name,description,attribute,increaseAttributeDesc,focuss,spokenLanguages,writenLanguages,backgroundTable,imagePath,racesAvailable,classesAvailable);
@@ -111,4 +111,15 @@ public class BackgroundManager {
         return focusList;
     }
 
+    public static List<Background> getBackground(Map<String, Background> backgrounds, String race, String classe) {
+        List<Background> backgroundsSelected = new ArrayList<>();
+
+        for(Background background : backgrounds.values()){
+            if(background.getRaceAvailable().contains(race) && background.getClasseAvailable().contains(classe)){
+                backgroundsSelected.add(background);
+            }
+        }
+
+        return backgroundsSelected;
+    }
 }

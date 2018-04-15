@@ -5,7 +5,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.galaxia.dragonagecharactersheet.R;
+import com.galaxia.dragonagecharactersheet.controller.create.ChooseBackgroundActivity;
 import com.galaxia.dragonagecharactersheet.controller.create.ChooseClasseActivity;
+import com.galaxia.dragonagecharactersheet.element.background.Background;
 import com.galaxia.dragonagecharactersheet.element.classe.Classe;
 import com.galaxia.dragonagecharactersheet.element.race.Race;
 
@@ -26,6 +28,12 @@ public class UiUtils {
 
     public static void setSpinnerClasse(Context context, Spinner spinner, List<Classe> classes) {
         ArrayAdapter<Classe> adapter = new ArrayAdapter<>(context.getApplicationContext(), R.layout.custom_spinner, classes);
+        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+    }
+
+    public static void setSpinnerBackground(Context context, Spinner spinner, List<Background> backgrounds) {
+        ArrayAdapter<Background> adapter = new ArrayAdapter<>(context.getApplicationContext(), R.layout.custom_spinner, backgrounds);
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }

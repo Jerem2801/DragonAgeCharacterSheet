@@ -22,5 +22,9 @@
     <string name="secondary_attributes_explain">Chaque classe a cinq attributs secondaires. Ces attributs ne sont pas aussi importants que les attributs principaux, mais tous peuvent être utiles dans les circonstances adéquates.</string>
     <string name="next_to_background">Continuer vers le choix de l\'Historique</string>
 
+    <string name="choose_background">Choix de l\'Historique</string>
+
+    <string name="next_to_focus">Continuer vers le choix de Compétence</string>
+
 
 </resources>

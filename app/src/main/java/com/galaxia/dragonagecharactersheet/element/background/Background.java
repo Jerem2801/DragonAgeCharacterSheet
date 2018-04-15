@@ -184,4 +184,9 @@ public class Background implements Parcelable {
             return new Background[size];
         }
     };
+
+    @Override
+    public String toString() {
+        return  name;
+    }
 }

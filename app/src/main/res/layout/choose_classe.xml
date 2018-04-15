@@ -236,6 +236,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:gravity="center"
+                android:onClick="chooseBackgroundActivity"
                 android:text="@string/next_to_background" />
 
         </LinearLayout>
