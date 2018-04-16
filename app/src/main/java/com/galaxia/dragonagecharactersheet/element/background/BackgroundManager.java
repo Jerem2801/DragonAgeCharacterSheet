@@ -94,9 +94,11 @@ public class BackgroundManager {
     private static List<Language> getLanguages(String languagesListString, Map<String, Language> languages) {
         List<Language> languageList = new ArrayList<>();
         String[] splitData = languagesListString.split(RessourceConstant.AND);
-        for(String languageString : splitData){
-            Language language = languages.get(languageString);
-            languageList.add(language);
+        for (String languageString : splitData) {
+            if(!TextUtils.isEmpty(languagesListString)){
+                Language language = languages.get(languageString);
+                languageList.add(language);
+            }
         }
         return languageList;
     }

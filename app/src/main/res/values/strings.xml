@@ -23,8 +23,15 @@
     <string name="next_to_background">Continuer vers le choix de l\'Historique</string>
 
     <string name="choose_background">Choix de l\'Historique</string>
+    <string name="attribute_bonus">Attribut Bonus</string>
+    <string name="attribute_bonus_explain">Augmentez votre attribut %2s de 1.</string>
+    <string name="choose_focus">Choix de Compétence</string>
+    <string name="choose_focus_explain">Vous avez le choix entre l’une des compétences suivantes :</string>
+    <string name="spoken_language">Langues Parlées</string>
+    <string name="writen_language">Langues Ecrites</string>
 
     <string name="next_to_focus">Continuer vers le choix de Compétence</string>
 
+    <string name="empty">Aucune</string>
 
 </resources>

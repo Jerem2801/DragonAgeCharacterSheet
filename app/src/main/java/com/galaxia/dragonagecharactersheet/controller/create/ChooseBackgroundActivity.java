@@ -8,16 +8,20 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.bluejamesbond.text.DocumentView;
 import com.bluejamesbond.text.style.TextAlignment;
 import com.galaxia.dragonagecharactersheet.R;
 import com.galaxia.dragonagecharactersheet.controller.ActivityConstant;
 import com.galaxia.dragonagecharactersheet.data.DataPool;
+import com.galaxia.dragonagecharactersheet.element.attribute.Attribute;
 import com.galaxia.dragonagecharactersheet.element.background.Background;
 import com.galaxia.dragonagecharactersheet.element.background.BackgroundManager;
 import com.galaxia.dragonagecharactersheet.element.classe.Classe;
-import com.galaxia.dragonagecharactersheet.element.classe.ClasseUiManager;
+import com.galaxia.dragonagecharactersheet.element.focus.Focus;
+import com.galaxia.dragonagecharactersheet.element.focus.FocusUiManager;
+import com.galaxia.dragonagecharactersheet.element.language.LanguageUiManager;
 import com.galaxia.dragonagecharactersheet.element.race.Race;
 import com.galaxia.dragonagecharactersheet.player.Player;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
@@ -34,6 +38,12 @@ public class ChooseBackgroundActivity extends AppCompatActivity {
     private Spinner backgroundsSpinner;
     private ImageView backgroundImage;
     private DocumentView description;
+    private DocumentView attributBonusExplain;
+    private TextView attributBonus;
+    private DocumentView focusExplain;
+    private TextView chooseFocus;
+    private TextView spokenLanguages;
+    private TextView writenLanguages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +58,13 @@ public class ChooseBackgroundActivity extends AppCompatActivity {
         backgroundsSpinner = findViewById(R.id.choose_background_spinner);
         backgroundImage = findViewById(R.id.choose_background_image);
         description = findViewById(R.id.choose_background_description_txt);
+        attributBonusExplain = findViewById(R.id.choose_background_attribut_bonus_explain_txt);
+        attributBonus = findViewById(R.id.choose_background_attribute_bonus_txt);
+        focusExplain = findViewById(R.id.choose_background_focus_explain_txt);
+        chooseFocus = findViewById(R.id.choose_background_focus_txt);
+        spokenLanguages = findViewById(R.id.choose_background_spoken_languages_txt);
+        writenLanguages = findViewById(R.id.choose_background_writen_languages_txt);
+
 
         initializeSpinner(race,classe);
         onSelectedItem();
@@ -75,6 +92,29 @@ public class ChooseBackgroundActivity extends AppCompatActivity {
 
                 description.setText(ViewFormaterString.setLineSeparator(background.getDescription()));
                 description.getDocumentLayoutParams().setTextAlignment(TextAlignment.JUSTIFIED);
+
+
+                String increaseAttributeDesc = background.getIncreaseAttributeDesc();
+                attributBonusExplain.setText(ViewFormaterString.setLineSeparator(increaseAttributeDesc));
+                attributBonusExplain.getDocumentLayoutParams().setTextAlignment(TextAlignment.JUSTIFIED);
+
+                Attribute increaseAttribute = background.getIncreaseAttribute();
+                String increaseAttributePhrase = getString(R.string.attribute_bonus_explain);
+                String finalIncreaseAttribute = String.format(increaseAttributePhrase, increaseAttribute.getName());
+                attributBonus.setText(finalIncreaseAttribute);
+
+                String focusExplainString = getString(R.string.choose_focus_explain);
+                focusExplain.setText(focusExplainString);
+                focusExplain.getDocumentLayoutParams().setTextAlignment(TextAlignment.JUSTIFIED);
+                List<Focus> focus = background.getChooseFocus();
+                String listFocus = FocusUiManager.getChooseFocus(focus);
+                chooseFocus.setText(listFocus);
+
+                String spokenLanguagesList = LanguageUiManager.getLanguages(ChooseBackgroundActivity.this,background.getSpokenLanguage());
+                spokenLanguages.setText(spokenLanguagesList);
+                String writenLanguagesList = LanguageUiManager.getLanguages(ChooseBackgroundActivity.this,background.getWritenLanguage());
+                writenLanguages.setText(writenLanguagesList);
+
 
             }
 
