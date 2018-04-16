@@ -75,9 +75,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/description"
                     android:layout_marginLeft="8dp"
-                    android:theme="@style/Title"/>
+                    android:theme="@style/Title"
+                    android:text="@string/description"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -105,9 +105,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorPrimary"
+                    android:theme="@style/Title"
                     android:text="@string/speed" />
 
                 <LinearLayout
@@ -116,31 +114,25 @@
                     android:background="@drawable/custom_line"></LinearLayout>
 
                 <TextView
-                    android:id="@+id/choose_race_initial_speed_explain_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/speed_explain"
                     android:justificationMode="inter_word"
-                    />
+                    android:text="@string/speed_explain" />
 
                 <TextView
                     android:id="@+id/choose_race_initial_speed_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:textSize="16sp"
-                    android:textStyle="italic"
-                    android:textColor="@color/colorPrimary"
-                    android:layout_gravity="center" />
+                    android:layout_gravity="center"
+                    android:theme="@style/Value" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="24dp"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorPrimary"
+                    android:theme="@style/Title"
                     android:text="@string/classe_available" />
 
                 <LinearLayout
@@ -152,12 +144,10 @@
                     android:id="@+id/choose_race_classes_available_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginBottom="10dp"
-                    android:textSize="16sp"
-                    android:textStyle="italic"
-                    android:layout_gravity="center" />
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_gravity="center"
+                    android:theme="@style/Value" />
 
             </LinearLayout>
 
@@ -165,9 +155,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="@string/next_to_classe"
                 android:gravity="center"
-                android:onClick="nextActivityChooseClasse" />
+                android:onClick="nextActivityChooseClasse"
+                android:text="@string/next_to_classe"/>
 
         </LinearLayout>
 

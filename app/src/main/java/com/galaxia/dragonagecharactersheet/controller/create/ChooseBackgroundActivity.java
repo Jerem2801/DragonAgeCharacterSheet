@@ -44,14 +44,12 @@ public class ChooseBackgroundActivity extends AppCompatActivity {
 
     private Spinner backgroundsSpinner;
     private ImageView backgroundImage;
-    private DocumentView description;
-    private DocumentView attributBonusExplain;
+    private TextView description;
+    private TextView attributBonusExplain;
     private TextView attributBonus;
-    private DocumentView focusExplain;
     private TextView chooseFocus;
     private TextView spokenLanguages;
     private TextView writenLanguages;
-    private DocumentView tableBonusExplain;
     private TableLayout tableBonus;
 
     @Override
@@ -68,13 +66,11 @@ public class ChooseBackgroundActivity extends AppCompatActivity {
         backgroundsSpinner = findViewById(R.id.choose_background_spinner);
         backgroundImage = findViewById(R.id.choose_background_image);
         description = findViewById(R.id.choose_background_description_txt);
-        attributBonusExplain = findViewById(R.id.choose_background_attribut_bonus_explain_txt);
+        attributBonusExplain = findViewById(R.id.choose_background_attribute_bonus_explain_txt);
         attributBonus = findViewById(R.id.choose_background_attribute_bonus_txt);
-        focusExplain = findViewById(R.id.choose_background_focus_explain_txt);
         chooseFocus = findViewById(R.id.choose_background_focus_txt);
         spokenLanguages = findViewById(R.id.choose_background_spoken_languages_txt);
         writenLanguages = findViewById(R.id.choose_background_writen_languages_txt);
-        tableBonusExplain = findViewById(R.id.choose_background_table_bonus_table_explain);
         tableBonus = findViewById(R.id.choose_background_table_bonus_table);
 
         initializeSpinner(race,classe);
@@ -103,21 +99,15 @@ public class ChooseBackgroundActivity extends AppCompatActivity {
 
 
                 description.setText(ViewFormaterString.setLineSeparator(background.getDescription()));
-                description.getDocumentLayoutParams().setTextAlignment(TextAlignment.JUSTIFIED);
-
 
                 String increaseAttributeDesc = background.getIncreaseAttributeDesc();
                 attributBonusExplain.setText(ViewFormaterString.setLineSeparator(increaseAttributeDesc));
-                attributBonusExplain.getDocumentLayoutParams().setTextAlignment(TextAlignment.JUSTIFIED);
 
                 Attribute increaseAttribute = AttributeManager.getAttribute(background.getIncreaseAttributeId());
                 String increaseAttributePhrase = getString(R.string.attribute_bonus_explain);
                 String finalIncreaseAttribute = String.format(increaseAttributePhrase, increaseAttribute.getName());
                 attributBonus.setText(finalIncreaseAttribute);
 
-                String focusExplainString = getString(R.string.choose_focus_explain);
-                focusExplain.setText(focusExplainString);
-                focusExplain.getDocumentLayoutParams().setTextAlignment(TextAlignment.JUSTIFIED);
                 List<Focus> focus = FocusManager.getFocus(background.getChooseFocusId());
                 String listFocus = FocusUiManager.getChooseFocus(focus);
                 chooseFocus.setText(listFocus);
@@ -130,9 +120,6 @@ public class ChooseBackgroundActivity extends AppCompatActivity {
                 String writenLanguagesString = LanguageUiManager.getLanguages(ChooseBackgroundActivity.this,writenLanguagesList);
                 writenLanguages.setText(writenLanguagesString);
 
-                String tableBonusExplainString = getString(R.string.rolls_bonus_explain);
-                tableBonusExplain.setText(tableBonusExplainString);
-                tableBonusExplain.getDocumentLayoutParams().setTextAlignment(TextAlignment.JUSTIFIED);
 
                 tableBonus.removeAllViews();
                 BackgroundTableUiManager.setTableUi(ChooseBackgroundActivity.this,tableBonus,background);

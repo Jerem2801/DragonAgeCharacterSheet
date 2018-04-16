@@ -25,10 +25,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/choose_classe"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:theme="@style/SpinnerTitle"
+                android:text="@string/choose_classe"/>
 
             <Spinner
                 android:id="@+id/choose_classe_spinner"
@@ -70,27 +69,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:paddingBottom="16dp"
                 android:background="@drawable/custom_border">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="@string/description"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorPrimary"
-                    android:layout_marginLeft="16dp" />
+                    android:layout_marginLeft="8dp"
+                    android:theme="@style/Title"
+                    android:text="@string/description" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/custom_line"></LinearLayout>
 
-                <com.bluejamesbond.text.DocumentView
+                <TextView
                     android:id="@+id/choose_classe_description_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     />
 
             </LinearLayout>
@@ -99,7 +97,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:paddingBottom="16dp"
                 android:orientation="vertical"
                 android:background="@drawable/custom_border">
 
@@ -107,10 +104,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="4dp"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorPrimary"
+                    android:theme="@style/Title"
                     android:text="@string/health" />
 
                 <LinearLayout
@@ -118,30 +112,26 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/custom_line"></LinearLayout>
 
-                <com.bluejamesbond.text.DocumentView
-                    android:id="@+id/choose_classe_health_explain_txt"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    />
+                    android:text="@string/health_explain"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:id="@+id/choose_classe_health_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
-                    android:layout_marginTop="12dp"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
-                    android:layout_gravity="center" />
+                    android:layout_marginTop="8dp"
+                    android:layout_gravity="center"
+                    android:theme="@style/Value" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="16dp"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorPrimary"
+                    android:layout_marginTop="24dp"
+                    android:theme="@style/Title"
                     android:text="@string/weapon_group" />
 
                 <LinearLayout
@@ -149,30 +139,27 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/custom_line"></LinearLayout>
 
-                <com.bluejamesbond.text.DocumentView
-                    android:id="@+id/choose_classe_weapon_group_explain_txt"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    />
+                    android:text="@string/weapon_group_explain"
+                    android:justificationMode="inter_word" />
 
                 <TextView
                     android:id="@+id/choose_classe_weapon_group_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
-                    android:layout_marginTop="12dp"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_gravity="center" />
+                    android:layout_marginTop="8dp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:theme="@style/Value"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="16dp"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorPrimary"
+                    android:layout_marginTop="24dp"
+                    android:theme="@style/Title"
                     android:text="@string/primary_attributes" />
 
                 <LinearLayout
@@ -180,30 +167,27 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/custom_line"></LinearLayout>
 
-                <com.bluejamesbond.text.DocumentView
-                    android:id="@+id/choose_classe_primary_attributes_explain_txt"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    />
+                    android:text="@string/primay_attributes_explain"
+                    android:justificationMode="inter_word" />
 
                 <TextView
                     android:id="@+id/choose_classe_primary_attributes_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
-                    android:layout_marginTop="12dp"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_gravity="center" />
+                    android:layout_marginTop="8dp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:theme="@style/Value" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="16dp"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorPrimary"
+                    android:layout_marginTop="24dp"
+                    android:theme="@style/Title"
                     android:text="@string/secondary_attributes" />
 
                 <LinearLayout
@@ -211,27 +195,26 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/custom_line"></LinearLayout>
 
-                <com.bluejamesbond.text.DocumentView
-                    android:id="@+id/choose_classe_secondary_attributes_explain_txt"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    />
+                    android:text="@string/secondary_attributes_explain"
+                    android:justificationMode="inter_word" />
 
                 <TextView
                     android:id="@+id/choose_classe_secondary_attributes_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
-                    android:layout_marginTop="12dp"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
                     android:layout_gravity="center_horizontal"
-                    android:gravity="center_horizontal"/>
+                    android:gravity="center_horizontal"
+                    android:theme="@style/Value"
+                    />
 
             </LinearLayout>
 
             <Button
-                android:id="@+id/choose_race_btn_classe_activity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"

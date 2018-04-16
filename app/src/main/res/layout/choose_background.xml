@@ -25,10 +25,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/choose_background"
-                android:textStyle="bold"
-                android:textSize="20sp"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                android:theme="@style/SpinnerTitle"
+                android:text="@string/choose_background" />
 
             <Spinner
                 android:id="@+id/choose_background_spinner"
@@ -70,27 +69,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:paddingBottom="16dp"
                 android:background="@drawable/custom_border">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="@string/description"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorPrimary"
-                    android:layout_marginLeft="16dp" />
+                    android:layout_marginLeft="8dp"
+                    android:theme="@style/Title"
+                    android:text="@string/description" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/custom_line"></LinearLayout>
 
-                <com.bluejamesbond.text.DocumentView
+                <TextView
                     android:id="@+id/choose_background_description_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     />
 
             </LinearLayout>
@@ -99,7 +97,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:paddingBottom="16dp"
                 android:orientation="vertical"
                 android:background="@drawable/custom_border">
 
@@ -107,10 +104,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="4dp"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorPrimary"
+                    android:theme="@style/Title"
                     android:text="@string/attribute_bonus" />
 
                 <LinearLayout
@@ -118,31 +112,27 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/custom_line"></LinearLayout>
 
-                <com.bluejamesbond.text.DocumentView
-                    android:id="@+id/choose_background_attribut_bonus_explain_txt"
+                <TextView
+                    android:id="@+id/choose_background_attribute_bonus_explain_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:justificationMode="inter_word"
                     />
 
                 <TextView
                     android:id="@+id/choose_background_attribute_bonus_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
-                    android:layout_marginTop="12dp"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_gravity="center_horizontal"
-                    android:gravity="center_horizontal" />
+                    android:layout_marginTop="8dp"
+                    android:layout_gravity="center"
+                    android:theme="@style/Value" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="16dp"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorPrimary"
+                    android:layout_marginTop="24dp"
+                    android:theme="@style/Title"
                     android:text="@string/choose_focus" />
 
                 <LinearLayout
@@ -150,31 +140,27 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/custom_line"></LinearLayout>
 
-                <com.bluejamesbond.text.DocumentView
-                    android:id="@+id/choose_background_focus_explain_txt"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    />
+                    android:text="@string/choose_focus_explain"
+                    android:justificationMode="inter_word" />
 
                 <TextView
                     android:id="@+id/choose_background_focus_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
-                    android:layout_marginTop="12dp"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
+                    android:layout_marginTop="8dp"
                     android:layout_gravity="center_horizontal"
-                    android:gravity="center_horizontal" />
+                    android:gravity="center_horizontal"
+                    android:theme="@style/Value" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="16dp"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorPrimary"
+                    android:layout_marginTop="24dp"
+                    android:theme="@style/Title"
                     android:text="@string/spoken_language" />
 
                 <LinearLayout
@@ -182,29 +168,21 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/custom_line"></LinearLayout>
 
-                <com.bluejamesbond.text.DocumentView
-                    android:id="@+id/choose_classe_primary_attributes_explain_txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    />
-
                 <TextView
                     android:id="@+id/choose_background_spoken_languages_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
-                    android:layout_marginTop="12dp"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_gravity="center" />
+                    android:layout_marginTop="8dp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:theme="@style/Value" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="16dp"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
+                    android:layout_marginTop="24dp"
+                    android:theme="@style/Title"
                     android:textColor="@color/colorPrimary"
                     android:text="@string/writen_language" />
 
@@ -213,22 +191,15 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/custom_line"></LinearLayout>
 
-                <com.bluejamesbond.text.DocumentView
-                    android:id="@+id/choose_background_secondary_attributes_explain_txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    />
-
                 <TextView
                     android:id="@+id/choose_background_writen_languages_txt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/colorPrimary"
-                    android:layout_marginTop="12dp"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
                     android:layout_gravity="center_horizontal"
-                    android:gravity="center_horizontal"/>
+                    android:gravity="center_horizontal"
+                    android:theme="@style/Value"/>
 
             </LinearLayout>
 
@@ -236,7 +207,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:paddingBottom="16dp"
                 android:orientation="vertical"
                 android:background="@drawable/custom_border">
 
@@ -244,10 +214,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="8dp"
-                    android:layout_marginTop="4dp"
-                    android:textStyle="bold"
-                    android:textSize="20sp"
-                    android:textColor="@color/colorPrimary"
+                    android:theme="@style/Title"
                     android:text="@string/rolls_bonus" />
 
                 <LinearLayout
@@ -255,17 +222,18 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/custom_line"></LinearLayout>
 
-                <com.bluejamesbond.text.DocumentView
-                    android:id="@+id/choose_background_table_bonus_table_explain"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    />
+                    android:text="@string/rolls_bonus_explain"
+                    android:justificationMode="inter_word"/>
 
                 <TableLayout
                     android:id="@+id/choose_background_table_bonus_table"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="16dp">
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp">
 
 
                 </TableLayout>

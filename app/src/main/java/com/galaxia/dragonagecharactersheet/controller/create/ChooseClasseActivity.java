@@ -28,14 +28,10 @@ public class ChooseClasseActivity extends AppCompatActivity {
 
     private Spinner classesSpinner;
     private ImageView classeImage;
-    private DocumentView descriptionText;
-    private DocumentView healthExplain;
+    private TextView descriptionText;
     private TextView healthText;
-    private DocumentView weaponGroupExplain;
     private TextView weaponGroupList;
-    private DocumentView primaryAttributesExplain;
     private TextView primaryAttributesList;
-    private DocumentView secondaryAttributesExplain;
     private TextView secondaryAttributesList;
     private Player player;
 
@@ -53,16 +49,12 @@ public class ChooseClasseActivity extends AppCompatActivity {
 
         descriptionText = findViewById(R.id.choose_classe_description_txt);
 
-        healthExplain = findViewById(R.id.choose_classe_health_explain_txt);
         healthText= findViewById(R.id.choose_classe_health_txt);
 
-        weaponGroupExplain= findViewById(R.id.choose_classe_weapon_group_explain_txt);
         weaponGroupList = findViewById(R.id.choose_classe_weapon_group_txt);
 
-        primaryAttributesExplain = findViewById(R.id.choose_classe_primary_attributes_explain_txt);
         primaryAttributesList = findViewById(R.id.choose_classe_primary_attributes_txt);
 
-        secondaryAttributesExplain = findViewById(R.id.choose_classe_secondary_attributes_explain_txt);
         secondaryAttributesList = findViewById(R.id.choose_classe_secondary_attributes_txt);
 
         initializeSpinner(race);
@@ -85,22 +77,13 @@ public class ChooseClasseActivity extends AppCompatActivity {
                 classeImage.setImageBitmap(RessourceUtils.getImage(ChooseClasseActivity.this,classe.getImagePath()));
 
                 descriptionText.setText(ViewFormaterString.setLineSeparator(classe.getDescription()));
-                descriptionText.getDocumentLayoutParams().setTextAlignment(TextAlignment.JUSTIFIED);
 
-                healthExplain.setText(getString(R.string.health_explain));
-                healthExplain.getDocumentLayoutParams().setTextAlignment(TextAlignment.JUSTIFIED);
                 healthText.setText(ClasseUiManager.setHeatlh(classe,getString(R.string.health_classe)));
 
-                weaponGroupExplain.setText(getString(R.string.weapon_group_explain));
-                weaponGroupExplain.getDocumentLayoutParams().setTextAlignment(TextAlignment.JUSTIFIED);
                 weaponGroupList.setText(ClasseUiManager.getWeaponGroupStarting(classe));
 
-                primaryAttributesExplain.setText(getString(R.string.primay_attributes_explain));
-                primaryAttributesExplain.getDocumentLayoutParams().setTextAlignment(TextAlignment.JUSTIFIED);
                 primaryAttributesList.setText(ClasseUiManager.getAttributes(classe.getPrimaryAttributesId()));
 
-                secondaryAttributesExplain.setText(getString(R.string.secondary_attributes_explain));
-                secondaryAttributesExplain.getDocumentLayoutParams().setTextAlignment(TextAlignment.JUSTIFIED);
                 secondaryAttributesList.setText(ClasseUiManager.getAttributes(classe.getSecondaryAttributesId()));
 
             }
