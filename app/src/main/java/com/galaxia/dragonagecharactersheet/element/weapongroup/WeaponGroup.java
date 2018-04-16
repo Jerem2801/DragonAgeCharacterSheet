@@ -3,21 +3,18 @@ package com.galaxia.dragonagecharactersheet.element.weapongroup;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.galaxia.dragonagecharactersheet.element.attribute.Attribute;
-import com.galaxia.dragonagecharactersheet.element.background.backgroundtable.backgroundbonus.BackgroundBonus;
-
-public class WeaponGroup extends BackgroundBonus implements Parcelable {
+public class WeaponGroup implements Parcelable {
 
     private String id;
     private String name;
     private String description;
-    private Attribute attributeForAttack;
+    private String attributeIdForAttack;
 
-    public WeaponGroup(String id, String name, String description,Attribute attributeForAttack) {
+    public WeaponGroup(String id, String name, String description, String attributeIdForAttack) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.attributeForAttack = attributeForAttack;
+        this.attributeIdForAttack = attributeIdForAttack;
     }
 
     public String getId() {
@@ -44,17 +41,12 @@ public class WeaponGroup extends BackgroundBonus implements Parcelable {
         this.description = description;
     }
 
-    public Attribute getAttributeForAttack() {
-        return attributeForAttack;
+    public String getAttributeIdForAttack() {
+        return attributeIdForAttack;
     }
 
-    public void setAttributeForAttack(Attribute attributeForAttack) {
-        this.attributeForAttack = attributeForAttack;
-    }
-
-    @Override
-    public String toString() {
-        return name;
+    public void setAttributeIdForAttack(String attributeIdForAttack) {
+        this.attributeIdForAttack = attributeIdForAttack;
     }
 
     @Override
@@ -67,14 +59,14 @@ public class WeaponGroup extends BackgroundBonus implements Parcelable {
         dest.writeString(this.id);
         dest.writeString(this.name);
         dest.writeString(this.description);
-        dest.writeParcelable(this.attributeForAttack, flags);
+        dest.writeString(this.attributeIdForAttack);
     }
 
     protected WeaponGroup(Parcel in) {
         this.id = in.readString();
         this.name = in.readString();
         this.description = in.readString();
-        this.attributeForAttack = in.readParcelable(Attribute.class.getClassLoader());
+        this.attributeIdForAttack = in.readString();
     }
 
     public static final Parcelable.Creator<WeaponGroup> CREATOR = new Parcelable.Creator<WeaponGroup>() {

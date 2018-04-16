@@ -43,7 +43,7 @@ public class BackgroundManager {
 
     }
 
-    public static Map<String,Background> getBackgroundData(Context context, Map<String,Attribute> attributes, Map<String,Focus> focus, Map<String,Language> languages, Map<String,List<BackgroundTable>> backgroundTables){
+    public static Map<String,Background> getBackgroundData(Context context, Map<String,List<BackgroundTable>> backgroundTables){
         Map<String,Background> backgrounds = new HashMap<>();
 
         List<String> data = RessourceUtils.getData(context,BACKGROUND_CSV_PATH,true);
@@ -54,22 +54,21 @@ public class BackgroundManager {
             String name = splitData[NAME];
             String description = splitData[DESCRIPTION];
 
-            String increaseAttribute = splitData[INCREASE_ATTRIBUTES];
-            Attribute attribute = attributes.get(increaseAttribute);
+            String increaseAttributeId = splitData[INCREASE_ATTRIBUTES];
             String increaseAttributeDesc = splitData[INCREASE_ATTRIBUTES_DESC];
 
             String focusString = splitData[FOCUS];
-            List<Focus> focuss = getFocus(focusString,focus);
+            List<String> focussId = getIds(focusString);
 
             String spokenLanguagesString = splitData[SPOKEN_LANGUAGES];
-            List<Language> spokenLanguages = getLanguages(spokenLanguagesString,languages);
+            List<String> spokenLanguagesId = getIds(spokenLanguagesString);
             String writenLanguagesString = splitData[WRITEN_LANGUAGES];
-            List<Language> writenLanguages = getLanguages(writenLanguagesString,languages);
+            List<String> writenLanguagesId = getIds(writenLanguagesString);
 
             String racesString = splitData[RACES];
-            List<String> racesAvailable = getAvailable(racesString);
+            List<String> racesAvailable = getIds(racesString);
             String classesString = splitData[CLASSES];
-            List<String> classesAvailable = getAvailable(classesString);
+            List<String> classesAvailable = getIds(classesString);
 
             String imagePath = "";
             if(splitData.length > 10){
@@ -79,45 +78,24 @@ public class BackgroundManager {
 
             List<BackgroundTable> backgroundTable = backgroundTables.get(id);
 
-            Background background = new Background(id,name,description,attribute,increaseAttributeDesc,focuss,spokenLanguages,writenLanguages,backgroundTable,imagePath,racesAvailable,classesAvailable);
+            Background background = new Background(id,name,description,increaseAttributeId,increaseAttributeDesc,focussId,spokenLanguagesId,writenLanguagesId,backgroundTable,imagePath,racesAvailable,classesAvailable);
             backgrounds.put(id,background);
         }
 
         return backgrounds;
     }
 
-    private static List<String> getAvailable(String racesString) {
-        String[] splitData = racesString.split(RessourceConstant.AND);
+    private static List<String> getIds(String id) {
+        String[] splitData = id.split(RessourceConstant.AND);
         return Arrays.asList(splitData);
     }
 
-    private static List<Language> getLanguages(String languagesListString, Map<String, Language> languages) {
-        List<Language> languageList = new ArrayList<>();
-        String[] splitData = languagesListString.split(RessourceConstant.AND);
-        for (String languageString : splitData) {
-            if(!TextUtils.isEmpty(languagesListString)){
-                Language language = languages.get(languageString);
-                languageList.add(language);
-            }
-        }
-        return languageList;
-    }
-
-    private static List<Focus> getFocus(String focusStringList, Map<String, Focus> focuss) {
-        List<Focus> focusList = new ArrayList<>();
-        String[] splitData = focusStringList.split(RessourceConstant.AND);
-        for(String focusString : splitData){
-            Focus focus = focuss.get(focusString);
-            focusList.add(focus);
-        }
-        return focusList;
-    }
 
     public static List<Background> getBackground(Map<String, Background> backgrounds, String race, String classe) {
         List<Background> backgroundsSelected = new ArrayList<>();
 
         for(Background background : backgrounds.values()){
-            if(background.getRaceAvailable().contains(race) && background.getClasseAvailable().contains(classe)){
+            if(background.getRaceAvailableId().contains(race) && background.getClasseAvailableId().contains(classe)){
                 backgroundsSelected.add(background);
             }
         }

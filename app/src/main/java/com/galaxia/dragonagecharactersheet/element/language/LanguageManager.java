@@ -2,9 +2,11 @@ package com.galaxia.dragonagecharactersheet.element.language;
 
 import android.content.Context;
 
+import com.galaxia.dragonagecharactersheet.data.DataPool;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceConstant;
 import com.galaxia.dragonagecharactersheet.ressource.RessourcePath;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
+import com.google.common.collect.Lists;
 
 import java.util.HashMap;
 import java.util.List;
@@ -36,6 +38,20 @@ public class LanguageManager {
             languages.put(id,language);
         }
 
+        return languages;
+    }
+
+    public static Language getLanguage(String languageId){
+        DataPool dataPool = DataPool.getInstance();
+        Map<String, Language> languages = dataPool.getLanguages();
+        return languages.get(languageId);
+    }
+
+    public static List<Language> getLanguage(List<String> languageIds) {
+        List<Language> languages = Lists.newArrayList();
+        for(String languageId : languageIds){
+            languages.add(getLanguage(languageId));
+        }
         return languages;
     }
 }

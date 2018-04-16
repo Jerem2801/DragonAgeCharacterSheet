@@ -15,7 +15,7 @@ import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ImageView logoView;
+    private ImageView logoImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,17 +23,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // set the logo
-        logoView = findViewById(R.id.main_image_logo);
+        logoImage = findViewById(R.id.main_logo_image);
         Bitmap logo = RessourceUtils.getImage(MainActivity.this, RessourcePath.LOGO_PATH);
-        logoView.setImageBitmap(logo);
+        logoImage.setImageBitmap(logo);
 
         //set the data in a singleton
-        DataPool dataPool = DataPool.initialize(MainActivity.this);
+        DataPool.initialize(MainActivity.this);
     }
 
-    public void createCharacterActivity(View view){
-       Intent gameActivity = new Intent(MainActivity.this, ChooseRaceActivity.class);
-       startActivity(gameActivity);
+    public void nextActivityCreateCharacter(View view){
+       Intent createCharacterIntent = new Intent(MainActivity.this, ChooseRaceActivity.class);
+       startActivity(createCharacterIntent);
     }
 
 

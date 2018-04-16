@@ -15,29 +15,29 @@ public class Background implements Parcelable {
     private String id;
     private String name;
     private String description;
-    private Attribute increaseAttribute;
+    private String increaseAttributeId;
     private String increaseAttributeDesc;
-    private List<Focus> chooseFocus;
-    private List<Language> spokenLanguage;
-    private List<Language> writenLanguage;
+    private List<String> chooseFocusId;
+    private List<String> spokenLanguageId;
+    private List<String> writenLanguageId;
     private List<BackgroundTable> bonusRoll;
     private String imagePath;
-    private List<String> raceAvailable;
-    private List<String> classeAvailable;
+    private List<String> raceAvailableId;
+    private List<String> classeAvailableId;
 
-    public Background(String id, String name, String description, Attribute increaseAttribute, String increaseAttributeDesc, List<Focus> chooseFocus, List<Language> spokenLanguage, List<Language> writenLanguage, List<BackgroundTable> bonusRoll, String imagePath, List<String> raceAvailable, List<String> classeAvailable) {
+    public Background(String id, String name, String description, String increaseAttributeId, String increaseAttributeDesc, List<String> chooseFocusId, List<String> spokenLanguageId, List<String> writenLanguageId, List<BackgroundTable> bonusRoll, String imagePath, List<String> raceAvailableId, List<String> classeAvailableId) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.increaseAttribute = increaseAttribute;
+        this.increaseAttributeId = increaseAttributeId;
         this.increaseAttributeDesc = increaseAttributeDesc;
-        this.chooseFocus = chooseFocus;
-        this.spokenLanguage = spokenLanguage;
-        this.writenLanguage = writenLanguage;
+        this.chooseFocusId = chooseFocusId;
+        this.spokenLanguageId = spokenLanguageId;
+        this.writenLanguageId = writenLanguageId;
         this.bonusRoll = bonusRoll;
         this.imagePath = imagePath;
-        this.raceAvailable = raceAvailable;
-        this.classeAvailable = classeAvailable;
+        this.raceAvailableId = raceAvailableId;
+        this.classeAvailableId = classeAvailableId;
     }
 
     public String getId() {
@@ -64,12 +64,12 @@ public class Background implements Parcelable {
         this.description = description;
     }
 
-    public Attribute getIncreaseAttribute() {
-        return increaseAttribute;
+    public String getIncreaseAttributeId() {
+        return increaseAttributeId;
     }
 
-    public void setIncreaseAttribute(Attribute increaseAttribute) {
-        this.increaseAttribute = increaseAttribute;
+    public void setIncreaseAttributeId(String increaseAttributeId) {
+        this.increaseAttributeId = increaseAttributeId;
     }
 
     public String getIncreaseAttributeDesc() {
@@ -80,28 +80,28 @@ public class Background implements Parcelable {
         this.increaseAttributeDesc = increaseAttributeDesc;
     }
 
-    public List<Focus> getChooseFocus() {
-        return chooseFocus;
+    public List<String> getChooseFocusId() {
+        return chooseFocusId;
     }
 
-    public void setChooseFocus(List<Focus> chooseFocus) {
-        this.chooseFocus = chooseFocus;
+    public void setChooseFocusId(List<String> chooseFocusId) {
+        this.chooseFocusId = chooseFocusId;
     }
 
-    public List<Language> getSpokenLanguage() {
-        return spokenLanguage;
+    public List<String> getSpokenLanguageId() {
+        return spokenLanguageId;
     }
 
-    public void setSpokenLanguage(List<Language> spokenLanguage) {
-        this.spokenLanguage = spokenLanguage;
+    public void setSpokenLanguageId(List<String> spokenLanguageId) {
+        this.spokenLanguageId = spokenLanguageId;
     }
 
-    public List<Language> getWritenLanguage() {
-        return writenLanguage;
+    public List<String> getWritenLanguageId() {
+        return writenLanguageId;
     }
 
-    public void setWritenLanguage(List<Language> writenLanguage) {
-        this.writenLanguage = writenLanguage;
+    public void setWritenLanguageId(List<String> writenLanguageId) {
+        this.writenLanguageId = writenLanguageId;
     }
 
     public List<BackgroundTable> getBonusRoll() {
@@ -120,20 +120,20 @@ public class Background implements Parcelable {
         this.imagePath = imagePath;
     }
 
-    public List<String> getRaceAvailable() {
-        return raceAvailable;
+    public List<String> getRaceAvailableId() {
+        return raceAvailableId;
     }
 
-    public void setRaceAvailable(List<String> raceAvailable) {
-        this.raceAvailable = raceAvailable;
+    public void setRaceAvailableId(List<String> raceAvailableId) {
+        this.raceAvailableId = raceAvailableId;
     }
 
-    public List<String> getClasseAvailable() {
-        return classeAvailable;
+    public List<String> getClasseAvailableId() {
+        return classeAvailableId;
     }
 
-    public void setClasseAvailable(List<String> classeAvailable) {
-        this.classeAvailable = classeAvailable;
+    public void setClasseAvailableId(List<String> classeAvailableId) {
+        this.classeAvailableId = classeAvailableId;
     }
 
 
@@ -147,30 +147,30 @@ public class Background implements Parcelable {
         dest.writeString(this.id);
         dest.writeString(this.name);
         dest.writeString(this.description);
-        dest.writeParcelable(this.increaseAttribute, flags);
+        dest.writeString(this.increaseAttributeId);
         dest.writeString(this.increaseAttributeDesc);
-        dest.writeTypedList(this.chooseFocus);
-        dest.writeTypedList(this.spokenLanguage);
-        dest.writeTypedList(this.writenLanguage);
+        dest.writeStringList(this.chooseFocusId);
+        dest.writeStringList(this.spokenLanguageId);
+        dest.writeStringList(this.writenLanguageId);
         dest.writeTypedList(this.bonusRoll);
         dest.writeString(this.imagePath);
-        dest.writeStringList(this.raceAvailable);
-        dest.writeStringList(this.classeAvailable);
+        dest.writeStringList(this.raceAvailableId);
+        dest.writeStringList(this.classeAvailableId);
     }
 
     protected Background(Parcel in) {
         this.id = in.readString();
         this.name = in.readString();
         this.description = in.readString();
-        this.increaseAttribute = in.readParcelable(Attribute.class.getClassLoader());
+        this.increaseAttributeId = in.readString();
         this.increaseAttributeDesc = in.readString();
-        this.chooseFocus = in.createTypedArrayList(Focus.CREATOR);
-        this.spokenLanguage = in.createTypedArrayList(Language.CREATOR);
-        this.writenLanguage = in.createTypedArrayList(Language.CREATOR);
+        this.chooseFocusId = in.createStringArrayList();
+        this.spokenLanguageId = in.createStringArrayList();
+        this.writenLanguageId = in.createStringArrayList();
         this.bonusRoll = in.createTypedArrayList(BackgroundTable.CREATOR);
         this.imagePath = in.readString();
-        this.raceAvailable = in.createStringArrayList();
-        this.classeAvailable = in.createStringArrayList();
+        this.raceAvailableId = in.createStringArrayList();
+        this.classeAvailableId = in.createStringArrayList();
     }
 
     public static final Parcelable.Creator<Background> CREATOR = new Parcelable.Creator<Background>() {
@@ -187,6 +187,6 @@ public class Background implements Parcelable {
 
     @Override
     public String toString() {
-        return  name;
+        return name;
     }
 }

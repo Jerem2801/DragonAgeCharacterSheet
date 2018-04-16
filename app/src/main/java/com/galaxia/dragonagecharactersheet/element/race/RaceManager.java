@@ -6,8 +6,10 @@ import com.galaxia.dragonagecharactersheet.element.classe.Classe;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceConstant;
 import com.galaxia.dragonagecharactersheet.ressource.RessourcePath;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
+import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +31,7 @@ public class RaceManager {
 
     }
 
-    public static Map<String,Race> getRaceData(Context context, Map<String,Classe> classes){
+    public static Map<String,Race> getRaceData(Context context){
         Map<String,Race> races = new HashMap<>();
 
         List<String> data = RessourceUtils.getData(context,RACE_CSV_PATH,true);
@@ -39,10 +41,13 @@ public class RaceManager {
             String id = splitData[ID];
             String name = splitData[NAME];
             String description = splitData[DESCRIPTION];
+
             String initialSpeedString = splitData[INITIAL_SPEED];
             int initialSpeed = Integer.valueOf(initialSpeedString);
+
             String classeAvailableString = splitData[CLASSE_AVAILABLE];
-            List<Classe> classeAvailable = getClasseFromString(classeAvailableString,classes);
+            List<String> classeAvailable = getClasseIdFromString(classeAvailableString);
+
             String imageFileName = splitData[IMAGE_FILE_NAME];
             String imagePath = RACE_IMAGE_DIR + imageFileName;
 
@@ -53,15 +58,9 @@ public class RaceManager {
         return races;
     }
 
-    private static List<Classe> getClasseFromString(String classeAvailableString,Map<String,Classe> classesWithId) {
-        List<Classe> classes = new ArrayList<>();
-
-        String splitData[] = classeAvailableString.split(RessourceConstant.AND);
-        for(String data : splitData){
-            Classe classe = classesWithId.get(data);
-            classes.add(classe);
-        }
-        return classes;
+    private static List<String> getClasseIdFromString(String classeAvailableString) {
+        String[] classesAvailableList = classeAvailableString.split(RessourceConstant.AND);
+        return Arrays.asList(classesAvailableList);
     }
 
 }

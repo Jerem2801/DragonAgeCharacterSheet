@@ -2,11 +2,13 @@ package com.galaxia.dragonagecharactersheet.element.focus;
 
 import android.content.Context;
 
+import com.galaxia.dragonagecharactersheet.data.DataPool;
 import com.galaxia.dragonagecharactersheet.element.attribute.Attribute;
 import com.galaxia.dragonagecharactersheet.element.weapongroup.WeaponGroup;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceConstant;
 import com.galaxia.dragonagecharactersheet.ressource.RessourcePath;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
+import com.google.common.collect.Lists;
 
 import java.util.HashMap;
 import java.util.List;
@@ -26,7 +28,7 @@ public class FocusManager {
 
     }
 
-    public static Map<String,Focus> getFocusData(Context context, Map<String,Attribute> attributes){
+    public static Map<String,Focus> getFocusData(Context context){
         Map<String,Focus> focuss = new HashMap<>();
 
         List<String> data = RessourceUtils.getData(context,FOCUS_CSV_PATH,true);
@@ -37,14 +39,26 @@ public class FocusManager {
             String name = splitData[NAME];
             String description = splitData[DESCRIPTION];
             String attributeId = splitData[ATTRIBUTE_ID];
-            Attribute attribute = attributes.get(attributeId);
 
-            Focus focus = new Focus(id,name,description,attribute);
+            Focus focus = new Focus(id,name,description,attributeId);
             focuss.put(id,focus);
         }
 
         return focuss;
     }
 
+    public static Focus getFocus(String focusId){
+        DataPool dataPool = DataPool.getInstance();
+        Map<String, Focus> focuss = dataPool.getFocus();
+        return focuss.get(focusId);
+    }
 
+
+    public static List<Focus> getFocus(List<String> chooseFocusId) {
+        List<Focus> focuss = Lists.newArrayList();
+        for(String focusId: chooseFocusId){
+            focuss.add(getFocus(focusId));
+        }
+        return focuss;
+    }
 }

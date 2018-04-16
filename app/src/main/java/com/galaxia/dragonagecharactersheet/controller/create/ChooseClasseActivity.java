@@ -14,6 +14,7 @@ import com.bluejamesbond.text.style.TextAlignment;
 import com.galaxia.dragonagecharactersheet.R;
 import com.galaxia.dragonagecharactersheet.controller.ActivityConstant;
 import com.galaxia.dragonagecharactersheet.element.classe.Classe;
+import com.galaxia.dragonagecharactersheet.element.classe.ClasseManager;
 import com.galaxia.dragonagecharactersheet.element.classe.ClasseUiManager;
 import com.galaxia.dragonagecharactersheet.element.race.Race;
 import com.galaxia.dragonagecharactersheet.player.Player;
@@ -69,7 +70,8 @@ public class ChooseClasseActivity extends AppCompatActivity {
     }
 
     private void initializeSpinner(Race race) {
-        List<Classe> classes = race.getClasseAvailable();
+        List<String> classeAvailableIds = race.getClasseAvailableIds();
+        List<Classe> classes = ClasseManager.getClasses(classeAvailableIds);
         UiUtils.setSpinnerClasse(ChooseClasseActivity.this, classesSpinner,classes);
     }
 
@@ -91,15 +93,15 @@ public class ChooseClasseActivity extends AppCompatActivity {
 
                 weaponGroupExplain.setText(getString(R.string.weapon_group_explain));
                 weaponGroupExplain.getDocumentLayoutParams().setTextAlignment(TextAlignment.JUSTIFIED);
-                weaponGroupList.setText(ClasseUiManager.setWeaponGroup(classe));
+                weaponGroupList.setText(ClasseUiManager.getWeaponGroupStarting(classe));
 
                 primaryAttributesExplain.setText(getString(R.string.primay_attributes_explain));
                 primaryAttributesExplain.getDocumentLayoutParams().setTextAlignment(TextAlignment.JUSTIFIED);
-                primaryAttributesList.setText(ClasseUiManager.setAttributeList(classe.getPrimaryAttributes()));
+                primaryAttributesList.setText(ClasseUiManager.getAttributes(classe.getPrimaryAttributesId()));
 
                 secondaryAttributesExplain.setText(getString(R.string.secondary_attributes_explain));
                 secondaryAttributesExplain.getDocumentLayoutParams().setTextAlignment(TextAlignment.JUSTIFIED);
-                secondaryAttributesList.setText(ClasseUiManager.setAttributeList(classe.getSecondaryAttributes()));
+                secondaryAttributesList.setText(ClasseUiManager.getAttributes(classe.getSecondaryAttributesId()));
 
             }
 

@@ -2,13 +2,16 @@ package com.galaxia.dragonagecharactersheet.element.classe;
 
 import android.content.Context;
 
+import com.galaxia.dragonagecharactersheet.data.DataPool;
 import com.galaxia.dragonagecharactersheet.element.attribute.Attribute;
 import com.galaxia.dragonagecharactersheet.element.weapongroup.WeaponGroup;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceConstant;
 import com.galaxia.dragonagecharactersheet.ressource.RessourcePath;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
+import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,7 +35,7 @@ public class ClasseManager {
 
     }
 
-    public static Map<String,Classe> getClasseData(Context context, Map<String,Attribute> attributes, Map<String,WeaponGroup> weaponGroups){
+    public static Map<String,Classe> getClasseData(Context context){
         Map<String,Classe> classes = new HashMap<>();
 
         List<String> data = RessourceUtils.getData(context,CLASSE_CSV_PATH,true);
@@ -42,44 +45,48 @@ public class ClasseManager {
             String id = splitData[ID];
             String name = splitData[NAME];
             String description = splitData[DESCRIPTION];
+
             String initialHealthString = splitData[INITIAL_HEALTH];
             int initialHealth = Integer.valueOf(initialHealthString);
+
             String primaryAttributesString = splitData[PRIMARY_ATTRIBUTES];
-            List<Attribute> primaryAttributes = getAttributeFromString(primaryAttributesString,attributes);
+            List<String> primaryAttributesId = getListOfId(primaryAttributesString);
+
             String secondaryAttributesString= splitData[SECONDARY_ATTRIBUTES];
-            List<Attribute> secondaryAttributes = getAttributeFromString(secondaryAttributesString,attributes);
+            List<String> secondaryAttributesId = getListOfId(secondaryAttributesString);
+
             String weaponGroupStartingString = splitData[WEAPON_GROUP_STARTING];
-            List<WeaponGroup> weaponGroupStarting = getWeaponGroupFromString(weaponGroupStartingString,weaponGroups);
+            List<String> weaponGroupStartingId = getListOfId(weaponGroupStartingString);
+
             String imageFileName = splitData[IMAGE_FILE_NAME];
             String imagePath = CLASSE_IMAGE_DIR + imageFileName;
 
-            Classe classe = new Classe(id,name,description,initialHealth,primaryAttributes,secondaryAttributes,weaponGroupStarting,imagePath);
+            Classe classe = new Classe(id,name,description,initialHealth,primaryAttributesId,secondaryAttributesId,weaponGroupStartingId,imagePath);
             classes.put(id,classe);
         }
 
         return classes;
     }
 
-    private static List<Attribute> getAttributeFromString(String attributesString,Map<String,Attribute> attributesWithId) {
-        List<Attribute> attributes = new ArrayList<>();
-
-        String splitData[] = attributesString.split(RessourceConstant.AND);
-        for(String data : splitData){
-            Attribute attribute = attributesWithId.get(data);
-            attributes.add(attribute);
-        }
-        return attributes;
+    private static List<String> getListOfId(String attributesString) {
+        String idList[] = attributesString.split(RessourceConstant.AND);
+        return new ArrayList<>(Arrays.asList(idList));
     }
 
-    private static List<WeaponGroup> getWeaponGroupFromString(String weaponGroupStartingString,Map<String,WeaponGroup> weaponGroupsWithId) {
-        List<WeaponGroup> weaponGroups = new ArrayList<>();
 
-        String splitData[] = weaponGroupStartingString.split(RessourceConstant.AND);
-        for(String data : splitData){
-            WeaponGroup weaponGroup = weaponGroupsWithId.get(data);
-            weaponGroups.add(weaponGroup);
+    public static List<Classe> getClasses(List<String> classeIds) {
+        List<Classe> classes = Lists.newArrayList();
+
+        for(String classeId : classeIds){
+            classes.add(getClasse(classeId));
         }
-        return weaponGroups;
+
+        return classes;
     }
 
+    public static Classe getClasse(String classeId) {
+        DataPool dataPool = DataPool.getInstance();
+        Map<String, Classe> classes = dataPool.getClasses();
+        return classes.get(classeId);
+    }
 }

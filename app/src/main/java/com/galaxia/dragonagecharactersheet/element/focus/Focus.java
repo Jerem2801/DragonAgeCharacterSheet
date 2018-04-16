@@ -4,21 +4,18 @@ package com.galaxia.dragonagecharactersheet.element.focus;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.galaxia.dragonagecharactersheet.element.attribute.Attribute;
-import com.galaxia.dragonagecharactersheet.element.background.backgroundtable.backgroundbonus.BackgroundBonus;
-
-public class Focus extends BackgroundBonus implements Parcelable {
+public class Focus implements Parcelable {
 
     private String id;
     private String name;
     private String description;
-    private Attribute attribute;
+    private String attributeId;
 
-    public Focus(String id, String name, String description, Attribute attribute) {
+    public Focus(String id, String name, String description, String attributeId) {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.attribute = attribute;
+        this.attributeId = attributeId;
     }
 
     public String getId() {
@@ -45,14 +42,13 @@ public class Focus extends BackgroundBonus implements Parcelable {
         this.description = description;
     }
 
-    public Attribute getAttribute() {
-        return attribute;
+    public String getAttributeId() {
+        return attributeId;
     }
 
-    public void setAttribute(Attribute attribute) {
-        this.attribute = attribute;
+    public void setAttributeId(String attributeId) {
+        this.attributeId = attributeId;
     }
-
 
     @Override
     public int describeContents() {
@@ -64,14 +60,14 @@ public class Focus extends BackgroundBonus implements Parcelable {
         dest.writeString(this.id);
         dest.writeString(this.name);
         dest.writeString(this.description);
-        dest.writeParcelable(this.attribute, flags);
+        dest.writeString(this.attributeId);
     }
 
     protected Focus(Parcel in) {
         this.id = in.readString();
         this.name = in.readString();
         this.description = in.readString();
-        this.attribute = in.readParcelable(Attribute.class.getClassLoader());
+        this.attributeId = in.readString();
     }
 
     public static final Parcelable.Creator<Focus> CREATOR = new Parcelable.Creator<Focus>() {

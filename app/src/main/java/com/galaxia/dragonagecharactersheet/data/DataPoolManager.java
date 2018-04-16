@@ -31,18 +31,19 @@ public class DataPoolManager {
     public static DataPool getDataLoader(Context context){
         Map<String,Language> languages = LanguageManager.getLanguageData(context);
         Map<String,Attribute> attributes = AttributeManager.getAttributeData(context);
-        Map<String,Focus> focus = FocusManager.getFocusData(context, attributes);
-        Map<String,WeaponGroup> weaponGroups = WeaponGroupManager.getWeaponGroupData(context,attributes);
-        Map<String,Classe> classes = ClasseManager.getClasseData(context,attributes,weaponGroups);
-        Map<String,Race> races = RaceManager.getRaceData(context, classes);
-        Map<String, List<BackgroundTable>> backgroundTable = BackgroundTableManager.getAttributeData(context, attributes, focus, weaponGroups, languages);
-        Map<String,Background> backgrounds = BackgroundManager.getBackgroundData(context,attributes,focus,languages,backgroundTable);
+        Map<String,Focus> focuss = FocusManager.getFocusData(context);
+        Map<String,WeaponGroup> weaponGroups = WeaponGroupManager.getWeaponGroupData(context);
+        Map<String,Classe> classes = ClasseManager.getClasseData(context);
+        Map<String,Race> races = RaceManager.getRaceData(context);
+        Map<String,List<BackgroundTable>> backgroundTables = BackgroundTableManager.getAttributeData(context);
+        Map<String,Background> backgrounds = BackgroundManager.getBackgroundData(context,backgroundTables);
 
 
         DataPool dataPool = new DataPool();
+
         dataPool.setLanguages(languages);
         dataPool.setAttributes(attributes);
-        dataPool.setFocus(focus);
+        dataPool.setFocus(focuss);
         dataPool.setWeaponGroups(weaponGroups);
         dataPool.setClasses(classes);
         dataPool.setRaces(races);

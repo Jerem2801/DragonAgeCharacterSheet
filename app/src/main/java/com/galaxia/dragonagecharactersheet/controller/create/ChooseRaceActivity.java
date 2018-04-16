@@ -1,18 +1,14 @@
 package com.galaxia.dragonagecharactersheet.controller.create;
 
 import android.content.Intent;
-import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.bluejamesbond.text.DocumentView;
-import com.bluejamesbond.text.style.TextAlignment;
 import com.galaxia.dragonagecharactersheet.R;
 import com.galaxia.dragonagecharactersheet.controller.ActivityConstant;
 import com.galaxia.dragonagecharactersheet.data.DataPool;
@@ -22,7 +18,6 @@ import com.galaxia.dragonagecharactersheet.player.Player;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
 import com.galaxia.dragonagecharactersheet.ui.UiUtils;
 import com.galaxia.dragonagecharactersheet.ui.ViewFormaterString;
-import com.uncopt.android.widget.text.justify.JustifiedTextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,10 +25,10 @@ import java.util.List;
 public class ChooseRaceActivity extends AppCompatActivity {
 
     private Spinner racesSpinner;
-    private TextView descriptionText;
-    private TextView speedExplainText;
-    private TextView speedText;
-    private TextView classeAvailableList;
+    private TextView raceDescriptionText;
+    private TextView raceInitialSpeedExplainText;
+    private TextView raceInitialSpeedText;
+    private TextView raceClassesAvailableText;
     private ImageView raceImage;
 
     @Override
@@ -42,10 +37,10 @@ public class ChooseRaceActivity extends AppCompatActivity {
         setContentView(R.layout.choose_race);
 
         racesSpinner = findViewById(R.id.choose_race_spinner);
-        descriptionText = findViewById(R.id.choose_race_description_txt);
-        speedExplainText = findViewById(R.id.choose_race_speed_explain_txt);
-        speedText = findViewById(R.id.choose_race_speed_txt);
-        classeAvailableList = findViewById(R.id.choose_race_classe_available_txt);
+        raceDescriptionText = findViewById(R.id.choose_race_description_txt);
+        raceInitialSpeedExplainText = findViewById(R.id.choose_race_initial_speed_explain_txt);
+        raceInitialSpeedText = findViewById(R.id.choose_race_initial_speed_txt);
+        raceClassesAvailableText = findViewById(R.id.choose_race_classes_available_txt);
         raceImage = findViewById(R.id.choose_race_image);
 
         initializeSpinner();
@@ -66,12 +61,13 @@ public class ChooseRaceActivity extends AppCompatActivity {
 
                 Race race = (Race) racesSpinner.getItemAtPosition(position);
 
-                descriptionText.setText(ViewFormaterString.setLineSeparator(race.getDescription()));
+                raceDescriptionText.setText(ViewFormaterString.setLineSeparator(race.getDescription()));
 
-                speedExplainText.setText(getString(R.string.speed_explain));
+                raceInitialSpeedExplainText.setText(getString(R.string.speed_explain));
+                raceInitialSpeedText.setText(RaceUiManager.setSpeed(race,getString(R.string.speed_race)));
 
-                speedText.setText(RaceUiManager.setSpeed(race,getString(R.string.speed_race)));
-                classeAvailableList.setText(RaceUiManager.setClasseAvailable(race));
+                raceClassesAvailableText.setText(RaceUiManager.getClasseAvailable(race));
+
                 raceImage.setImageBitmap(RessourceUtils.getImage(ChooseRaceActivity.this,race.getImagePath()));
             }
 
@@ -83,13 +79,13 @@ public class ChooseRaceActivity extends AppCompatActivity {
         });
     }
 
-    public void chooseClasseActivity(View view){
-        Intent classeActivity = new Intent(ChooseRaceActivity.this, ChooseClasseActivity.class);
+    public void nextActivityChooseClasse(View view){
+        Intent chooseClasseIntent = new Intent(ChooseRaceActivity.this, ChooseClasseActivity.class);
         Race race = (Race) racesSpinner.getSelectedItem();
-        Player player= new Player();
+        Player player = new Player();
         player.setRace(race);
-        classeActivity.putExtra(ActivityConstant.EXTRA_PLAYER,player);
-        startActivity(classeActivity);
+        chooseClasseIntent.putExtra(ActivityConstant.EXTRA_PLAYER,player);
+        startActivity(chooseClasseIntent);
     }
 
 

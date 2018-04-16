@@ -14,15 +14,15 @@ public class Race implements Parcelable {
     private String name;
     private String description;
     private int initialSpeed;
-    private List<Classe> classeAvailable;
+    private List<String> classeAvailableIds;
     private String imagePath;
 
-    public Race(String id, String name, String description, int initialSpeed, List<Classe> classeAvailable, String imagePath) {
+    public Race(String id, String name, String description, int initialSpeed, List<String> classeAvailableIds, String imagePath) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.initialSpeed = initialSpeed;
-        this.classeAvailable = classeAvailable;
+        this.classeAvailableIds = classeAvailableIds;
         this.imagePath = imagePath;
     }
 
@@ -58,12 +58,12 @@ public class Race implements Parcelable {
         this.initialSpeed = initialSpeed;
     }
 
-    public List<Classe> getClasseAvailable() {
-        return classeAvailable;
+    public List<String> getClasseAvailableIds() {
+        return classeAvailableIds;
     }
 
-    public void setClasseAvailable(List<Classe> classeAvailable) {
-        this.classeAvailable = classeAvailable;
+    public void setClasseAvailableIds(List<String> classeAvailableIds) {
+        this.classeAvailableIds = classeAvailableIds;
     }
 
     public String getImagePath() {
@@ -72,11 +72,6 @@ public class Race implements Parcelable {
 
     public void setImagePath(String imagePath) {
         this.imagePath = imagePath;
-    }
-
-    @Override
-    public String toString() {
-        return name;
     }
 
     @Override
@@ -90,7 +85,7 @@ public class Race implements Parcelable {
         dest.writeString(this.name);
         dest.writeString(this.description);
         dest.writeInt(this.initialSpeed);
-        dest.writeList(this.classeAvailable);
+        dest.writeStringList(this.classeAvailableIds);
         dest.writeString(this.imagePath);
     }
 
@@ -99,8 +94,7 @@ public class Race implements Parcelable {
         this.name = in.readString();
         this.description = in.readString();
         this.initialSpeed = in.readInt();
-        this.classeAvailable = new ArrayList<Classe>();
-        in.readList(this.classeAvailable, Classe.class.getClassLoader());
+        this.classeAvailableIds = in.createStringArrayList();
         this.imagePath = in.readString();
     }
 
@@ -115,4 +109,9 @@ public class Race implements Parcelable {
             return new Race[size];
         }
     };
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

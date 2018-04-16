@@ -10,12 +10,16 @@ import android.widget.TextView;
 
 import com.galaxia.dragonagecharactersheet.R;
 import com.galaxia.dragonagecharactersheet.element.attribute.Attribute;
+import com.galaxia.dragonagecharactersheet.element.attribute.AttributeManager;
 import com.galaxia.dragonagecharactersheet.element.background.Background;
 import com.galaxia.dragonagecharactersheet.element.background.backgroundtable.backgroundbonus.BackgroundBonusConstant;
 import com.galaxia.dragonagecharactersheet.element.focus.Focus;
+import com.galaxia.dragonagecharactersheet.element.focus.FocusManager;
 import com.galaxia.dragonagecharactersheet.element.focus.FocusUiManager;
 import com.galaxia.dragonagecharactersheet.element.language.Language;
+import com.galaxia.dragonagecharactersheet.element.language.LanguageManager;
 import com.galaxia.dragonagecharactersheet.element.weapongroup.WeaponGroup;
+import com.galaxia.dragonagecharactersheet.element.weapongroup.WeaponGroupManager;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -94,18 +98,26 @@ public class BackgroundTableUiManager {
 
     private static String getBonusString(BackgroundTable backgroundTable) {
         String bonus = StringUtils.EMPTY;
-        if(StringUtils.equals(backgroundTable.getType() ,BackgroundBonusConstant.ATTRIBUTE)){
-            Attribute attribute = (Attribute) backgroundTable.getBonus();
-            bonus = attribute.getName() + " + 1";
-        }else if(StringUtils.equals(backgroundTable.getType() ,BackgroundBonusConstant.FOCUS)){
-            Focus focus = (Focus) backgroundTable.getBonus();
-            bonus = "Compétence : " + FocusUiManager.getFocusWithAttribute(focus);
-        }else if(StringUtils.equals(backgroundTable.getType() ,BackgroundBonusConstant.LANGUAGE)){
-            Language language = (Language) backgroundTable.getBonus();
-            bonus = "Langue Parlée : " + language.getName();
-        }else if(StringUtils.equals(backgroundTable.getType() ,BackgroundBonusConstant.WEAPON_GROUP)){
-            WeaponGroup weaponGroup = (WeaponGroup) backgroundTable.getBonus();
-            bonus = "Groupe d'Arme : " + weaponGroup.getName();
+        String type = backgroundTable.getType();
+        String bonusId = backgroundTable.getBonus();
+
+        switch(type){
+            case BackgroundBonusConstant.ATTRIBUTE:
+                Attribute attribute = AttributeManager.getAttribute(bonusId);
+                bonus = attribute.getName() + " + 1";
+                break;
+            case BackgroundBonusConstant.FOCUS:
+                Focus focus = FocusManager.getFocus(bonusId);
+                bonus = "Compétence : " + FocusUiManager.getFocusWithAttribute(focus);
+                break;
+            case BackgroundBonusConstant.LANGUAGE:
+                Language language = LanguageManager.getLanguage(bonusId);
+                bonus = "Langue Parlée : " + language.getName();
+                break;
+            case BackgroundBonusConstant.WEAPON_GROUP:
+                WeaponGroup weaponGroup = WeaponGroupManager.getWeaponGroup(bonusId);
+                bonus = "Groupe d'Arme : " + weaponGroup.getName();
+                break;
         }
 
         return bonus;

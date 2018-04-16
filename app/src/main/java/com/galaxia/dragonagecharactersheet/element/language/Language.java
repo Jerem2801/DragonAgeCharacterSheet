@@ -3,9 +3,7 @@ package com.galaxia.dragonagecharactersheet.element.language;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.galaxia.dragonagecharactersheet.element.background.backgroundtable.backgroundbonus.BackgroundBonus;
-
-public class Language extends BackgroundBonus implements Parcelable {
+public class Language implements Parcelable {
 
     private String id;
     private String name;

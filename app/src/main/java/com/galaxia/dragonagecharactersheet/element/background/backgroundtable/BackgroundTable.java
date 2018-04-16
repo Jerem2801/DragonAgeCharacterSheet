@@ -4,19 +4,17 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
-import com.galaxia.dragonagecharactersheet.element.background.backgroundtable.backgroundbonus.BackgroundBonus;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class BackgroundTable implements Parcelable,Comparable {
+public class BackgroundTable implements Comparable, Parcelable {
 
     private int order;
     private List<Integer> roll;
     private String type;
-    private BackgroundBonus bonus;
+    private String bonus;
 
-    public BackgroundTable(int order, List<Integer> roll, String type, BackgroundBonus bonus) {
+    public BackgroundTable(int order, List<Integer> roll, String type, String bonus) {
         this.order = order;
         this.roll = roll;
         this.type = type;
@@ -47,14 +45,19 @@ public class BackgroundTable implements Parcelable,Comparable {
         this.type = type;
     }
 
-    public BackgroundBonus getBonus() {
+    public String getBonus() {
         return bonus;
     }
 
-    public void setBonus(BackgroundBonus bonus) {
+    public void setBonus(String bonus) {
         this.bonus = bonus;
     }
 
+    @Override
+    public int compareTo(@NonNull Object o) {
+        int orderObject = ((BackgroundTable) o).getOrder();
+        return this.order - orderObject;
+    }
 
     @Override
     public int describeContents() {
@@ -66,7 +69,7 @@ public class BackgroundTable implements Parcelable,Comparable {
         dest.writeInt(this.order);
         dest.writeList(this.roll);
         dest.writeString(this.type);
-        dest.writeParcelable(this.bonus, flags);
+        dest.writeString(this.bonus);
     }
 
     protected BackgroundTable(Parcel in) {
@@ -74,7 +77,7 @@ public class BackgroundTable implements Parcelable,Comparable {
         this.roll = new ArrayList<Integer>();
         in.readList(this.roll, Integer.class.getClassLoader());
         this.type = in.readString();
-        this.bonus = in.readParcelable(BackgroundBonus.class.getClassLoader());
+        this.bonus = in.readString();
     }
 
     public static final Parcelable.Creator<BackgroundTable> CREATOR = new Parcelable.Creator<BackgroundTable>() {
@@ -88,10 +91,4 @@ public class BackgroundTable implements Parcelable,Comparable {
             return new BackgroundTable[size];
         }
     };
-
-    @Override
-    public int compareTo(@NonNull Object o) {
-        int orderObject = ((BackgroundTable) o).getOrder();
-        return this.order - orderObject;
-    }
 }

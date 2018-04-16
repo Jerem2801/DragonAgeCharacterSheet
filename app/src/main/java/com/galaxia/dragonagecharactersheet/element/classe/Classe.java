@@ -3,10 +3,6 @@ package com.galaxia.dragonagecharactersheet.element.classe;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.galaxia.dragonagecharactersheet.element.attribute.Attribute;
-import com.galaxia.dragonagecharactersheet.element.weapongroup.WeaponGroup;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Classe implements Parcelable {
@@ -15,19 +11,19 @@ public class Classe implements Parcelable {
     private String name;
     private String description;
     private int initialHealth;
-    private List<Attribute> primaryAttributes;
-    private List<Attribute> secondaryAttributes;
-    private List<WeaponGroup> weaponGroupStarting;
+    private List<String> primaryAttributesId;
+    private List<String> secondaryAttributesId;
+    private List<String> weaponGroupStartingId;
     private String imagePath;
 
-    public Classe(String id, String name, String description, int initialHealth, List<Attribute> primaryAttributes, List<Attribute> secondaryAttributes, List<WeaponGroup> weaponGroupStarting, String imagePath) {
+    public Classe(String id, String name, String description, int initialHealth, List<String> primaryAttributesId, List<String> secondaryAttributesId, List<String> weaponGroupStartingId, String imagePath) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.initialHealth = initialHealth;
-        this.primaryAttributes = primaryAttributes;
-        this.secondaryAttributes = secondaryAttributes;
-        this.weaponGroupStarting = weaponGroupStarting;
+        this.primaryAttributesId = primaryAttributesId;
+        this.secondaryAttributesId = secondaryAttributesId;
+        this.weaponGroupStartingId = weaponGroupStartingId;
         this.imagePath = imagePath;
     }
 
@@ -63,28 +59,28 @@ public class Classe implements Parcelable {
         this.initialHealth = initialHealth;
     }
 
-    public List<Attribute> getPrimaryAttributes() {
-        return primaryAttributes;
+    public List<String> getPrimaryAttributesId() {
+        return primaryAttributesId;
     }
 
-    public void setPrimaryAttributes(List<Attribute> primaryAttributes) {
-        this.primaryAttributes = primaryAttributes;
+    public void setPrimaryAttributesId(List<String> primaryAttributesId) {
+        this.primaryAttributesId = primaryAttributesId;
     }
 
-    public List<Attribute> getSecondaryAttributes() {
-        return secondaryAttributes;
+    public List<String> getSecondaryAttributesId() {
+        return secondaryAttributesId;
     }
 
-    public void setSecondaryAttributes(List<Attribute> secondaryAttributes) {
-        this.secondaryAttributes = secondaryAttributes;
+    public void setSecondaryAttributesId(List<String> secondaryAttributesId) {
+        this.secondaryAttributesId = secondaryAttributesId;
     }
 
-    public List<WeaponGroup> getWeaponGroupStarting() {
-        return weaponGroupStarting;
+    public List<String> getWeaponGroupStartingId() {
+        return weaponGroupStartingId;
     }
 
-    public void setWeaponGroupStarting(List<WeaponGroup> weaponGroupStarting) {
-        this.weaponGroupStarting = weaponGroupStarting;
+    public void setWeaponGroupStartingId(List<String> weaponGroupStartingId) {
+        this.weaponGroupStartingId = weaponGroupStartingId;
     }
 
     public String getImagePath() {
@@ -95,10 +91,6 @@ public class Classe implements Parcelable {
         this.imagePath = imagePath;
     }
 
-    @Override
-    public String toString() {
-        return name;
-    }
 
     @Override
     public int describeContents() {
@@ -111,9 +103,9 @@ public class Classe implements Parcelable {
         dest.writeString(this.name);
         dest.writeString(this.description);
         dest.writeInt(this.initialHealth);
-        dest.writeList(this.primaryAttributes);
-        dest.writeList(this.secondaryAttributes);
-        dest.writeList(this.weaponGroupStarting);
+        dest.writeStringList(this.primaryAttributesId);
+        dest.writeStringList(this.secondaryAttributesId);
+        dest.writeStringList(this.weaponGroupStartingId);
         dest.writeString(this.imagePath);
     }
 
@@ -122,12 +114,9 @@ public class Classe implements Parcelable {
         this.name = in.readString();
         this.description = in.readString();
         this.initialHealth = in.readInt();
-        this.primaryAttributes = new ArrayList<Attribute>();
-        in.readList(this.primaryAttributes, Attribute.class.getClassLoader());
-        this.secondaryAttributes = new ArrayList<Attribute>();
-        in.readList(this.secondaryAttributes, Attribute.class.getClassLoader());
-        this.weaponGroupStarting = new ArrayList<WeaponGroup>();
-        in.readList(this.weaponGroupStarting, WeaponGroup.class.getClassLoader());
+        this.primaryAttributesId = in.createStringArrayList();
+        this.secondaryAttributesId = in.createStringArrayList();
+        this.weaponGroupStartingId = in.createStringArrayList();
         this.imagePath = in.readString();
     }
 
@@ -142,4 +131,9 @@ public class Classe implements Parcelable {
             return new Classe[size];
         }
     };
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

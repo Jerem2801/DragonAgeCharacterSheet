@@ -15,7 +15,6 @@ public class AttributeManager {
 
     private static final String ATTRIBUTE_DIR = RessourcePath.DATA_PATH + "attribute/";
     private static final String ATTRIBUTE_CSV_PATH = ATTRIBUTE_DIR + "attribute.csv";
-    //private static final String ATTRIBUTE_CSV_PATH = ATTRIBUTE_DIR + "attribute_Uppercase.csv";
 
     private static final int ID = 0;
     private static final int NAME = 1;
@@ -43,10 +42,19 @@ public class AttributeManager {
         return attributes;
     }
 
-    public static Attribute getAttributeData(AttributeEnum attribute){
+
+
+    public static Attribute getAttribute(AttributeEnum attributeEnum){
         DataPool instance = DataPool.getInstance();
         Map<String, Attribute> attributes = instance.getAttributes();
-        return attributes.get(attribute.getId());
+        return attributes.get(attributeEnum.getId());
+    }
+
+
+    public static Attribute getAttribute(String attributeId){
+        DataPool dataPool = DataPool.getInstance();
+        Map<String, Attribute> attributes = dataPool.getAttributes();
+        return attributes.get(attributeId);
     }
 
 

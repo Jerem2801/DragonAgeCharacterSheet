@@ -18,12 +18,16 @@ import com.galaxia.dragonagecharactersheet.R;
 import com.galaxia.dragonagecharactersheet.controller.ActivityConstant;
 import com.galaxia.dragonagecharactersheet.data.DataPool;
 import com.galaxia.dragonagecharactersheet.element.attribute.Attribute;
+import com.galaxia.dragonagecharactersheet.element.attribute.AttributeManager;
 import com.galaxia.dragonagecharactersheet.element.background.Background;
 import com.galaxia.dragonagecharactersheet.element.background.BackgroundManager;
 import com.galaxia.dragonagecharactersheet.element.background.backgroundtable.BackgroundTableUiManager;
 import com.galaxia.dragonagecharactersheet.element.classe.Classe;
 import com.galaxia.dragonagecharactersheet.element.focus.Focus;
+import com.galaxia.dragonagecharactersheet.element.focus.FocusManager;
 import com.galaxia.dragonagecharactersheet.element.focus.FocusUiManager;
+import com.galaxia.dragonagecharactersheet.element.language.Language;
+import com.galaxia.dragonagecharactersheet.element.language.LanguageManager;
 import com.galaxia.dragonagecharactersheet.element.language.LanguageUiManager;
 import com.galaxia.dragonagecharactersheet.element.race.Race;
 import com.galaxia.dragonagecharactersheet.player.Player;
@@ -106,7 +110,7 @@ public class ChooseBackgroundActivity extends AppCompatActivity {
                 attributBonusExplain.setText(ViewFormaterString.setLineSeparator(increaseAttributeDesc));
                 attributBonusExplain.getDocumentLayoutParams().setTextAlignment(TextAlignment.JUSTIFIED);
 
-                Attribute increaseAttribute = background.getIncreaseAttribute();
+                Attribute increaseAttribute = AttributeManager.getAttribute(background.getIncreaseAttributeId());
                 String increaseAttributePhrase = getString(R.string.attribute_bonus_explain);
                 String finalIncreaseAttribute = String.format(increaseAttributePhrase, increaseAttribute.getName());
                 attributBonus.setText(finalIncreaseAttribute);
@@ -114,14 +118,17 @@ public class ChooseBackgroundActivity extends AppCompatActivity {
                 String focusExplainString = getString(R.string.choose_focus_explain);
                 focusExplain.setText(focusExplainString);
                 focusExplain.getDocumentLayoutParams().setTextAlignment(TextAlignment.JUSTIFIED);
-                List<Focus> focus = background.getChooseFocus();
+                List<Focus> focus = FocusManager.getFocus(background.getChooseFocusId());
                 String listFocus = FocusUiManager.getChooseFocus(focus);
                 chooseFocus.setText(listFocus);
 
-                String spokenLanguagesList = LanguageUiManager.getLanguages(ChooseBackgroundActivity.this,background.getSpokenLanguage());
-                spokenLanguages.setText(spokenLanguagesList);
-                String writenLanguagesList = LanguageUiManager.getLanguages(ChooseBackgroundActivity.this,background.getWritenLanguage());
-                writenLanguages.setText(writenLanguagesList);
+                List<Language> spokenLanguagesList = LanguageManager.getLanguage(background.getSpokenLanguageId());
+                String spokenLanguagesString = LanguageUiManager.getLanguages(ChooseBackgroundActivity.this,spokenLanguagesList);
+                spokenLanguages.setText(spokenLanguagesString);
+
+                List<Language> writenLanguagesList = LanguageManager.getLanguage(background.getWritenLanguageId());
+                String writenLanguagesString = LanguageUiManager.getLanguages(ChooseBackgroundActivity.this,writenLanguagesList);
+                writenLanguages.setText(writenLanguagesString);
 
                 String tableBonusExplainString = getString(R.string.rolls_bonus_explain);
                 tableBonusExplain.setText(tableBonusExplainString);
