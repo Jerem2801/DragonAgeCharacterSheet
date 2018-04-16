@@ -1,8 +1,10 @@
 package com.galaxia.dragonagecharactersheet.controller.create;
 
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -20,6 +22,7 @@ import com.galaxia.dragonagecharactersheet.player.Player;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
 import com.galaxia.dragonagecharactersheet.ui.UiUtils;
 import com.galaxia.dragonagecharactersheet.ui.ViewFormaterString;
+import com.uncopt.android.widget.text.justify.JustifiedTextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +30,8 @@ import java.util.List;
 public class ChooseRaceActivity extends AppCompatActivity {
 
     private Spinner racesSpinner;
-    private DocumentView descriptionText;
-    private DocumentView speedExplainText;
+    private TextView descriptionText;
+    private TextView speedExplainText;
     private TextView speedText;
     private TextView classeAvailableList;
     private ImageView raceImage;
@@ -64,10 +67,8 @@ public class ChooseRaceActivity extends AppCompatActivity {
                 Race race = (Race) racesSpinner.getItemAtPosition(position);
 
                 descriptionText.setText(ViewFormaterString.setLineSeparator(race.getDescription()));
-                descriptionText.getDocumentLayoutParams().setTextAlignment(TextAlignment.JUSTIFIED);
 
                 speedExplainText.setText(getString(R.string.speed_explain));
-                speedExplainText.getDocumentLayoutParams().setTextAlignment(TextAlignment.JUSTIFIED);
 
                 speedText.setText(RaceUiManager.setSpeed(race,getString(R.string.speed_race)));
                 classeAvailableList.setText(RaceUiManager.setClasseAvailable(race));

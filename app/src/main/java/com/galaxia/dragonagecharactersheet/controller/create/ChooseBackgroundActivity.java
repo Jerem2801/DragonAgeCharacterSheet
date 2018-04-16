@@ -97,8 +97,10 @@ public class ChooseBackgroundActivity extends AppCompatActivity {
                     backgroundImage.setImageBitmap(null);
                 }
 
+
                 description.setText(ViewFormaterString.setLineSeparator(background.getDescription()));
                 description.getDocumentLayoutParams().setTextAlignment(TextAlignment.JUSTIFIED);
+
 
                 String increaseAttributeDesc = background.getIncreaseAttributeDesc();
                 attributBonusExplain.setText(ViewFormaterString.setLineSeparator(increaseAttributeDesc));
