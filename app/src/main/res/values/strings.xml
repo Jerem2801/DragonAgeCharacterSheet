@@ -29,7 +29,8 @@
     <string name="choose_focus_explain">Vous avez le choix entre l’une des compétences suivantes :</string>
     <string name="spoken_language">Langues Parlées</string>
     <string name="writen_language">Langues Ecrites</string>
-
+    <string name="rolls_bonus">Bonus d\'Historique</string>
+    <string name="rolls_bonus_explain">Faites deux jets sur la table pour déterminer vos avantages supplémentaires. Jetez 2d6 et additionnez leurs résultats. Si vous obtenez deux fois le même résultat, refaites le jet jusqu’à ce que vous obteniez un avantage différent.</string>
     <string name="next_to_focus">Continuer vers le choix de Compétence</string>
 
     <string name="empty">Aucune</string>

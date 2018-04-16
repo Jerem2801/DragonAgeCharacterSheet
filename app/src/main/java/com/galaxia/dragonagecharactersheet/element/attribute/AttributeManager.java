@@ -14,8 +14,8 @@ import java.util.Map;
 public class AttributeManager {
 
     private static final String ATTRIBUTE_DIR = RessourcePath.DATA_PATH + "attribute/";
-    //private static final String ATTRIBUTE_CSV_PATH = ATTRIBUTE_DIR + "attribute.csv";
-    private static final String ATTRIBUTE_CSV_PATH = ATTRIBUTE_DIR + "attribute_Uppercase.csv";
+    private static final String ATTRIBUTE_CSV_PATH = ATTRIBUTE_DIR + "attribute.csv";
+    //private static final String ATTRIBUTE_CSV_PATH = ATTRIBUTE_DIR + "attribute_Uppercase.csv";
 
     private static final int ID = 0;
     private static final int NAME = 1;

@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.bluejamesbond.text.DocumentView;
@@ -18,6 +20,7 @@ import com.galaxia.dragonagecharactersheet.data.DataPool;
 import com.galaxia.dragonagecharactersheet.element.attribute.Attribute;
 import com.galaxia.dragonagecharactersheet.element.background.Background;
 import com.galaxia.dragonagecharactersheet.element.background.BackgroundManager;
+import com.galaxia.dragonagecharactersheet.element.background.backgroundtable.BackgroundTableUiManager;
 import com.galaxia.dragonagecharactersheet.element.classe.Classe;
 import com.galaxia.dragonagecharactersheet.element.focus.Focus;
 import com.galaxia.dragonagecharactersheet.element.focus.FocusUiManager;
@@ -44,11 +47,14 @@ public class ChooseBackgroundActivity extends AppCompatActivity {
     private TextView chooseFocus;
     private TextView spokenLanguages;
     private TextView writenLanguages;
+    private DocumentView tableBonusExplain;
+    private TableLayout tableBonus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choose_background);
+
 
         Intent intent = getIntent();
         player = intent.getParcelableExtra(ActivityConstant.EXTRA_PLAYER);
@@ -64,7 +70,8 @@ public class ChooseBackgroundActivity extends AppCompatActivity {
         chooseFocus = findViewById(R.id.choose_background_focus_txt);
         spokenLanguages = findViewById(R.id.choose_background_spoken_languages_txt);
         writenLanguages = findViewById(R.id.choose_background_writen_languages_txt);
-
+        tableBonusExplain = findViewById(R.id.choose_background_table_bonus_table_explain);
+        tableBonus = findViewById(R.id.choose_background_table_bonus_table);
 
         initializeSpinner(race,classe);
         onSelectedItem();
@@ -93,7 +100,6 @@ public class ChooseBackgroundActivity extends AppCompatActivity {
                 description.setText(ViewFormaterString.setLineSeparator(background.getDescription()));
                 description.getDocumentLayoutParams().setTextAlignment(TextAlignment.JUSTIFIED);
 
-
                 String increaseAttributeDesc = background.getIncreaseAttributeDesc();
                 attributBonusExplain.setText(ViewFormaterString.setLineSeparator(increaseAttributeDesc));
                 attributBonusExplain.getDocumentLayoutParams().setTextAlignment(TextAlignment.JUSTIFIED);
@@ -115,6 +121,12 @@ public class ChooseBackgroundActivity extends AppCompatActivity {
                 String writenLanguagesList = LanguageUiManager.getLanguages(ChooseBackgroundActivity.this,background.getWritenLanguage());
                 writenLanguages.setText(writenLanguagesList);
 
+                String tableBonusExplainString = getString(R.string.rolls_bonus_explain);
+                tableBonusExplain.setText(tableBonusExplainString);
+                tableBonusExplain.getDocumentLayoutParams().setTextAlignment(TextAlignment.JUSTIFIED);
+
+                tableBonus.removeAllViews();
+                BackgroundTableUiManager.setTableUi(ChooseBackgroundActivity.this,tableBonus,background);
 
             }
 

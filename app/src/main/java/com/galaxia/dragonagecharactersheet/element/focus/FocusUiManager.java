@@ -27,4 +27,9 @@ public class FocusUiManager {
         }
         return builder.toString();
     }
+
+    public static String getFocusWithAttribute(Focus focus) {
+        Attribute attribute = focus.getAttribute();
+        return attribute.getName() + "(" + focus.getName() + ")";
+    }
 }

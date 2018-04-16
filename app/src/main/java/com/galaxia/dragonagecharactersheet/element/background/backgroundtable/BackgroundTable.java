@@ -2,13 +2,14 @@ package com.galaxia.dragonagecharactersheet.element.background.backgroundtable;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import com.galaxia.dragonagecharactersheet.element.background.backgroundtable.backgroundbonus.BackgroundBonus;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class BackgroundTable implements Parcelable {
+public class BackgroundTable implements Parcelable,Comparable {
 
     private int order;
     private List<Integer> roll;
@@ -87,4 +88,10 @@ public class BackgroundTable implements Parcelable {
             return new BackgroundTable[size];
         }
     };
+
+    @Override
+    public int compareTo(@NonNull Object o) {
+        int orderObject = ((BackgroundTable) o).getOrder();
+        return this.order - orderObject;
+    }
 }

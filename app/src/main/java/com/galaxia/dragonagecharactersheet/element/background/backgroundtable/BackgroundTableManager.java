@@ -55,8 +55,10 @@ public class BackgroundTableManager {
             List<BackgroundTable> backgroundTableList = backgroundTables.get(id);
             if(backgroundTableList == null){
                 backgroundTableList = new ArrayList<>();
+                backgroundTables.put(id,backgroundTableList);
             }
             backgroundTableList.add(backgroundTable);
+
 
         }
 
