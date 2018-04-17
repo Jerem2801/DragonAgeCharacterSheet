@@ -9,11 +9,8 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.bluejamesbond.text.DocumentView;
-import com.bluejamesbond.text.style.TextAlignment;
 import com.galaxia.dragonagecharactersheet.R;
 import com.galaxia.dragonagecharactersheet.controller.ActivityConstant;
 import com.galaxia.dragonagecharactersheet.data.DataPool;
@@ -22,14 +19,12 @@ import com.galaxia.dragonagecharactersheet.element.attribute.AttributeManager;
 import com.galaxia.dragonagecharactersheet.element.background.Background;
 import com.galaxia.dragonagecharactersheet.element.background.BackgroundManager;
 import com.galaxia.dragonagecharactersheet.element.background.backgroundtable.BackgroundTableUiManager;
-import com.galaxia.dragonagecharactersheet.element.classe.Classe;
 import com.galaxia.dragonagecharactersheet.element.focus.Focus;
 import com.galaxia.dragonagecharactersheet.element.focus.FocusManager;
 import com.galaxia.dragonagecharactersheet.element.focus.FocusUiManager;
 import com.galaxia.dragonagecharactersheet.element.language.Language;
 import com.galaxia.dragonagecharactersheet.element.language.LanguageManager;
 import com.galaxia.dragonagecharactersheet.element.language.LanguageUiManager;
-import com.galaxia.dragonagecharactersheet.element.race.Race;
 import com.galaxia.dragonagecharactersheet.player.Player;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
 import com.galaxia.dragonagecharactersheet.ui.UiUtils;
@@ -60,8 +55,8 @@ public class ChooseBackgroundActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         player = intent.getParcelableExtra(ActivityConstant.EXTRA_PLAYER);
-        Race race = player.getRace();
-        Classe classe = player.getClasse();
+        String raceId = player.getRaceId();
+        String classeId = player.getClasseId();
 
         backgroundsSpinner = findViewById(R.id.choose_background_spinner);
         backgroundImage = findViewById(R.id.choose_background_image);
@@ -73,14 +68,14 @@ public class ChooseBackgroundActivity extends AppCompatActivity {
         writenLanguages = findViewById(R.id.choose_background_writen_languages_txt);
         tableBonus = findViewById(R.id.choose_background_table_bonus_table);
 
-        initializeSpinner(race,classe);
+        initializeSpinner(raceId,classeId);
         onSelectedItem();
     }
 
-    private void initializeSpinner(Race race,Classe classe) {
+    private void initializeSpinner(String raceId,String classeId) {
         DataPool dataPool = DataPool.getInstance();
         Map<String, Background> backgrounds = dataPool.getBackgrounds();
-        List<Background> backgroundsList = BackgroundManager.getBackground(backgrounds,race.getId(),classe.getId());
+        List<Background> backgroundsList = BackgroundManager.getBackgroundAvailable(backgrounds,raceId,classeId);
         UiUtils.setSpinnerBackground(ChooseBackgroundActivity.this, backgroundsSpinner,backgroundsList);
     }
 
@@ -132,5 +127,13 @@ public class ChooseBackgroundActivity extends AppCompatActivity {
             }
 
         });
+    }
+
+    public void chooseFocusActivity(View view){
+        Intent backgroundActivity = new Intent(ChooseBackgroundActivity.this, ChooseFocusActivity.class);
+        Background background = (Background) backgroundsSpinner.getSelectedItem();
+        player.setBackgroundId(background.getId());
+        backgroundActivity.putExtra(ActivityConstant.EXTRA_PLAYER,player);
+        startActivity(backgroundActivity);
     }
 }

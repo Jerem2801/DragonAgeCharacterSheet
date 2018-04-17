@@ -32,71 +32,80 @@ public class BackgroundTableUiManager {
 
     }
 
-    public static void setTableUi(Context context, TableLayout tableLayout, Background background){
+    public static void setTableUi(Context context, TableLayout bonusTable, Background background){
         List<BackgroundTable> bonusRoll = background.getBonusRoll();
         Collections.sort(bonusRoll);
 
-        tableLayout.setStretchAllColumns(true);
-        tableLayout.setShrinkAllColumns(true);
+        bonusTable.setStretchAllColumns(true);
+        bonusTable.setShrinkAllColumns(true);
 
-        TableRow row = new TableRow(context);
-        TableLayout.LayoutParams rowLayoutFirst = new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,TableLayout.LayoutParams.MATCH_PARENT);
-        row.setLayoutParams(rowLayoutFirst);
-
-        TextView resultView = new TextView(context);
-        String result = "Résultat";
-        resultView.setText(result);
-        resultView.setTextColor(context.getResources().getColor(R.color.colorAccent));
-        resultView.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
-        resultView.setGravity(Gravity.CENTER);
-        row.addView(resultView);
-
-        TextView avantageView = new TextView(context);
-        String avantage = "Avantage";
-        avantageView.setText(avantage);
-        avantageView.setTextColor(context.getResources().getColor(R.color.colorAccent));
-        avantageView.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
-        avantageView.setGravity(Gravity.CENTER);
-        row.addView(avantageView);
-
-        row.setBackgroundColor(context.getResources().getColor(R.color.colorPrimaryDark));
-
-        tableLayout.addView(row);
+        createFirstLine(context,bonusTable);
 
         for(BackgroundTable backgroundTable : bonusRoll){
-            TableRow tableRow = new TableRow(context);
-            TableLayout.LayoutParams rowLayout = new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,TableLayout.LayoutParams.MATCH_PARENT);
-            tableRow.setLayoutParams(rowLayout);
-
-            TextView rollsView = new TextView(context);
-            String rollsString = getRollsString(backgroundTable);
-            rollsView.setText(rollsString);
-            rollsView.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
-            rollsView.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
-            rollsView.setGravity(Gravity.CENTER);
-            tableRow.addView(rollsView);
-
-            TextView bonusView = new TextView(context);
-            String bonusString = getBonusString(backgroundTable);
-            bonusView.setText(bonusString);
-            bonusView.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
-            bonusView.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
-            bonusView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 10);
-            bonusView.setGravity(Gravity.CENTER);
-            tableRow.addView(bonusView);
-
-
-            if(isEven(backgroundTable.getOrder())){
-                tableRow.setBackgroundColor(context.getResources().getColor(R.color.colorLight));
-            }
-
-            tableLayout.addView(tableRow);
+            TableRow tableRow = createRowValue(context,backgroundTable);
+            bonusTable.addView(tableRow);
         }
-
 
     }
 
-    private static String getBonusString(BackgroundTable backgroundTable) {
+    private static TableRow createRowValue(Context context,BackgroundTable backgroundTable){
+        TableRow tableRow = new TableRow(context);
+        TableLayout.LayoutParams rowLayout = new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,TableLayout.LayoutParams.MATCH_PARENT);
+        tableRow.setLayoutParams(rowLayout);
+
+        TextView rollsView = new TextView(context);
+        String rollsString = getRollsString(backgroundTable);
+        rollsView.setText(rollsString);
+        rollsView.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
+        rollsView.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        rollsView.setGravity(Gravity.CENTER);
+        tableRow.addView(rollsView);
+
+        TextView bonusView = new TextView(context);
+        String bonusString = getBonusString(context,backgroundTable);
+        bonusView.setText(bonusString);
+        bonusView.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        bonusView.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
+        bonusView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 10);
+        bonusView.setGravity(Gravity.CENTER);
+        tableRow.addView(bonusView);
+
+
+        if(isEven(backgroundTable.getOrder())){
+            tableRow.setBackgroundColor(context.getResources().getColor(R.color.colorLight));
+        }
+        return tableRow;
+    }
+
+    private static void createFirstLine(Context context, TableLayout bonusTable) {
+        TableRow firstRow = new TableRow(context);
+        TableLayout.LayoutParams rowLayoutFirst = new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,TableLayout.LayoutParams.MATCH_PARENT);
+        firstRow.setLayoutParams(rowLayoutFirst);
+
+        TextView resultView = createModelText(context,R.string.result);
+        firstRow.addView(resultView);
+
+        TextView avantageView = createModelText(context,R.string.avantage);
+        firstRow.addView(avantageView);
+
+        firstRow.setBackgroundColor(context.getResources().getColor(R.color.colorPrimaryDark));
+
+        bonusTable.addView(firstRow);
+    }
+
+    private static TextView createModelText(Context context,int textId){
+        String text = context.getString(textId);
+        TextView textView = new TextView(context);
+        textView.setText(text);
+        textView.setTextColor(context.getResources().getColor(R.color.colorAccent));
+        textView.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        textView.setGravity(Gravity.CENTER);
+        return textView;
+    }
+
+
+
+    private static String getBonusString(Context context,BackgroundTable backgroundTable) {
         String bonus = StringUtils.EMPTY;
         String type = backgroundTable.getType();
         String bonusId = backgroundTable.getBonus();
@@ -107,16 +116,19 @@ public class BackgroundTableUiManager {
                 bonus = attribute.getName() + " + 1";
                 break;
             case BackgroundBonusConstant.FOCUS:
+                String focusString = context.getString(R.string.focus);
                 Focus focus = FocusManager.getFocus(bonusId);
-                bonus = "Compétence : " + FocusUiManager.getFocusWithAttribute(focus);
+                bonus = focusString + " " + FocusUiManager.getFocusWithAttribute(focus);
                 break;
             case BackgroundBonusConstant.LANGUAGE:
+                String languageString = context.getString(R.string.spoken_language);
                 Language language = LanguageManager.getLanguage(bonusId);
-                bonus = "Langue Parlée : " + language.getName();
+                bonus = languageString + " " + language.getName();
                 break;
             case BackgroundBonusConstant.WEAPON_GROUP:
+                String weaponGroupString = context.getString(R.string.weapon_group) ;
                 WeaponGroup weaponGroup = WeaponGroupManager.getWeaponGroup(bonusId);
-                bonus = "Groupe d'Arme : " + weaponGroup.getName();
+                bonus = weaponGroupString + " " + weaponGroup.getName();
                 break;
         }
 

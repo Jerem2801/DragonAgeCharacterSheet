@@ -132,7 +132,7 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="24dp"
                     android:theme="@style/Title"
-                    android:text="@string/weapon_group" />
+                    android:text="@string/weapon_groups" />
 
                 <LinearLayout
                     android:layout_width="match_parent"

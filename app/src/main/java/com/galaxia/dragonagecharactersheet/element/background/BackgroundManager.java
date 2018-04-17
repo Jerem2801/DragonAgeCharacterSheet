@@ -91,7 +91,7 @@ public class BackgroundManager {
     }
 
 
-    public static List<Background> getBackground(Map<String, Background> backgrounds, String race, String classe) {
+    public static List<Background> getBackgroundAvailable(Map<String, Background> backgrounds, String race, String classe) {
         List<Background> backgroundsSelected = new ArrayList<>();
 
         for(Background background : backgrounds.values()){
@@ -101,5 +101,11 @@ public class BackgroundManager {
         }
 
         return backgroundsSelected;
+    }
+
+    public static Background getBackground(String backgroundId) {
+        DataPool dataPool = DataPool.getInstance();
+        Map<String, Background> backgrounds = dataPool.getBackgrounds();
+        return backgrounds.get(backgroundId);
     }
 }

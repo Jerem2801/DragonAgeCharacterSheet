@@ -17,6 +17,7 @@ import com.galaxia.dragonagecharactersheet.element.classe.Classe;
 import com.galaxia.dragonagecharactersheet.element.classe.ClasseManager;
 import com.galaxia.dragonagecharactersheet.element.classe.ClasseUiManager;
 import com.galaxia.dragonagecharactersheet.element.race.Race;
+import com.galaxia.dragonagecharactersheet.element.race.RaceManager;
 import com.galaxia.dragonagecharactersheet.player.Player;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
 import com.galaxia.dragonagecharactersheet.ui.UiUtils;
@@ -42,7 +43,7 @@ public class ChooseClasseActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         player = intent.getParcelableExtra(ActivityConstant.EXTRA_PLAYER);
-        Race race = player.getRace();
+        Race race = RaceManager.getRace(player.getRaceId());
 
         classesSpinner = findViewById(R.id.choose_classe_spinner);
         classeImage = findViewById(R.id.choose_classe_image);
@@ -99,7 +100,7 @@ public class ChooseClasseActivity extends AppCompatActivity {
     public void chooseBackgroundActivity(View view){
         Intent classeActivity = new Intent(ChooseClasseActivity.this, ChooseBackgroundActivity.class);
         Classe Classe = (Classe) classesSpinner.getSelectedItem();
-        player.setClasse(Classe);
+        player.setClasseId(Classe.getId());
         classeActivity.putExtra(ActivityConstant.EXTRA_PLAYER,player);
         startActivity(classeActivity);
     }

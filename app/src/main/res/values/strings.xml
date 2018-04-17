@@ -15,7 +15,7 @@
     <string name="health">Santé de départ</string>
     <string name="health_explain">La Santé mesure la bonne forme physique de votre personnage. Le choix de la classe détermine la Santé de départ.</string>
     <string name="health_classe">Santé = %2s + %2s + 1d6.</string>
-    <string name="weapon_group">Groupes d\'Armes</string>
+    <string name="weapon_groups">Groupes d\'Armes</string>
     <string name="weapon_group_explain">Votre classe détermine les armes que votre personnage sait utiliser. Les armes sont divisées en groupes et cette entrée vous précise à l’utilisation desquelles votre personnage est formé.</string>
     <string name="primary_attributes">Attributs Principaux</string>
     <string name="primay_attributes_explain">Chaque classe possède trois attributs principaux. Ce sont les attributs les plus importants pour cette classe et ceux qu’elle utilise le plus fréquemment.</string>
@@ -28,11 +28,21 @@
     <string name="attribute_bonus_explain">Augmentez votre attribut %2s de 1.</string>
     <string name="choose_focus">Choix de Compétence</string>
     <string name="choose_focus_explain">Vous avez le choix entre l’une des compétences suivantes :</string>
-    <string name="spoken_language">Langues Parlées</string>
+    <string name="spoken_languages">Langues Parlées</string>
     <string name="writen_language">Langues Ecrites</string>
     <string name="rolls_bonus">Bonus d\'Historique</string>
     <string name="rolls_bonus_explain">Faites deux jets sur la table pour déterminer vos avantages supplémentaires. Jetez 2d6 et additionnez leurs résultats. Si vous obtenez deux fois le même résultat, refaites le jet jusqu’à ce que vous obteniez un avantage différent.</string>
+    <string name="result">Résultat</string>
+    <string name="avantage">Avantage</string>
+    <string name="focus">Compétence :</string>
+    <string name="spoken_language">Langue Parlée :</string>
+    <string name="weapon_group">Groupe d\'Arme :</string>
     <string name="next_to_focus">Continuer vers le choix de Compétence</string>
+
+    <string name="choose_focus_background">Grâce à l\'Historique %2s vous pouvez choisir l’une des compétences suivantes :</string>
+    <string name="choose_a_focus">Veuillez choisir une compétence !</string>
+    <string name="next_to_bonus">Continuer vers les Bonus Historique</string>
+
 
     <string name="empty">Aucune</string>
 

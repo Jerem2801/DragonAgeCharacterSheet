@@ -80,7 +80,7 @@ public class ChooseRaceActivity extends AppCompatActivity {
         Intent chooseClasseIntent = new Intent(ChooseRaceActivity.this, ChooseClasseActivity.class);
         Race race = (Race) racesSpinner.getSelectedItem();
         Player player = new Player();
-        player.setRace(race);
+        player.setRaceId(race.getId());
         chooseClasseIntent.putExtra(ActivityConstant.EXTRA_PLAYER,player);
         startActivity(chooseClasseIntent);
     }

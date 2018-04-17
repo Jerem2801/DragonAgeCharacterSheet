@@ -2,7 +2,9 @@ package com.galaxia.dragonagecharactersheet.element.race;
 
 import android.content.Context;
 
+import com.galaxia.dragonagecharactersheet.data.DataPool;
 import com.galaxia.dragonagecharactersheet.element.classe.Classe;
+import com.galaxia.dragonagecharactersheet.element.focus.Focus;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceConstant;
 import com.galaxia.dragonagecharactersheet.ressource.RessourcePath;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
@@ -63,4 +65,9 @@ public class RaceManager {
         return Arrays.asList(classesAvailableList);
     }
 
+    public static Race getRace(String raceId) {
+        DataPool dataPool = DataPool.getInstance();
+        Map<String, Race> races = dataPool.getRaces();
+        return races.get(raceId);
+    }
 }
