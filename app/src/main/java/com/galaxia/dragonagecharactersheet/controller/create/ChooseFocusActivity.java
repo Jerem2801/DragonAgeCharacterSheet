@@ -24,6 +24,7 @@ import com.galaxia.dragonagecharactersheet.element.focus.Focus;
 import com.galaxia.dragonagecharactersheet.element.focus.FocusManager;
 import com.galaxia.dragonagecharactersheet.element.focus.FocusUiManager;
 import com.galaxia.dragonagecharactersheet.player.Player;
+import com.galaxia.dragonagecharactersheet.player.PlayerManager;
 import com.google.common.collect.Maps;
 
 import java.util.List;
@@ -69,18 +70,17 @@ public class ChooseFocusActivity extends AppCompatActivity {
             RadioGroup.LayoutParams params = new RadioGroup.LayoutParams(RadioGroup.LayoutParams.WRAP_CONTENT, RadioGroup.LayoutParams.WRAP_CONTENT);
             params.setMargins(128, 8, 8, 8);
             radioButton.setLayoutParams(params);
-            radioButton.setGravity(Gravity.CENTER);
             radioGroup.addView(radioButton);
         }
 
     }
 
     public void chooseBonusActivity(View view){
-        Intent focusActivity = new Intent(ChooseFocusActivity.this, ResumeActivity.class);
+        Intent focusActivity = new Intent(ChooseFocusActivity.this, ChooseBonusActivity.class);
         int id = radioGroup.getCheckedRadioButtonId();
         if(id != -1) {
             Focus focusSelected = order.get(id);
-            player.addFocus(focusSelected.getId());
+            PlayerManager.addFocus(player,focusSelected.getId());
             focusActivity.putExtra(ActivityConstant.EXTRA_PLAYER, player);
             startActivity(focusActivity);
         }else{

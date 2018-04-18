@@ -2,6 +2,20 @@ package com.galaxia.dragonagecharactersheet.element.background.backgroundtable;
 
 import android.content.Context;
 
+import com.galaxia.dragonagecharactersheet.R;
+import com.galaxia.dragonagecharactersheet.data.DataPool;
+import com.galaxia.dragonagecharactersheet.element.attribute.Attribute;
+import com.galaxia.dragonagecharactersheet.element.attribute.AttributeManager;
+import com.galaxia.dragonagecharactersheet.element.background.backgroundtable.backgroundbonus.BackgroundBonusConstant;
+import com.galaxia.dragonagecharactersheet.element.focus.Focus;
+import com.galaxia.dragonagecharactersheet.element.focus.FocusManager;
+import com.galaxia.dragonagecharactersheet.element.focus.FocusUiManager;
+import com.galaxia.dragonagecharactersheet.element.language.Language;
+import com.galaxia.dragonagecharactersheet.element.language.LanguageManager;
+import com.galaxia.dragonagecharactersheet.element.weapongroup.WeaponGroup;
+import com.galaxia.dragonagecharactersheet.element.weapongroup.WeaponGroupManager;
+import com.galaxia.dragonagecharactersheet.player.Player;
+import com.galaxia.dragonagecharactersheet.player.PlayerManager;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceConstant;
 import com.galaxia.dragonagecharactersheet.ressource.RessourcePath;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
@@ -27,7 +41,7 @@ public class BackgroundTableManager {
 
     }
 
-    public static Map<String,List<BackgroundTable>> getAttributeData(Context context){
+    public static Map<String,List<BackgroundTable>> getBackgroundTableData(Context context){
         Map<String,List<BackgroundTable>> backgroundTablesById = new HashMap<>();
 
         List<String> data = RessourceUtils.getData(context,BACKGROUND_TABLE_CSV_PATH,true);
@@ -70,6 +84,36 @@ public class BackgroundTableManager {
         }
         return rolls;
     }
+
+    public static BackgroundTable getBackgroundTableWithRoll(List<BackgroundTable> backgroundTables,int roll){
+        BackgroundTable result = null;
+        for(BackgroundTable backgroundTable : backgroundTables){
+            if(backgroundTable.getRoll().contains(roll)){
+                result = backgroundTable;
+            }
+        }
+        return result;
+    }
+
+    public static void setBonusToPlayer(Player player, BackgroundTable backgroundTable) {
+        String type = backgroundTable.getType();
+        String bonusId = backgroundTable.getBonus();
+        switch(type){
+            case BackgroundBonusConstant.ATTRIBUTE:
+                PlayerManager.addAttribute(player,bonusId,1);
+                break;
+            case BackgroundBonusConstant.FOCUS:
+                PlayerManager.addFocus(player,bonusId);
+                break;
+            case BackgroundBonusConstant.LANGUAGE:
+                PlayerManager.addSpokenLanguage(player,bonusId);
+                break;
+            case BackgroundBonusConstant.WEAPON_GROUP:
+                PlayerManager.addWeaponGroup(player,bonusId);
+                break;
+        }
+    }
+
 
 
 }

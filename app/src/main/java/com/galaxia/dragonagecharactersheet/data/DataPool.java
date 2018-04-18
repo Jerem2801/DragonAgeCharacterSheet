@@ -2,6 +2,7 @@ package com.galaxia.dragonagecharactersheet.data;
 
 import android.content.Context;
 
+import com.galaxia.dragonagecharactersheet.dice.Dice;
 import com.galaxia.dragonagecharactersheet.element.attribute.Attribute;
 import com.galaxia.dragonagecharactersheet.element.background.Background;
 import com.galaxia.dragonagecharactersheet.element.classe.Classe;
@@ -23,6 +24,7 @@ public class DataPool {
     private Map<String,Classe> classes;
     private Map<String,Race> races;
     private Map<String,Background> backgrounds;
+    private Map<Integer,Dice> dices;
 
     public Map<String, Language> getLanguages() {
         return languages;
@@ -78,6 +80,22 @@ public class DataPool {
 
     public void setBackgrounds(Map<String, Background> backgrounds) {
         this.backgrounds = backgrounds;
+    }
+
+    public static DataPool getDataPool() {
+        return dataPool;
+    }
+
+    public static void setDataPool(DataPool dataPool) {
+        DataPool.dataPool = dataPool;
+    }
+
+    public Map<Integer, Dice> getDices() {
+        return dices;
+    }
+
+    public void setDices(Map<Integer, Dice> dices) {
+        this.dices = dices;
     }
 
     public synchronized static DataPool initialize(Context context){

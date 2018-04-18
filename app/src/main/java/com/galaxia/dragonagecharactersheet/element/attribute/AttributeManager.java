@@ -15,10 +15,14 @@ public class AttributeManager {
 
     private static final String ATTRIBUTE_DIR = RessourcePath.DATA_PATH + "attribute/";
     private static final String ATTRIBUTE_CSV_PATH = ATTRIBUTE_DIR + "attribute.csv";
+    private static final String ROLL_ATTRIBUTE_CSV_PATH = ATTRIBUTE_DIR + "roll_attribute.csv";
 
     private static final int ID = 0;
     private static final int NAME = 1;
     private static final int DESCRIPTION = 2;
+
+    private static final int ROLL = 0;
+    private static final int VALUE = 1;
 
     private AttributeManager(){
 
@@ -58,4 +62,21 @@ public class AttributeManager {
     }
 
 
+    public static Map<Integer,Integer> getRollMap(Context context) {
+        Map<Integer,Integer> rollAttribute = new HashMap<>();
+
+        List<String> data = RessourceUtils.getData(context,ROLL_ATTRIBUTE_CSV_PATH,true);
+
+        for(String line : data){
+            String[] splitData = line.split(RessourceConstant.SEPARATOR);
+            String rollString = splitData[ROLL];
+            String valueSting = splitData[VALUE];
+            int roll = Integer.parseInt(rollString);
+            int value = Integer.parseInt(valueSting);
+            rollAttribute.put(roll,value);
+        }
+
+        return rollAttribute;
+
+    }
 }

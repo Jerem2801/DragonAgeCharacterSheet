@@ -5,9 +5,12 @@ import android.os.Parcelable;
 
 import com.galaxia.dragonagecharactersheet.element.classe.Classe;
 import com.galaxia.dragonagecharactersheet.element.race.Race;
+import com.galaxia.dragonagecharactersheet.element.weapongroup.WeaponGroup;
 import com.google.common.collect.Lists;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Player implements Parcelable {
 
@@ -15,9 +18,15 @@ public class Player implements Parcelable {
     private String classeId;
     private String backgroundId;
     private List<String> focusIds;
+    private Map<String,Integer> attribute;
+    private List<String> weaponGroupIds;
+    private List<String> spokenLanguages;
 
     public Player(){
        this.focusIds = Lists.newArrayList();
+       this.weaponGroupIds = Lists.newArrayList();
+       this.spokenLanguages = Lists.newArrayList();
+       this.attribute = PlayerManager.initializeAttribute();
     }
 
     public String getRaceId() {
@@ -52,10 +61,30 @@ public class Player implements Parcelable {
         this.focusIds = focusIds;
     }
 
-    public void addFocus(String focusId) {
-        this.focusIds.add(focusId);
+
+    public Map<String, Integer> getAttribute() {
+        return attribute;
     }
 
+    public void setAttribute(Map<String, Integer> attribute) {
+        this.attribute = attribute;
+    }
+
+    public List<String> getWeaponGroupIds() {
+        return weaponGroupIds;
+    }
+
+    public void setWeaponGroupIds(List<String> weaponGroupIds) {
+        this.weaponGroupIds = weaponGroupIds;
+    }
+
+    public List<String> getSpokenLanguages() {
+        return spokenLanguages;
+    }
+
+    public void setSpokenLanguages(List<String> spokenLanguages) {
+        this.spokenLanguages = spokenLanguages;
+    }
 
     @Override
     public int describeContents() {
@@ -68,6 +97,13 @@ public class Player implements Parcelable {
         dest.writeString(this.classeId);
         dest.writeString(this.backgroundId);
         dest.writeStringList(this.focusIds);
+        dest.writeInt(this.attribute.size());
+        for (Map.Entry<String, Integer> entry : this.attribute.entrySet()) {
+            dest.writeString(entry.getKey());
+            dest.writeValue(entry.getValue());
+        }
+        dest.writeStringList(this.weaponGroupIds);
+        dest.writeStringList(this.spokenLanguages);
     }
 
     protected Player(Parcel in) {
@@ -75,9 +111,18 @@ public class Player implements Parcelable {
         this.classeId = in.readString();
         this.backgroundId = in.readString();
         this.focusIds = in.createStringArrayList();
+        int attributeSize = in.readInt();
+        this.attribute = new HashMap<String, Integer>(attributeSize);
+        for (int i = 0; i < attributeSize; i++) {
+            String key = in.readString();
+            Integer value = (Integer) in.readValue(Integer.class.getClassLoader());
+            this.attribute.put(key, value);
+        }
+        this.weaponGroupIds = in.createStringArrayList();
+        this.spokenLanguages = in.createStringArrayList();
     }
 
-    public static final Parcelable.Creator<Player> CREATOR = new Parcelable.Creator<Player>() {
+    public static final Creator<Player> CREATOR = new Creator<Player>() {
         @Override
         public Player createFromParcel(Parcel source) {
             return new Player(source);
@@ -88,4 +133,6 @@ public class Player implements Parcelable {
             return new Player[size];
         }
     };
+
+
 }

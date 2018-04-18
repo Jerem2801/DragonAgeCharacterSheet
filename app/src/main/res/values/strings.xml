@@ -30,7 +30,7 @@
     <string name="choose_focus_explain">Vous avez le choix entre l’une des compétences suivantes :</string>
     <string name="spoken_languages">Langues Parlées</string>
     <string name="writen_language">Langues Ecrites</string>
-    <string name="rolls_bonus">Bonus d\'Historique</string>
+    <string name="rolls_bonus">Bonus Historique</string>
     <string name="rolls_bonus_explain">Faites deux jets sur la table pour déterminer vos avantages supplémentaires. Jetez 2d6 et additionnez leurs résultats. Si vous obtenez deux fois le même résultat, refaites le jet jusqu’à ce que vous obteniez un avantage différent.</string>
     <string name="result">Résultat</string>
     <string name="avantage">Avantage</string>
@@ -43,6 +43,16 @@
     <string name="choose_a_focus">Veuillez choisir une compétence !</string>
     <string name="next_to_bonus">Continuer vers les Bonus Historique</string>
 
+    <string name="rule">Règle</string>
+    <string name="result_bonus">Résultat :</string>
+    <string name="roll_dice">Lancer les Dés</string>
+    <string name="same_result">Même résultat, veuillez lancer une nouvelle fois.</string>
+    <string name="roll_a_bonus">Veuillez lançer les dés 2 fois !</string>
+    <string name="next_to_attribute">Continuer vers les Lancer d\'Attributs</string>
+
+    <string name="roll_attributes">Lancer des Attributs</string>
+    <string name="roll_attributes_rule">Pour déterminer vos attributs de départ, vous allez lancer les dés. Vous aurez besoin de trois dés à six faces (3d6). Lancez-les tous les trois et additionnez-les pour obtenir un résultat. Vous devez faire huit de ces jets en tout.</string>
+    <string name="value">Valeur</string>
 
     <string name="empty">Aucune</string>
 

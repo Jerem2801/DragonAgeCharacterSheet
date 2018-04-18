@@ -2,6 +2,8 @@ package com.galaxia.dragonagecharactersheet.data;
 
 import android.content.Context;
 
+import com.galaxia.dragonagecharactersheet.dice.Dice;
+import com.galaxia.dragonagecharactersheet.dice.DiceManager;
 import com.galaxia.dragonagecharactersheet.element.attribute.Attribute;
 import com.galaxia.dragonagecharactersheet.element.attribute.AttributeManager;
 import com.galaxia.dragonagecharactersheet.element.background.Background;
@@ -35,8 +37,9 @@ public class DataPoolManager {
         Map<String,WeaponGroup> weaponGroups = WeaponGroupManager.getWeaponGroupData(context);
         Map<String,Classe> classes = ClasseManager.getClasseData(context);
         Map<String,Race> races = RaceManager.getRaceData(context);
-        Map<String,List<BackgroundTable>> backgroundTables = BackgroundTableManager.getAttributeData(context);
+        Map<String,List<BackgroundTable>> backgroundTables = BackgroundTableManager.getBackgroundTableData(context);
         Map<String,Background> backgrounds = BackgroundManager.getBackgroundData(context,backgroundTables);
+        Map<Integer,Dice> dices = DiceManager.getDiceData();
 
 
         DataPool dataPool = new DataPool();
@@ -48,6 +51,7 @@ public class DataPoolManager {
         dataPool.setClasses(classes);
         dataPool.setRaces(races);
         dataPool.setBackgrounds(backgrounds);
+        dataPool.setDices(dices);
 
         return dataPool;
     }

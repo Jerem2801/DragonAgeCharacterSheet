@@ -61,4 +61,17 @@ public class FocusManager {
         }
         return focuss;
     }
+
+    public static String getFocusNames(List<String> focusIds) {
+        StringBuilder builder = new StringBuilder();
+        List<Focus> focuss = getFocus(focusIds);
+        for(Focus focus : focuss){
+            if(builder.toString().length() == 0){
+                builder.append(focus.getName());
+            }else{
+                builder.append("," + focus.getName());
+            }
+        }
+        return builder.toString().trim();
+    }
 }

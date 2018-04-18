@@ -105,7 +105,7 @@ public class BackgroundTableUiManager {
 
 
 
-    private static String getBonusString(Context context,BackgroundTable backgroundTable) {
+    public static String getBonusString(Context context,BackgroundTable backgroundTable) {
         String bonus = StringUtils.EMPTY;
         String type = backgroundTable.getType();
         String bonusId = backgroundTable.getBonus();

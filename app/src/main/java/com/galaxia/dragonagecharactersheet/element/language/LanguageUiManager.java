@@ -4,10 +4,14 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import com.galaxia.dragonagecharactersheet.R;
+import com.galaxia.dragonagecharactersheet.controller.create.ResumeActivity;
+import com.galaxia.dragonagecharactersheet.data.DataPool;
+import com.google.common.collect.Lists;
 
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
+import java.util.Map;
 
 public class LanguageUiManager {
 
@@ -32,4 +36,14 @@ public class LanguageUiManager {
 
         return languageList;
     }
+
+    public static String getLanguagesName(Context context,List<String> languageIds) {
+        List<Language> languages = Lists.newArrayList();
+        for(String languageId : languageIds){
+            languages.add(LanguageManager.getLanguage(languageId));
+        }
+        return getLanguages(context,languages);
+    }
+
+
 }
