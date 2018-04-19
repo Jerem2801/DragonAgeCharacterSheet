@@ -22,7 +22,8 @@
         <activity android:name=".controller.create.ChooseFocusActivity" />
         <activity android:name=".controller.create.ChooseBonusActivity" />
         <activity android:name=".controller.create.ResumeActivity" />
-        <activity android:name=".controller.create.RollAttributesActivity"></activity>
+        <activity android:name=".controller.create.RollAttributesActivity" />
+        <activity android:name=".controller.create.AssignAttributeActivity"></activity>
     </application>
 
 </manifest>

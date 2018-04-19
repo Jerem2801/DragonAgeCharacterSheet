@@ -19,8 +19,7 @@ public class AttributeUiManager {
 
     }
 
-    public static void setTableUi(Context context, TableLayout rollTable){
-        Map<Integer,Integer> rollMap = AttributeManager.getRollMap(context);
+    public static void setTableUi(Context context, Map<Integer,Integer> rollMap,TableLayout rollTable){
         List<Integer> keys = Lists.newArrayList();
         keys.addAll(rollMap.keySet());
         Collections.sort(keys);

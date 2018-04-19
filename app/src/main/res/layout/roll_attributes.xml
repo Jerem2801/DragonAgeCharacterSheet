@@ -62,46 +62,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="16dp"
-            android:orientation="horizontal">
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:background="@drawable/custom_border">
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="8dp"
-                android:padding="8dp"
-                android:orientation="vertical"
-                android:background="@drawable/custom_border">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:theme="@style/SpinnerTitle"
-                    android:text="@string/roll_count"/>
-
-
-                <TextView
-                    android:id="@+id/roll_attribute_count_txt"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:theme="@style/Title"
-                    android:textSize="70sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:layout_marginTop="16dp"
-                android:layout_marginLeft="8dp"
-                android:padding="8dp"
-                android:orientation="vertical"
-                android:background="@drawable/custom_border">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -119,16 +85,11 @@
                     android:theme="@style/Title"
                     android:textSize="70sp" />
 
-            </LinearLayout>
-
-
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="8dp"
             android:padding="8dp"
             android:orientation="vertical"
             android:background="@drawable/custom_border">
@@ -150,7 +111,6 @@
                     android:layout_marginRight="12dp"
                     android:layout_marginLeft="12dp"
                     android:layout_gravity="center"
-                    android:visibility="gone"
                     />
 
                 <ImageView
@@ -161,7 +121,6 @@
                     android:layout_marginRight="12dp"
                     android:layout_marginLeft="12dp"
                     android:layout_gravity="center"
-                    android:visibility="gone"
                     />
 
                 <ImageView
@@ -172,7 +131,6 @@
                     android:layout_marginRight="12dp"
                     android:layout_marginLeft="12dp"
                     android:layout_gravity="center"
-                    android:visibility="gone"
                     />
 
             </LinearLayout>
@@ -187,6 +145,46 @@
                 android:text="@string/roll_dice"/>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/roll_attribute_number_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="vertical"
+            android:background="@drawable/custom_border">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:theme="@style/Title"
+                android:text="@string/value" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/custom_line"></LinearLayout>
+
+            <TextView
+                android:id="@+id/roll_attribute_roll_numbers_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:theme="@style/Value" />
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:onClick="assignAttributeActivity"
+            android:text="@string/next_to_assign"
+            />
 
     </LinearLayout>
 

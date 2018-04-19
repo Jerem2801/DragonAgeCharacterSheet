@@ -62,7 +62,8 @@ public class PlayerManager {
     }
 
 
-    public static Map<String,Integer> getTotalAttribute(Player player, List<String> attributeIdsRollFromBackgroundTable) {
+    public static Map<String,Integer> getTotalAttribute(Player player) {
+        List<String> attributeIdsRollFromBackgroundTable = player.getAttributeIdsRollFromBackgroundTable();
         Map<String,Integer> map = Maps.newHashMap();
         map.putAll(player.getAttributeIdsRoll());
         for(String attributeId : attributeIdsRollFromBackgroundTable){

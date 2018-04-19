@@ -55,7 +55,7 @@ public class ResumeActivity extends AppCompatActivity {
         String spokenLanguageNames = LanguageUiManager.getLanguagesName(ResumeActivity.this,spokenLanguageIds);
         List<String> weaponGroupIds = player.getWeaponGroupIds();
         String weaponGroupNames = WeaponGroupUiManager.getWeaponGroupName(weaponGroupIds);
-        Map<String,Integer> attributeIdsAndValue = PlayerManager.getTotalAttribute(player,player.getAttributeIdsRollFromBackgroundTable());
+        Map<String,Integer> attributeIdsAndValue = PlayerManager.getTotalAttribute(player);
         Map<String,String> attributeNameWithValue = getAttribute(attributeIdsAndValue);
 
 

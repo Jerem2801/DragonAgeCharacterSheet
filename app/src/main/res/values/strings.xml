@@ -47,13 +47,15 @@
     <string name="result_bonus">Résultat :</string>
     <string name="roll_dice">Lancer les Dés</string>
     <string name="same_result">Même résultat, veuillez lancer une nouvelle fois.</string>
-    <string name="roll_a_bonus">Veuillez lançer les dés 2 fois !</string>
+    <string name="roll_a_bonus">Veuillez lançer les dés%2s fois !</string>
     <string name="next_to_attribute">Continuer vers les Lancer d\'Attributs</string>
 
     <string name="roll_attributes">Lancer des Attributs</string>
     <string name="roll_attributes_rule">Pour déterminer vos attributs de départ, vous allez lancer les dés. Vous aurez besoin de trois dés à six faces (3d6). Lancez-les tous les trois et additionnez-les pour obtenir un résultat. Vous devez faire huit de ces jets en tout.</string>
     <string name="value">Valeur</string>
     <string name="roll_count">Lancer à faire :</string>
+    <string name="next_to_assign">Continer vers l\'Assignation des Attributs</string>
+
 
     <string name="empty">Aucune</string>
 

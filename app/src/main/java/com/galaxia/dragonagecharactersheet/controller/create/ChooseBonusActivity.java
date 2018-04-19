@@ -23,6 +23,8 @@ import com.galaxia.dragonagecharactersheet.element.focus.Focus;
 import com.galaxia.dragonagecharactersheet.player.Player;
 import com.galaxia.dragonagecharactersheet.player.PlayerManager;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.List;
 
 public class ChooseBonusActivity extends AppCompatActivity {
@@ -103,7 +105,14 @@ public class ChooseBonusActivity extends AppCompatActivity {
             bonusActivity.putExtra(ActivityConstant.EXTRA_PLAYER, player);
             startActivity(bonusActivity);
         }else{
-            CharSequence text = getString(R.string.roll_a_bonus);
+            String text = getString(R.string.roll_a_bonus);
+            String number;
+            if(firstRoll != null){
+                number = "1";
+            }else{
+                number = "2";
+            }
+            text = String.format(text,number);
             int duration = Toast.LENGTH_SHORT;
             Toast toast = Toast.makeText(ChooseBonusActivity.this, text, duration);
             toast.show();
