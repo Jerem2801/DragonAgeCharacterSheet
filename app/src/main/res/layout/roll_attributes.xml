@@ -57,9 +57,136 @@
 
             </TableLayout>
 
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="16dp"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="8dp"
+                android:padding="8dp"
+                android:orientation="vertical"
+                android:background="@drawable/custom_border">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:theme="@style/SpinnerTitle"
+                    android:text="@string/roll_count"/>
+
+
+                <TextView
+                    android:id="@+id/roll_attribute_count_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:theme="@style/Title"
+                    android:textSize="70sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginTop="16dp"
+                android:layout_marginLeft="8dp"
+                android:padding="8dp"
+                android:orientation="vertical"
+                android:background="@drawable/custom_border">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:theme="@style/SpinnerTitle"
+                    android:text="@string/result_bonus"/>
+
+
+                <TextView
+                    android:id="@+id/roll_attribute_result_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:theme="@style/Title"
+                    android:textSize="70sp" />
+
+            </LinearLayout>
+
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="8dp"
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:background="@drawable/custom_border">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:paddingBottom="8dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                >
+
+                <ImageView
+                    android:id="@+id/roll_attribute_dice_1_image"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:scaleType="fitXY"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    />
+
+                <ImageView
+                    android:id="@+id/roll_attribute_dice_2_image"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:scaleType="fitXY"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    />
+
+                <ImageView
+                    android:id="@+id/roll_attribute_dice_3_image"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:scaleType="fitXY"
+                    android:layout_marginRight="12dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/roll_attribute_roll_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:onClick="rollDiceForAttributes"
+                android:text="@string/roll_dice"/>
+
+        </LinearLayout>
 
     </LinearLayout>
 

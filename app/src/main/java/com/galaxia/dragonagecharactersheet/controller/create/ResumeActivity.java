@@ -21,6 +21,7 @@ import com.galaxia.dragonagecharactersheet.element.race.RaceManager;
 import com.galaxia.dragonagecharactersheet.element.weapongroup.WeaponGroup;
 import com.galaxia.dragonagecharactersheet.element.weapongroup.WeaponGroupUiManager;
 import com.galaxia.dragonagecharactersheet.player.Player;
+import com.galaxia.dragonagecharactersheet.player.PlayerManager;
 import com.google.common.collect.Maps;
 
 import org.apache.commons.lang3.StringUtils;
@@ -47,13 +48,14 @@ public class ResumeActivity extends AppCompatActivity {
         String classeName = ClasseManager.getClasse(classeId).getName();
         String backgroundId = player.getBackgroundId();
         String backgroundName = BackgroundManager.getBackground(backgroundId).getName();
-        List<String> focusIds = player.getFocusIds();
+        List<String> focusIds = player.getFocusIdsRollFromBackgroundTable();
+        focusIds.add(player.getFocusIdChooseFromBackground());
         String focusNames = FocusManager.getFocusNames(focusIds);
         List<String> spokenLanguageIds = player.getSpokenLanguages();
         String spokenLanguageNames = LanguageUiManager.getLanguagesName(ResumeActivity.this,spokenLanguageIds);
         List<String> weaponGroupIds = player.getWeaponGroupIds();
         String weaponGroupNames = WeaponGroupUiManager.getWeaponGroupName(weaponGroupIds);
-        Map<String,Integer> attributeIdsAndValue = player.getAttribute();
+        Map<String,Integer> attributeIdsAndValue = PlayerManager.getTotalAttribute(player,player.getAttributeIdsRollFromBackgroundTable());
         Map<String,String> attributeNameWithValue = getAttribute(attributeIdsAndValue);
 
 

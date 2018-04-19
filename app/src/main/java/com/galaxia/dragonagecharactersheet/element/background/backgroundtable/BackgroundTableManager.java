@@ -100,7 +100,7 @@ public class BackgroundTableManager {
         String bonusId = backgroundTable.getBonus();
         switch(type){
             case BackgroundBonusConstant.ATTRIBUTE:
-                PlayerManager.addAttribute(player,bonusId,1);
+                PlayerManager.addAttribute(player,bonusId);
                 break;
             case BackgroundBonusConstant.FOCUS:
                 PlayerManager.addFocus(player,bonusId);

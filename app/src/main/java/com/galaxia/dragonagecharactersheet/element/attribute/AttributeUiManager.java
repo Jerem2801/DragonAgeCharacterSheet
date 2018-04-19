@@ -36,7 +36,7 @@ public class AttributeUiManager {
             Integer value = rollMap.get(key);
 
             String keyString = String.valueOf(key);
-            String valueString = String.valueOf(key);
+            String valueString = String.valueOf(value);
             TableRow tableRow = TableUiManager.createRowValue(context,rowNumber,keyString,valueString);
             rollTable.addView(tableRow);
             rowNumber++;

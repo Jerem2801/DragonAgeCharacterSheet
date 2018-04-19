@@ -17,16 +17,19 @@ public class Player implements Parcelable {
     private String raceId;
     private String classeId;
     private String backgroundId;
-    private List<String> focusIds;
-    private Map<String,Integer> attribute;
+    private String focusIdChooseFromBackground;
+    private List<String> focusIdsRollFromBackgroundTable;
+    private List<String> attributeIdsRollFromBackgroundTable;
     private List<String> weaponGroupIds;
     private List<String> spokenLanguages;
+    private Map<String,Integer> attributeIdsRoll;
 
     public Player(){
-       this.focusIds = Lists.newArrayList();
+       this.focusIdsRollFromBackgroundTable = Lists.newArrayList();
        this.weaponGroupIds = Lists.newArrayList();
        this.spokenLanguages = Lists.newArrayList();
-       this.attribute = PlayerManager.initializeAttribute();
+       this.attributeIdsRollFromBackgroundTable = Lists.newArrayList();
+       this.attributeIdsRoll = PlayerManager.initializeAttribute();
     }
 
     public String getRaceId() {
@@ -53,21 +56,28 @@ public class Player implements Parcelable {
         this.backgroundId = backgroundId;
     }
 
-    public List<String> getFocusIds() {
-        return focusIds;
+    public String getFocusIdChooseFromBackground() {
+        return focusIdChooseFromBackground;
     }
 
-    public void setFocusIds(List<String> focusIds) {
-        this.focusIds = focusIds;
+    public void setFocusIdChooseFromBackground(String focusIdChooseFromBackground) {
+        this.focusIdChooseFromBackground = focusIdChooseFromBackground;
     }
 
-
-    public Map<String, Integer> getAttribute() {
-        return attribute;
+    public List<String> getFocusIdsRollFromBackgroundTable() {
+        return focusIdsRollFromBackgroundTable;
     }
 
-    public void setAttribute(Map<String, Integer> attribute) {
-        this.attribute = attribute;
+    public void setFocusIdsRollFromBackgroundTable(List<String> focusIdsRollFromBackgroundTable) {
+        this.focusIdsRollFromBackgroundTable = focusIdsRollFromBackgroundTable;
+    }
+
+    public List<String> getAttributeIdsRollFromBackgroundTable() {
+        return attributeIdsRollFromBackgroundTable;
+    }
+
+    public void setAttributeIdsRollFromBackgroundTable(List<String> attributeIdsRollFromBackgroundTable) {
+        this.attributeIdsRollFromBackgroundTable = attributeIdsRollFromBackgroundTable;
     }
 
     public List<String> getWeaponGroupIds() {
@@ -86,6 +96,15 @@ public class Player implements Parcelable {
         this.spokenLanguages = spokenLanguages;
     }
 
+    public Map<String, Integer> getAttributeIdsRoll() {
+        return attributeIdsRoll;
+    }
+
+    public void setAttributeIdsRoll(Map<String, Integer> attributeIdsRoll) {
+        this.attributeIdsRoll = attributeIdsRoll;
+    }
+
+
     @Override
     public int describeContents() {
         return 0;
@@ -96,33 +115,37 @@ public class Player implements Parcelable {
         dest.writeString(this.raceId);
         dest.writeString(this.classeId);
         dest.writeString(this.backgroundId);
-        dest.writeStringList(this.focusIds);
-        dest.writeInt(this.attribute.size());
-        for (Map.Entry<String, Integer> entry : this.attribute.entrySet()) {
+        dest.writeString(this.focusIdChooseFromBackground);
+        dest.writeStringList(this.focusIdsRollFromBackgroundTable);
+        dest.writeStringList(this.attributeIdsRollFromBackgroundTable);
+        dest.writeStringList(this.weaponGroupIds);
+        dest.writeStringList(this.spokenLanguages);
+        dest.writeInt(this.attributeIdsRoll.size());
+        for (Map.Entry<String, Integer> entry : this.attributeIdsRoll.entrySet()) {
             dest.writeString(entry.getKey());
             dest.writeValue(entry.getValue());
         }
-        dest.writeStringList(this.weaponGroupIds);
-        dest.writeStringList(this.spokenLanguages);
     }
 
     protected Player(Parcel in) {
         this.raceId = in.readString();
         this.classeId = in.readString();
         this.backgroundId = in.readString();
-        this.focusIds = in.createStringArrayList();
-        int attributeSize = in.readInt();
-        this.attribute = new HashMap<String, Integer>(attributeSize);
-        for (int i = 0; i < attributeSize; i++) {
-            String key = in.readString();
-            Integer value = (Integer) in.readValue(Integer.class.getClassLoader());
-            this.attribute.put(key, value);
-        }
+        this.focusIdChooseFromBackground = in.readString();
+        this.focusIdsRollFromBackgroundTable = in.createStringArrayList();
+        this.attributeIdsRollFromBackgroundTable = in.createStringArrayList();
         this.weaponGroupIds = in.createStringArrayList();
         this.spokenLanguages = in.createStringArrayList();
+        int attributeIdsRollSize = in.readInt();
+        this.attributeIdsRoll = new HashMap<String, Integer>(attributeIdsRollSize);
+        for (int i = 0; i < attributeIdsRollSize; i++) {
+            String key = in.readString();
+            Integer value = (Integer) in.readValue(Integer.class.getClassLoader());
+            this.attributeIdsRoll.put(key, value);
+        }
     }
 
-    public static final Creator<Player> CREATOR = new Creator<Player>() {
+    public static final Parcelable.Creator<Player> CREATOR = new Parcelable.Creator<Player>() {
         @Override
         public Player createFromParcel(Parcel source) {
             return new Player(source);
@@ -133,6 +156,4 @@ public class Player implements Parcelable {
             return new Player[size];
         }
     };
-
-
 }

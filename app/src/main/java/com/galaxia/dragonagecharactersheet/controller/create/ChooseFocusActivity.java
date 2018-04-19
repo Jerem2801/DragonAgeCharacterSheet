@@ -80,7 +80,7 @@ public class ChooseFocusActivity extends AppCompatActivity {
         int id = radioGroup.getCheckedRadioButtonId();
         if(id != -1) {
             Focus focusSelected = order.get(id);
-            PlayerManager.addFocus(player,focusSelected.getId());
+            player.setFocusIdChooseFromBackground(focusSelected.getId());
             focusActivity.putExtra(ActivityConstant.EXTRA_PLAYER, player);
             startActivity(focusActivity);
         }else{
