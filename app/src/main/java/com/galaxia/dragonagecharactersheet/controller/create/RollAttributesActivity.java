@@ -94,7 +94,7 @@ public class RollAttributesActivity extends AppCompatActivity {
     }
 
     public void assignAttributeActivity(View view){
-        Intent bonusActivity = new Intent(RollAttributesActivity.this, ResumeActivity.class);
+        Intent bonusActivity = new Intent(RollAttributesActivity.this, AssignAttributeActivity.class);
         if(count != 0) {
             String text = getString(R.string.roll_a_bonus);
             String countString = String.valueOf(count);

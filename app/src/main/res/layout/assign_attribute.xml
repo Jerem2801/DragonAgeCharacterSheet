@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:theme="@style/SpinnerTitle"
-                android:text="Assignation des Attributs" />
+                android:text="@string/assign_attributes" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -46,22 +46,33 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
-                android:text="@string/rolls_bonus_explain"
+                android:text="@string/assign_attributes_rule"
                 android:justificationMode="inter_word" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/assigne_attributes_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/custom_border">
+
+
 
 
 
         </LinearLayout>
 
 
-
-
         <Button
+            android:id="@+id/next_to"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:onClick="nextAssign"
             android:gravity="center"
-            android:text="@string/next_to_attribute"
             />
 
 

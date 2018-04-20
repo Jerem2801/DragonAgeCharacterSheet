@@ -56,6 +56,11 @@
     <string name="roll_count">Lancer à faire :</string>
     <string name="next_to_assign">Continer vers l\'Assignation des Attributs</string>
 
+    <string name="assign_attributes">Assigner les Attributs</string>
+    <string name="assign_attributes_rule">Veuillez séléctionner les attributs pour leur ajouter les valeurs des dés précedement obtenu.</string>
+    <string name="next_to_spell">Continuer vers les Sorts</string>
+    <string name="next_to_talent">Continuer vers les Talents</string>
+    <string name="next_to_group_weapon">Continuer vers les Groupes d\'Armes</string>
 
     <string name="empty">Aucune</string>
 
