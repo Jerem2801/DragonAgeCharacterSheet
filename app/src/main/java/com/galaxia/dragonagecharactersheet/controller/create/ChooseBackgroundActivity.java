@@ -1,15 +1,21 @@
 package com.galaxia.dragonagecharactersheet.controller.create;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.galaxia.dragonagecharactersheet.R;
 import com.galaxia.dragonagecharactersheet.controller.ActivityConstant;
@@ -29,6 +35,7 @@ import com.galaxia.dragonagecharactersheet.player.Player;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
 import com.galaxia.dragonagecharactersheet.ui.UiUtils;
 import com.galaxia.dragonagecharactersheet.ui.ViewFormaterString;
+import com.google.common.collect.Maps;
 
 import java.util.List;
 import java.util.Map;
@@ -42,10 +49,10 @@ public class ChooseBackgroundActivity extends AppCompatActivity {
     private TextView description;
     private TextView attributBonusExplain;
     private TextView attributBonus;
-    private TextView chooseFocus;
+    private RadioGroup radioGroup;
+    private Map<Integer,Focus> order;
     private TextView spokenLanguages;
     private TextView writenLanguages;
-    private TableLayout tableBonus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,14 +70,15 @@ public class ChooseBackgroundActivity extends AppCompatActivity {
         description = findViewById(R.id.choose_background_description_txt);
         attributBonusExplain = findViewById(R.id.choose_background_attribute_bonus_explain_txt);
         attributBonus = findViewById(R.id.choose_background_attribute_bonus_txt);
-        chooseFocus = findViewById(R.id.choose_background_focus_txt);
+        radioGroup = findViewById(R.id.choose_focus_radio_group);
         spokenLanguages = findViewById(R.id.choose_background_spoken_languages_txt);
         writenLanguages = findViewById(R.id.choose_background_writen_languages_txt);
-        tableBonus = findViewById(R.id.choose_background_table_bonus_table);
 
         initializeSpinner(raceId,classeId);
         onSelectedItem();
     }
+
+
 
     private void initializeSpinner(String raceId,String classeId) {
         DataPool dataPool = DataPool.getInstance();
@@ -104,8 +112,7 @@ public class ChooseBackgroundActivity extends AppCompatActivity {
                 attributBonus.setText(finalIncreaseAttribute);
 
                 List<Focus> focus = FocusManager.getFocus(background.getChooseFocusId());
-                String listFocus = FocusUiManager.getChooseFocus(focus);
-                chooseFocus.setText(listFocus);
+                initializeChoice(focus);
 
                 List<Language> spokenLanguagesList = LanguageManager.getLanguage(background.getSpokenLanguageId());
                 String spokenLanguagesString = LanguageUiManager.getLanguages(ChooseBackgroundActivity.this,spokenLanguagesList);
@@ -114,10 +121,6 @@ public class ChooseBackgroundActivity extends AppCompatActivity {
                 List<Language> writenLanguagesList = LanguageManager.getLanguage(background.getWritenLanguageId());
                 String writenLanguagesString = LanguageUiManager.getLanguages(ChooseBackgroundActivity.this,writenLanguagesList);
                 writenLanguages.setText(writenLanguagesString);
-
-
-                tableBonus.removeAllViews();
-                BackgroundTableUiManager.setTableUi(ChooseBackgroundActivity.this,tableBonus,background);
 
             }
 
@@ -129,11 +132,43 @@ public class ChooseBackgroundActivity extends AppCompatActivity {
         });
     }
 
+    @SuppressLint("RestrictedApi")
+    private void initializeChoice(List<Focus> focuss) {
+        radioGroup.removeAllViews();
+        int id = 0;
+        order = Maps.newHashMap();
+        for(Focus focus : focuss){
+            order.put(id,focus);
+            android.support.v7.widget.AppCompatRadioButton radioButton = new android.support.v7.widget.AppCompatRadioButton(ChooseBackgroundActivity.this);
+            radioButton.setId(id++);
+            radioButton.setText(FocusUiManager.getFocusWithAttribute(focus));
+            radioButton.setTextColor(getResources().getColor(R.color.colorPrimary));
+            radioButton.setTextSize(TypedValue.COMPLEX_UNIT_DIP,16);
+            radioButton.setTypeface(Typeface.DEFAULT, Typeface.ITALIC);
+            radioButton.setSupportButtonTintList(ColorStateList.valueOf(getResources().getColor(R.color.colorPrimaryDark)));
+            RadioGroup.LayoutParams params = new RadioGroup.LayoutParams(RadioGroup.LayoutParams.WRAP_CONTENT, RadioGroup.LayoutParams.WRAP_CONTENT);
+            params.setMargins(128, 8, 8, 8);
+            radioButton.setLayoutParams(params);
+            radioGroup.addView(radioButton);
+        }
+    }
+
     public void chooseFocusActivity(View view){
-        Intent backgroundActivity = new Intent(ChooseBackgroundActivity.this, ChooseFocusActivity.class);
-        Background background = (Background) backgroundsSpinner.getSelectedItem();
-        player.setBackgroundId(background.getId());
-        backgroundActivity.putExtra(ActivityConstant.EXTRA_PLAYER,player);
-        startActivity(backgroundActivity);
+
+        Intent focusActivity = new Intent(ChooseBackgroundActivity.this, ChooseBonusActivity.class);
+        int id = radioGroup.getCheckedRadioButtonId();
+        if(id != -1) {
+            Background background = (Background) backgroundsSpinner.getSelectedItem();
+            player.setBackgroundId(background.getId());
+            Focus focusSelected = order.get(id);
+            player.setFocusIdChooseFromBackground(focusSelected.getId());
+            focusActivity.putExtra(ActivityConstant.EXTRA_PLAYER, player);
+            startActivity(focusActivity);
+        }else{
+            CharSequence text = getString(R.string.choose_a_focus);
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(ChooseBackgroundActivity.this, text, duration);
+            toast.show();
+        }
     }
 }

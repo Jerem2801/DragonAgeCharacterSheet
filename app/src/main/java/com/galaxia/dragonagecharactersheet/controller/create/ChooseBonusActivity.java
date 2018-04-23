@@ -63,18 +63,14 @@ public class ChooseBonusActivity extends AppCompatActivity {
         avantageSecond = findViewById(R.id.choose_bonus_avantage_2_txt);
 
         BackgroundTableUiManager.setTableUi(ChooseBonusActivity.this,tableBonus,background);
+        DiceManager.initializeDice(ChooseBonusActivity.this,diceOne,diceSecond);
         result.setText("0");
-
     }
 
     public void rollDices(View view){
-        diceOne.setVisibility(View.VISIBLE);
-        diceSecond.setVisibility(View.VISIBLE);
-
         int sum = DiceManager.rollDices(ChooseBonusActivity.this, diceOne, diceSecond);
         String sumString = String.valueOf(sum);
         result.setText(sumString);
-        result.setVisibility(View.VISIBLE);
         BackgroundTable backgroundTable = BackgroundTableManager.getBackgroundTableWithRoll(backgroundTables, sum);
         int id = backgroundTable.getOrder();
 

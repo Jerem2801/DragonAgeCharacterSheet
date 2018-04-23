@@ -169,10 +169,6 @@ public class AssignAttributeActivity extends AppCompatActivity {
     }
 
 
-
-
-
-
     private LinearLayout createLinearLayout(Context context,Attribute attribute){
         LinearLayout linearLayout = new LinearLayout(context);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);

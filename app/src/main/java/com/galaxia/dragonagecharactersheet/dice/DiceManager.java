@@ -21,10 +21,12 @@ public class DiceManager {
 
     }
 
+
+
     public static Map<Integer,Dice> getDiceData(){
         Map<Integer,Dice> dices = Maps.newHashMap();
 
-        for(int i = 1; i < 7;i++){
+        for(int i = 0; i < 7;i++){
             String result = String.valueOf(i);
             String path = DICE_DIR + DICE_IMAGE_FILE_NAME + result + DICE_EXTENSTION;
             Dice dice = new Dice(i,path);
@@ -32,6 +34,12 @@ public class DiceManager {
         }
 
         return dices;
+    }
+
+    public static Dice getDice(int number){
+        DataPool dataPool = DataPool.getInstance();
+        Map<Integer, Dice> dices = dataPool.getDices();
+        return dices.get(number);
     }
 
     public static Dice rollDice(){
@@ -43,6 +51,7 @@ public class DiceManager {
     public static Bitmap getDiceImage(Context context,Dice dice){
         return RessourceUtils.getImage(context,dice.getImagePath());
     }
+
     public static int rollDices(Context context,ImageView... images){
         int sum = 0;
 
@@ -55,4 +64,10 @@ public class DiceManager {
         return sum;
     }
 
+    public static void initializeDice(Context context,ImageView... dices) {
+        Dice zero = getDice(0);
+        for(ImageView dice : dices){
+            dice.setImageBitmap(DiceManager.getDiceImage(context,zero));
+        }
+    }
 }
