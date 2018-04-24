@@ -34,6 +34,7 @@ import com.google.common.collect.Lists;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -87,7 +88,9 @@ public class AssignAttributeActivity extends AppCompatActivity {
     @SuppressLint("NewApi")
     private void initialize() {
         Context context = AssignAttributeActivity.this;
-        for (String attributeId : baseAttribute.keySet()) {
+        List<String> attributeIds = new ArrayList<>(baseAttribute.keySet());
+        Collections.sort(attributeIds);
+        for (String attributeId : attributeIds) {
             Attribute attribute = AttributeManager.getAttribute(attributeId);
 
             LinearLayout linearLayout = createLinearLayout(context,attribute);
