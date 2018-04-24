@@ -2,6 +2,7 @@ package com.galaxia.dragonagecharactersheet.ui;
 
 import android.content.Context;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 import android.widget.Spinner;
 
 import com.galaxia.dragonagecharactersheet.R;
@@ -36,5 +37,10 @@ public class UiUtils {
         ArrayAdapter<Background> adapter = new ArrayAdapter<>(context.getApplicationContext(), R.layout.custom_spinner, backgrounds);
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+    }
+
+    public static ListAdapter getListAdapter(Context context, List<String> attributeRolls) {
+        ListAdapter adapter = new ArrayAdapter<>(context.getApplicationContext(), android.R.layout.simple_list_item_1, attributeRolls);
+        return adapter;
     }
 }

@@ -62,6 +62,9 @@ public class RollAttributesActivity extends AppCompatActivity {
         rollButton = findViewById(R.id.roll_attribute_roll_btn);
         numberLayout = findViewById(R.id.roll_attribute_number_layout);
         numberText = findViewById(R.id.roll_attribute_roll_numbers_txt);
+
+        DiceManager.initializeDice(RollAttributesActivity.this,diceOneImage,diceSecondImage,diceThirdImage);
+        resultText.setText("0");
     }
 
     public void rollDiceForAttributes(View view){
@@ -77,8 +80,8 @@ public class RollAttributesActivity extends AppCompatActivity {
         Integer roll = rollMap.get(sum);
         rolls.add(roll);
         String numberTextString = getUiLIstNumber(rolls);
+        numberLayout.setVisibility(View.VISIBLE);
         numberText.setText(numberTextString);
-
     }
 
     private String getUiLIstNumber(List<Integer> rolls) {

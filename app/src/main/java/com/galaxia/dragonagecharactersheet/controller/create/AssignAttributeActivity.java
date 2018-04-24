@@ -9,11 +9,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Layout;
 import android.util.TypedValue;
+import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import com.galaxia.dragonagecharactersheet.R;
@@ -26,19 +28,20 @@ import com.galaxia.dragonagecharactersheet.player.Player;
 import com.galaxia.dragonagecharactersheet.player.PlayerManager;
 import com.galaxia.dragonagecharactersheet.ressource.RessourcePath;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
+import com.galaxia.dragonagecharactersheet.ui.UiUtils;
 import com.galaxia.dragonagecharactersheet.ui.UiViewUtils;
+import com.google.common.collect.Lists;
 
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 public class AssignAttributeActivity extends AppCompatActivity {
 
     private Player player;
-    private CharSequence[] numbers;
+    private List<Integer> numbers;
     private Map<String, Integer> baseAttribute;
     private Map<String, Integer> addAttribute;
 
@@ -55,9 +58,8 @@ public class AssignAttributeActivity extends AppCompatActivity {
         baseAttribute = PlayerManager.getTotalAttribute(player);
         addAttribute = PlayerManager.initializeAttribute();
 
-
         String numbersInOneString = intent.getStringExtra(RollAttributesActivity.ROLLS);
-        numbers = numbersInOneString.split(",");
+        numbers = sortAndFormatNumbers(numbersInOneString);
 
 
         attributesLayout = findViewById(R.id.assigne_attributes_linear);
@@ -65,6 +67,21 @@ public class AssignAttributeActivity extends AppCompatActivity {
 
         initialize();
         initializeButton(player.getClasseId());
+    }
+
+    private List<Integer> sortAndFormatNumbers(String numbersInOneString) {
+        List<Integer> numbers = Lists.newArrayList();
+        String[] numbersString = numbersInOneString.split(",");
+
+        for(String number : numbersString){
+            number = StringUtils.deleteWhitespace(number);
+            Integer i = Integer.parseInt(number);
+            if(i != 0){
+                numbers.add(i);
+            }
+        }
+
+        return numbers;
     }
 
     @SuppressLint("NewApi")
@@ -105,8 +122,8 @@ public class AssignAttributeActivity extends AppCompatActivity {
     private TextView createTextViewForAttributeName(Context context, Attribute attribute) {
         TextView attributeName =  new TextView(context);
         LinearLayout.LayoutParams paramsAttributeName = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT);
-        paramsAttributeName.weight = 1;
         paramsAttributeName.setMargins(sizeInDp(8), 0, 0, 0);
+        paramsAttributeName.weight = 1.75f;
         attributeName.setLayoutParams(paramsAttributeName);
         UiViewUtils.setTextViewTitle(attributeName);
         attributeName.setText(attribute.getName());
@@ -127,10 +144,9 @@ public class AssignAttributeActivity extends AppCompatActivity {
 
     private TextView createTextViewForAttributeValue(Context context,Attribute attribute) {
         TextView attributeValue = new TextView(context);
-        //LinearLayout.LayoutParams paramsAttributeValue = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         LinearLayout.LayoutParams paramsAttributeValue = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT);
-        paramsAttributeValue.weight = 0.50f;
         paramsAttributeValue.setMargins(0, 0, sizeInDp(8), 0);
+        paramsAttributeValue.weight = 1f;
         attributeValue.setLayoutParams(paramsAttributeValue);
         UiViewUtils.setTextViewTitle(attributeValue);
         String value = getValue(attribute);
@@ -143,6 +159,7 @@ public class AssignAttributeActivity extends AppCompatActivity {
     private ImageView createImageForCancel(Context context, Attribute attribute) {
         ImageView cancel = new ImageView(context);
         LinearLayout.LayoutParams paramsCancel = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT);
+        paramsCancel.setMargins(0, 0, sizeInDp(8), 0);
         paramsCancel.weight = 0.25f;
         cancel.setLayoutParams(paramsCancel);
         cancel.setImageBitmap(RessourceUtils.getImage(context, RessourcePath.CLEAR_PATH));
@@ -192,22 +209,18 @@ public class AssignAttributeActivity extends AppCompatActivity {
         public void onClick(View v) {
             AlertDialog.Builder builder = new AlertDialog.Builder(AssignAttributeActivity.this);
 
-            TextView textView = new TextView(AssignAttributeActivity.this);
-            LinearLayout.LayoutParams paramsAttributeName = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            paramsAttributeName.setMargins(sizeInDp(8), 0, 0, 0);
-            textView.setLayoutParams(paramsAttributeName);
-            textView.setText(attribute.getName());
-            UiViewUtils.setTextViewTitle(textView);
+            Collections.sort(numbers);
+            List<String> numbersChar = transform(numbers);
+            ListAdapter adapter = UiUtils.getListAdapter(AssignAttributeActivity.this,numbersChar);
 
-            builder.setCustomTitle(textView).setItems(numbers, new DialogInterface.OnClickListener() {
+            builder.setTitle(attribute.getName());
+            builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
-                    String numberString = (String) numbers[which];
-                    numberString = StringUtils.deleteWhitespace(numberString);
-                    Integer number = Integer.parseInt(numberString);
+                    Integer number = numbers.get(which);
                     addAttribute.put(attribute.getId(),number);
                     attributesLayout.removeAllViews();
                     initialize();
-                    numbers = ArrayUtils.remove(numbers, which);
+                    numbers.remove(which);
                 }
             });
 
@@ -216,6 +229,16 @@ public class AssignAttributeActivity extends AppCompatActivity {
             alertDialog.show();
         }
     }
+
+    public List<String> transform(List<Integer> list){
+        List<String> chars = Lists.newArrayList();
+        for(Integer i : list){
+            chars.add(String.valueOf(i));
+        }
+        return chars;
+    }
+
+
 
     class CustomClickCancelListener implements View.OnClickListener {
 
@@ -228,9 +251,7 @@ public class AssignAttributeActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             int number = addAttribute.get(attribute.getId());
-            String numberString = String.valueOf(number);
-            CharSequence numberChar = (CharSequence) numberString;
-            numbers = ArrayUtils.addAll(numbers, numberChar);
+            numbers.add(number);
             addAttribute.put(attribute.getId(),0);
             attributesLayout.removeAllViews();
             initialize();

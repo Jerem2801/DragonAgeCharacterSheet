@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.galaxia.dragonagecharactersheet.R;
+import com.galaxia.dragonagecharactersheet.controller.create.AssignAttributeActivity;
 
 public class UiViewUtils {
 
@@ -29,5 +30,10 @@ public class UiViewUtils {
         line.setLayoutParams(lineParams);
         line.setBackground(context.getResources().getDrawable(R.drawable.custom_line));
         return line;
+    }
+
+    private static Integer sizeInDp(Context context, int sizeInDp){
+        float v = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, sizeInDp, context.getResources().getDisplayMetrics());
+        return (Integer) Math.round(v);
     }
 }
