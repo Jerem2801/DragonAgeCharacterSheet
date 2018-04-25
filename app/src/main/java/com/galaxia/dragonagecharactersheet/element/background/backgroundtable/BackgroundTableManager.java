@@ -20,6 +20,8 @@ import com.galaxia.dragonagecharactersheet.ressource.RessourceConstant;
 import com.galaxia.dragonagecharactersheet.ressource.RessourcePath;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -112,6 +114,19 @@ public class BackgroundTableManager {
                 PlayerManager.addWeaponGroup(player,bonusId);
                 break;
         }
+    }
+
+    public static String getCostString(BackgroundTable backgroundTable) {
+        int i = getCost(backgroundTable);
+        return String.valueOf(i);
+    }
+
+    public static Integer getCost(BackgroundTable backgroundTable) {
+        int cost = 1;
+        if(StringUtils.equals(backgroundTable.getType(),BackgroundBonusConstant.ATTRIBUTE)){
+            cost = 2;
+        }
+        return cost;
     }
 
 

@@ -4,12 +4,12 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.opengl.Visibility;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Layout;
 import android.util.TypedValue;
-import android.view.ContextThemeWrapper;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -42,7 +42,6 @@ import java.util.Map;
 public class AssignAttributeActivity extends AppCompatActivity {
 
     private Player player;
-    private List<Integer> numbers;
     private Map<String, Integer> baseAttribute;
     private Map<String, Integer> addAttribute;
 
@@ -59,30 +58,11 @@ public class AssignAttributeActivity extends AppCompatActivity {
         baseAttribute = PlayerManager.getTotalAttribute(player);
         addAttribute = PlayerManager.initializeAttribute();
 
-        String numbersInOneString = intent.getStringExtra(RollAttributesActivity.ROLLS);
-        numbers = sortAndFormatNumbers(numbersInOneString);
-
-
         attributesLayout = findViewById(R.id.assigne_attributes_linear);
         nextActivity = findViewById(R.id.next_to);
 
         initialize();
         initializeButton(player.getClasseId());
-    }
-
-    private List<Integer> sortAndFormatNumbers(String numbersInOneString) {
-        List<Integer> numbers = Lists.newArrayList();
-        String[] numbersString = numbersInOneString.split(",");
-
-        for(String number : numbersString){
-            number = StringUtils.deleteWhitespace(number);
-            Integer i = Integer.parseInt(number);
-            if(i != 0){
-                numbers.add(i);
-            }
-        }
-
-        return numbers;
     }
 
     @SuppressLint("NewApi")
@@ -104,11 +84,13 @@ public class AssignAttributeActivity extends AppCompatActivity {
             ImageView star = createImageViewForPrincipalAttribute(context,visible);
             linearLayout.addView(star);
 
+            ImageView imageDown = createImageMinusPlus(context,attribute);
+            linearLayout.addView(imageDown);
 
             TextView attributeValue = createTextViewForAttributeValue(context,attribute);
             linearLayout.addView(attributeValue);
 
-            ImageView imageCancel = createImageForCancel(context,attribute);
+            ImageView imageCancel = createImageForPlus(context,attribute);
             linearLayout.addView(imageCancel);
 
             attributesLayout.addView(linearLayout);
@@ -145,6 +127,22 @@ public class AssignAttributeActivity extends AppCompatActivity {
         return star;
     }
 
+    private ImageView createImageMinusPlus(Context context,Attribute attribute) {
+        ImageView minus = new ImageView(context);
+        LinearLayout.LayoutParams paramsPlus = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT);
+        paramsPlus.setMargins(0, 0, sizeInDp(8), 0);
+        paramsPlus.weight = 0.25f;
+        paramsPlus.gravity = Gravity.RIGHT;
+        minus.setLayoutParams(paramsPlus);
+        minus.setImageBitmap(RessourceUtils.getImage(context, RessourcePath.MINUS_PATH));
+        minus.setOnClickListener(new CustomClickMinusListener(attribute));
+
+        if(addAttribute.get(attribute.getId()) == 0){
+            minus.setVisibility(View.INVISIBLE);
+        }
+        return minus;
+    }
+
     private TextView createTextViewForAttributeValue(Context context,Attribute attribute) {
         TextView attributeValue = new TextView(context);
         LinearLayout.LayoutParams paramsAttributeValue = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -159,21 +157,18 @@ public class AssignAttributeActivity extends AppCompatActivity {
     }
 
 
-    private ImageView createImageForCancel(Context context, Attribute attribute) {
-        ImageView cancel = new ImageView(context);
-        LinearLayout.LayoutParams paramsCancel = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT);
-        paramsCancel.setMargins(0, 0, sizeInDp(8), 0);
-        paramsCancel.weight = 0.25f;
-        cancel.setLayoutParams(paramsCancel);
-        cancel.setImageBitmap(RessourceUtils.getImage(context, RessourcePath.CLEAR_PATH));
-
-        if(addAttribute.get(attribute.getId())  == 0){
-            cancel.setVisibility(View.INVISIBLE);
-        }else{
-            cancel.setOnClickListener(new CustomClickCancelListener(attribute));
+    private ImageView createImageForPlus(Context context,Attribute attribute) {
+        ImageView plus = new ImageView(context);
+        LinearLayout.LayoutParams paramsPlus = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT);
+        paramsPlus.setMargins(0, 0, sizeInDp(8), 0);
+        paramsPlus.weight = 0.25f;
+        plus.setLayoutParams(paramsPlus);
+        plus.setImageBitmap(RessourceUtils.getImage(context, RessourcePath.PLUS_PATH));
+        plus.setOnClickListener(new CustomClickPlusListener(attribute));
+        if(addAttribute.get(attribute.getId()) >= 3){
+            plus.setVisibility(View.INVISIBLE);
         }
-
-        return cancel;
+        return plus;
     }
 
 
@@ -194,43 +189,7 @@ public class AssignAttributeActivity extends AppCompatActivity {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         linearLayout.setLayoutParams(params);
         linearLayout.setOrientation(LinearLayout.HORIZONTAL);
-        if(addAttribute.get(attribute.getId()) == 0){
-            linearLayout.setOnClickListener(new CustomClickListener(attribute));
-        }
         return linearLayout;
-    }
-
-    class CustomClickListener implements View.OnClickListener {
-
-        private Attribute attribute;
-
-        public CustomClickListener(Attribute attribute){
-            this.attribute = attribute;
-        }
-
-        @Override
-        public void onClick(View v) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(AssignAttributeActivity.this);
-
-            Collections.sort(numbers);
-            List<String> numbersChar = transform(numbers);
-            ListAdapter adapter = UiUtils.getListAdapter(AssignAttributeActivity.this,numbersChar);
-
-            builder.setTitle(attribute.getName());
-            builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-                    Integer number = numbers.get(which);
-                    addAttribute.put(attribute.getId(),number);
-                    attributesLayout.removeAllViews();
-                    initialize();
-                    numbers.remove(which);
-                }
-            });
-
-
-            AlertDialog alertDialog = builder.create();
-            alertDialog.show();
-        }
     }
 
     public List<String> transform(List<Integer> list){
@@ -243,19 +202,35 @@ public class AssignAttributeActivity extends AppCompatActivity {
 
 
 
-    class CustomClickCancelListener implements View.OnClickListener {
+    class CustomClickPlusListener implements View.OnClickListener {
 
         private Attribute attribute;
 
-        public CustomClickCancelListener(Attribute attribute){
+        public CustomClickPlusListener(Attribute attribute){
             this.attribute = attribute;
         }
 
         @Override
         public void onClick(View v) {
             int number = addAttribute.get(attribute.getId());
-            numbers.add(number);
-            addAttribute.put(attribute.getId(),0);
+            addAttribute.put(attribute.getId(),++number);
+            attributesLayout.removeAllViews();
+            initialize();
+        }
+    }
+
+    class CustomClickMinusListener implements View.OnClickListener {
+
+        private Attribute attribute;
+
+        public CustomClickMinusListener(Attribute attribute){
+            this.attribute = attribute;
+        }
+
+        @Override
+        public void onClick(View v) {
+            int number = addAttribute.get(attribute.getId());
+            addAttribute.put(attribute.getId(),--number);
             attributesLayout.removeAllViews();
             initialize();
         }
@@ -283,7 +258,6 @@ public class AssignAttributeActivity extends AppCompatActivity {
         }
         nextActivity.setText(name);
     }
-
     public void nextAssign(View view){
 
     }

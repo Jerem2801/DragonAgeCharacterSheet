@@ -1,14 +1,18 @@
 package com.galaxia.dragonagecharactersheet.element.background.backgroundtable;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.util.TypedValue;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.galaxia.dragonagecharactersheet.R;
+import com.galaxia.dragonagecharactersheet.controller.create.ChooseBackgroundActivity;
 import com.galaxia.dragonagecharactersheet.element.attribute.Attribute;
 import com.galaxia.dragonagecharactersheet.element.attribute.AttributeManager;
 import com.galaxia.dragonagecharactersheet.element.background.Background;
@@ -20,6 +24,7 @@ import com.galaxia.dragonagecharactersheet.element.language.Language;
 import com.galaxia.dragonagecharactersheet.element.language.LanguageManager;
 import com.galaxia.dragonagecharactersheet.element.weapongroup.WeaponGroup;
 import com.galaxia.dragonagecharactersheet.element.weapongroup.WeaponGroupManager;
+import com.google.common.collect.Lists;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -28,36 +33,84 @@ import java.util.List;
 
 public class BackgroundTableUiManager {
 
-    private BackgroundTableUiManager(){
+    private Context context;
+    private TableLayout bonusTable;
+    private List<BackgroundTable> backgroundTables;
+    private List<BackgroundTable> selectedBackgroudBonus;
+    private TextView numberUpgrade;
 
+
+
+    public List<BackgroundTable> getSelectedBackgroudBonus() {
+        return selectedBackgroudBonus;
     }
 
-    public static void setTableUi(Context context, TableLayout bonusTable, Background background){
-        List<BackgroundTable> bonusRoll = background.getBonusRoll();
-        Collections.sort(bonusRoll);
+    public BackgroundTableUiManager(Context context, TableLayout bonusTable, List<BackgroundTable> backgroundTables,TextView numberUpgrade) {
+        this.context = context;
+        this.bonusTable = bonusTable;
+        this.backgroundTables = backgroundTables;
+        this.selectedBackgroudBonus = Lists.newArrayList();
+        this.numberUpgrade = numberUpgrade;
+        initializeNumberUpgrade();
+    }
+
+    private void initializeNumberUpgrade() {
+        Integer total = getTotal(selectedBackgroudBonus);
+        int max = 3-total;
+        String maxString = String.valueOf(max);
+        numberUpgrade.setText("Amélioration : " + maxString);
+    }
+
+    public void setTableUi(){
+        Collections.sort(backgroundTables);
 
         bonusTable.setStretchAllColumns(true);
         bonusTable.setShrinkAllColumns(true);
 
-        createFirstLine(context,bonusTable);
+        createFirstLine();
 
-        for(BackgroundTable backgroundTable : bonusRoll){
-            TableRow tableRow = createRowValue(context,backgroundTable);
+        for(BackgroundTable backgroundTable : backgroundTables){
+            TableRow tableRow = createRowValue(backgroundTable);
             bonusTable.addView(tableRow);
         }
 
     }
 
-    private static TableRow createRowValue(Context context,BackgroundTable backgroundTable){
+
+    @SuppressLint("NewApi")
+    private void createFirstLine() {
+        TableRow firstRow = new TableRow(context);
+        TableLayout.LayoutParams rowLayoutFirst = new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,TableLayout.LayoutParams.MATCH_PARENT);
+        firstRow.setLayoutParams(rowLayoutFirst);
+
+        createModelText(firstRow,R.string.cost);
+        createModelText(firstRow,R.string.avantage);
+
+        firstRow.setBackgroundColor(context.getResources().getColor(R.color.colorPrimaryDark));
+
+        bonusTable.addView(firstRow);
+    }
+
+    private void createModelText(TableRow tableRow,int textId){
+        String text = context.getString(textId);
+        TextView textView = new TextView(context);
+        textView.setText(text);
+        textView.setTextColor(context.getResources().getColor(R.color.colorAccent));
+        textView.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        textView.setGravity(Gravity.CENTER);
+        tableRow.addView(textView);
+    }
+
+    private TableRow createRowValue(BackgroundTable backgroundTable){
         TableRow tableRow = new TableRow(context);
         TableLayout.LayoutParams rowLayout = new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,TableLayout.LayoutParams.MATCH_PARENT);
         tableRow.setLayoutParams(rowLayout);
 
         TextView rollsView = new TextView(context);
-        String rollsString = getRollsString(backgroundTable);
+        String rollsString = getCostString(backgroundTable);
         rollsView.setText(rollsString);
-        rollsView.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
         rollsView.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        rollsView.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
         rollsView.setGravity(Gravity.CENTER);
         tableRow.addView(rollsView);
 
@@ -68,44 +121,71 @@ public class BackgroundTableUiManager {
         bonusView.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
         bonusView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 10);
         bonusView.setGravity(Gravity.CENTER);
+        TableRow.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,TableRow.LayoutParams.WRAP_CONTENT);
+        params.gravity = Gravity.CENTER_VERTICAL;
+        bonusView.setLayoutParams(params);
         tableRow.addView(bonusView);
 
 
         if(isEven(backgroundTable.getOrder())){
             tableRow.setBackgroundColor(context.getResources().getColor(R.color.colorLight));
         }
+
+        tableRow.setOnClickListener(new CustomClickListener(backgroundTable));
+
         return tableRow;
     }
 
-    private static void createFirstLine(Context context, TableLayout bonusTable) {
-        TableRow firstRow = new TableRow(context);
-        TableLayout.LayoutParams rowLayoutFirst = new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT,TableLayout.LayoutParams.MATCH_PARENT);
-        firstRow.setLayoutParams(rowLayoutFirst);
+    class CustomClickListener implements View.OnClickListener{
 
-        TextView resultView = createModelText(context,R.string.result);
-        firstRow.addView(resultView);
+        private BackgroundTable backgroundTable;
 
-        TextView avantageView = createModelText(context,R.string.avantage);
-        firstRow.addView(avantageView);
+        public CustomClickListener(BackgroundTable backgroundTable) {
+            this.backgroundTable = backgroundTable;
+        }
 
-        firstRow.setBackgroundColor(context.getResources().getColor(R.color.colorPrimaryDark));
+        @SuppressLint("NewApi")
+        @Override
+        public void onClick(View v) {
+            if(selectedBackgroudBonus.contains(backgroundTable)){
+                selectedBackgroudBonus.remove(backgroundTable);
+                if(isEven(backgroundTable.getOrder())){
+                    v.setBackgroundColor(context.getResources().getColor(R.color.colorLight));
+                }else{
+                    v.setBackground(null);
+                }
+            }else if(checkTotal(selectedBackgroudBonus,backgroundTable)){
+                CharSequence text = context.getString(R.string.empty_avantage_point);
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+            }else{
+                selectedBackgroudBonus.add(backgroundTable);
+                v.setBackgroundColor(context.getResources().getColor(R.color.colorValid));
+            }
+            initializeNumberUpgrade();
+        }
 
-        bonusTable.addView(firstRow);
     }
 
-    private static TextView createModelText(Context context,int textId){
-        String text = context.getString(textId);
-        TextView textView = new TextView(context);
-        textView.setText(text);
-        textView.setTextColor(context.getResources().getColor(R.color.colorAccent));
-        textView.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
-        textView.setGravity(Gravity.CENTER);
-        return textView;
+    private boolean checkTotal(List<BackgroundTable> selectedBackgroudBonus,BackgroundTable newBackgroundTable) {
+        int i = getCost(newBackgroundTable);
+        i += getTotal(selectedBackgroudBonus);
+        return i > 3;
+    }
+
+    private Integer getTotal(List<BackgroundTable> selectedBackgroudBonus){
+        int i = 0;
+        for(BackgroundTable selected : selectedBackgroudBonus){
+            i += getCost(selected);
+        }
+        return i;
     }
 
 
 
-    public static String getBonusString(Context context,BackgroundTable backgroundTable) {
+
+    public String getBonusString(Context context,BackgroundTable backgroundTable) {
         String bonus = StringUtils.EMPTY;
         String type = backgroundTable.getType();
         String bonusId = backgroundTable.getBonus();
@@ -135,19 +215,20 @@ public class BackgroundTableUiManager {
         return bonus;
     }
 
-    private static String getRollsString(BackgroundTable backgroundTable) {
-        StringBuilder builder = new StringBuilder();
-        for(Integer i : backgroundTable.getRoll()){
-            if(StringUtils.isBlank(builder.toString())){
-                builder.append(i);
-            }else{
-                builder.append("-" + i);
-            }
-        }
-        return builder.toString().trim();
+    private String getCostString(BackgroundTable backgroundTable) {
+        int i = getCost(backgroundTable);
+        return String.valueOf(i);
     }
 
-    private static boolean isEven(double num){
+    public Integer getCost(BackgroundTable backgroundTable) {
+        int cost = 1;
+        if(StringUtils.equals(backgroundTable.getType(),BackgroundBonusConstant.ATTRIBUTE)){
+            cost = 2;
+        }
+        return cost;
+    }
+
+    private boolean isEven(double num){
         return ((num % 2) == 0);
     }
 }

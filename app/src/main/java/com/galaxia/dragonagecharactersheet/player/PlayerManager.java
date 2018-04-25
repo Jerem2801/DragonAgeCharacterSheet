@@ -8,6 +8,7 @@ import com.galaxia.dragonagecharactersheet.element.background.Background;
 import com.galaxia.dragonagecharactersheet.element.background.BackgroundManager;
 import com.galaxia.dragonagecharactersheet.element.background.backgroundtable.BackgroundTable;
 import com.galaxia.dragonagecharactersheet.element.background.backgroundtable.BackgroundTableManager;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class PlayerManager {
         return attributes;
     }
 
-    public static void setBonusBackground(Player player, BackgroundTable... backgroundTables){
+    public static void setBonusBackground(Player player, List<BackgroundTable> backgroundTables){
         for(BackgroundTable backgroundTable : backgroundTables){
             BackgroundTableManager.setBonusToPlayer(player,backgroundTable);
         }

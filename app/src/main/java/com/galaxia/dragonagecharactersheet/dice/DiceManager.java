@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.widget.ImageView;
 
-import com.galaxia.dragonagecharactersheet.controller.create.ChooseBonusActivity;
 import com.galaxia.dragonagecharactersheet.data.DataPool;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
 import com.google.common.collect.Maps;

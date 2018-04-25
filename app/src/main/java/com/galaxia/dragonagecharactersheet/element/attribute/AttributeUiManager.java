@@ -27,7 +27,7 @@ public class AttributeUiManager {
         rollTable.setStretchAllColumns(true);
         rollTable.setShrinkAllColumns(true);
 
-        TableUiManager.createFirstLine(context,rollTable, R.string.result,R.string.value);
+        TableUiManager.createFirstLine(context,rollTable, R.string.cost,R.string.value);
 
         int rowNumber = 1;
 
