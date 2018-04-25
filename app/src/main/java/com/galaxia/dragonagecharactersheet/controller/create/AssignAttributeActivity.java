@@ -73,25 +73,30 @@ public class AssignAttributeActivity extends AppCompatActivity {
         for (String attributeId : attributeIds) {
             Attribute attribute = AttributeManager.getAttribute(attributeId);
 
-            LinearLayout linearLayout = createLinearLayout(context,attribute);
+            LinearLayout linearLayout = createLinearLayout(context,false);
 
             TextView attributeName = createTextViewForAttributeName(context,attribute);
             linearLayout.addView(attributeName);
 
             Classe classe = ClasseManager.getClasse(player.getClasseId());
             List<String> primaryAttributesId = classe.getPrimaryAttributesId();
-            boolean visible =primaryAttributesId.contains(attributeId);
+            boolean visible = primaryAttributesId.contains(attributeId);
+
             ImageView star = createImageViewForPrincipalAttribute(context,visible);
             linearLayout.addView(star);
 
+            LinearLayout linearLayoutRight = createLinearLayout(context,true);
+
             ImageView imageDown = createImageMinusPlus(context,attribute);
-            linearLayout.addView(imageDown);
+            linearLayoutRight.addView(imageDown);
 
             TextView attributeValue = createTextViewForAttributeValue(context,attribute);
-            linearLayout.addView(attributeValue);
+            linearLayoutRight.addView(attributeValue);
 
-            ImageView imageCancel = createImageForPlus(context,attribute);
-            linearLayout.addView(imageCancel);
+            ImageView imagePlus = createImageForPlus(context,attribute);
+            linearLayoutRight.addView(imagePlus);
+
+            linearLayout.addView(linearLayoutRight);
 
             attributesLayout.addView(linearLayout);
 
@@ -106,9 +111,8 @@ public class AssignAttributeActivity extends AppCompatActivity {
 
     private TextView createTextViewForAttributeName(Context context, Attribute attribute) {
         TextView attributeName =  new TextView(context);
-        LinearLayout.LayoutParams paramsAttributeName = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams paramsAttributeName = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         paramsAttributeName.setMargins(sizeInDp(8), 0, 0, 0);
-        paramsAttributeName.weight = 1.75f;
         attributeName.setLayoutParams(paramsAttributeName);
         UiViewUtils.setTextViewTitle(attributeName);
         attributeName.setText(attribute.getName());
@@ -117,9 +121,8 @@ public class AssignAttributeActivity extends AppCompatActivity {
 
     private ImageView createImageViewForPrincipalAttribute(Context context,boolean visible) {
         ImageView star = new ImageView(context);
-        LinearLayout.LayoutParams paramsAttributeDesc = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT);
-        paramsAttributeDesc.weight = 0.25f;
-        star.setLayoutParams(paramsAttributeDesc);
+        LinearLayout.LayoutParams paramsPrincipalAttribute = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        star.setLayoutParams(paramsPrincipalAttribute);
         star.setImageBitmap(RessourceUtils.getImage(context, RessourcePath.STAR_PATH));
         if(!visible){
             star.setVisibility(View.INVISIBLE);
@@ -127,27 +130,25 @@ public class AssignAttributeActivity extends AppCompatActivity {
         return star;
     }
 
+
     private ImageView createImageMinusPlus(Context context,Attribute attribute) {
         ImageView minus = new ImageView(context);
-        LinearLayout.LayoutParams paramsPlus = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT);
+        LinearLayout.LayoutParams paramsPlus = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
         paramsPlus.setMargins(0, 0, sizeInDp(8), 0);
-        paramsPlus.weight = 0.25f;
-        paramsPlus.gravity = Gravity.RIGHT;
         minus.setLayoutParams(paramsPlus);
         minus.setImageBitmap(RessourceUtils.getImage(context, RessourcePath.MINUS_PATH));
         minus.setOnClickListener(new CustomClickMinusListener(attribute));
-
         if(addAttribute.get(attribute.getId()) == 0){
             minus.setVisibility(View.INVISIBLE);
         }
         return minus;
     }
 
+
     private TextView createTextViewForAttributeValue(Context context,Attribute attribute) {
         TextView attributeValue = new TextView(context);
-        LinearLayout.LayoutParams paramsAttributeValue = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams paramsAttributeValue = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         paramsAttributeValue.setMargins(0, 0, sizeInDp(8), 0);
-        paramsAttributeValue.weight = 1f;
         attributeValue.setLayoutParams(paramsAttributeValue);
         UiViewUtils.setTextViewTitle(attributeValue);
         String value = getValue(attribute);
@@ -159,9 +160,8 @@ public class AssignAttributeActivity extends AppCompatActivity {
 
     private ImageView createImageForPlus(Context context,Attribute attribute) {
         ImageView plus = new ImageView(context);
-        LinearLayout.LayoutParams paramsPlus = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT);
+        LinearLayout.LayoutParams paramsPlus = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
         paramsPlus.setMargins(0, 0, sizeInDp(8), 0);
-        paramsPlus.weight = 0.25f;
         plus.setLayoutParams(paramsPlus);
         plus.setImageBitmap(RessourceUtils.getImage(context, RessourcePath.PLUS_PATH));
         plus.setOnClickListener(new CustomClickPlusListener(attribute));
@@ -184,21 +184,20 @@ public class AssignAttributeActivity extends AppCompatActivity {
     }
 
 
-    private LinearLayout createLinearLayout(Context context,Attribute attribute){
+    private LinearLayout createLinearLayout(Context context,boolean right){
         LinearLayout linearLayout = new LinearLayout(context);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        if(right){
+            params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        }
         linearLayout.setLayoutParams(params);
         linearLayout.setOrientation(LinearLayout.HORIZONTAL);
+        if(right){
+            linearLayout.setGravity(Gravity.RIGHT);
+        }
         return linearLayout;
     }
 
-    public List<String> transform(List<Integer> list){
-        List<String> chars = Lists.newArrayList();
-        for(Integer i : list){
-            chars.add(String.valueOf(i));
-        }
-        return chars;
-    }
 
 
 
