@@ -42,12 +42,21 @@
                 android:background="@drawable/custom_line"/>_
 
             <TextView
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="@string/assign_attributes_rule"
                 android:justificationMode="inter_word" />
+
+            <TextView
+                android:id="@+id/assign_attribute_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:theme="@style/Value" />
 
         </LinearLayout>
 

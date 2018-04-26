@@ -16,7 +16,6 @@ public class ChooseBenefitManager {
     @SuppressLint("NewApi")
     public static BackgroundTableUiManager initializeBenefit(Context context, List<BackgroundTable> backgroundTables, TableLayout tableLayout,TextView numberUpgrade) {
         tableLayout.removeAllViews();
-        tableLayout.setBackground(context.getResources().getDrawable(R.drawable.custom_border_black));
 
         BackgroundTableUiManager uiManager = new BackgroundTableUiManager(context,tableLayout,backgroundTables,numberUpgrade);
         uiManager.setTableUi();

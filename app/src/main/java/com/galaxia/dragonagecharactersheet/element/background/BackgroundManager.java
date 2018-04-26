@@ -14,6 +14,9 @@ import com.galaxia.dragonagecharactersheet.element.weapongroup.WeaponGroup;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceConstant;
 import com.galaxia.dragonagecharactersheet.ressource.RessourcePath;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
+import com.google.common.collect.Lists;
+
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -86,8 +89,12 @@ public class BackgroundManager {
     }
 
     private static List<String> getIds(String id) {
-        String[] splitData = id.split(RessourceConstant.AND);
-        return Arrays.asList(splitData);
+        List<String> result = Lists.newArrayList();
+        if(StringUtils.isNotBlank(id)){
+            String[] splitData = id.split(RessourceConstant.AND);
+            result = Arrays.asList(splitData);
+        }
+        return result;
     }
 
 

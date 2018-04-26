@@ -17,13 +17,17 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.galaxia.dragonagecharactersheet.R;
 import com.galaxia.dragonagecharactersheet.controller.ActivityConstant;
 import com.galaxia.dragonagecharactersheet.element.attribute.Attribute;
 import com.galaxia.dragonagecharactersheet.element.attribute.AttributeManager;
+import com.galaxia.dragonagecharactersheet.element.background.Background;
+import com.galaxia.dragonagecharactersheet.element.background.backgroundtable.BackgroundTable;
 import com.galaxia.dragonagecharactersheet.element.classe.Classe;
 import com.galaxia.dragonagecharactersheet.element.classe.ClasseManager;
+import com.galaxia.dragonagecharactersheet.element.focus.Focus;
 import com.galaxia.dragonagecharactersheet.player.Player;
 import com.galaxia.dragonagecharactersheet.player.PlayerManager;
 import com.galaxia.dragonagecharactersheet.ressource.RessourcePath;
@@ -42,11 +46,13 @@ import java.util.Map;
 public class AssignAttributeActivity extends AppCompatActivity {
 
     private Player player;
+    private int pointToAssign;
     private Map<String, Integer> baseAttribute;
     private Map<String, Integer> addAttribute;
 
     private LinearLayout attributesLayout;
     private Button nextActivity;
+    private TextView numberAttributes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +66,10 @@ public class AssignAttributeActivity extends AppCompatActivity {
 
         attributesLayout = findViewById(R.id.assigne_attributes_linear);
         nextActivity = findViewById(R.id.next_to);
+        numberAttributes = findViewById(R.id.assign_attribute_number);
+
+        pointToAssign = 10;
+        setNumber();
 
         initialize();
         initializeButton(player.getClasseId());
@@ -165,7 +175,7 @@ public class AssignAttributeActivity extends AppCompatActivity {
         plus.setLayoutParams(paramsPlus);
         plus.setImageBitmap(RessourceUtils.getImage(context, RessourcePath.PLUS_PATH));
         plus.setOnClickListener(new CustomClickPlusListener(attribute));
-        if(addAttribute.get(attribute.getId()) >= 3){
+        if(addAttribute.get(attribute.getId()) >= 3 || pointToAssign == 0){
             plus.setVisibility(View.INVISIBLE);
         }
         return plus;
@@ -198,7 +208,10 @@ public class AssignAttributeActivity extends AppCompatActivity {
         return linearLayout;
     }
 
-
+    public void setNumber() {
+        String text = "Nombre de points restant : " + pointToAssign;
+        numberAttributes.setText(text);
+    }
 
 
     class CustomClickPlusListener implements View.OnClickListener {
@@ -211,10 +224,19 @@ public class AssignAttributeActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-            int number = addAttribute.get(attribute.getId());
-            addAttribute.put(attribute.getId(),++number);
-            attributesLayout.removeAllViews();
-            initialize();
+            if(pointToAssign == 0){
+                String text = "Vous n'avez plus de points";
+                int duration = Toast.LENGTH_SHORT;
+                Toast toast = Toast.makeText(AssignAttributeActivity.this, text, duration);
+                toast.show();
+            }else{
+                --pointToAssign;
+                setNumber();
+                int number = addAttribute.get(attribute.getId());
+                addAttribute.put(attribute.getId(),++number);
+                attributesLayout.removeAllViews();
+                initialize();
+            }
         }
     }
 
@@ -228,6 +250,8 @@ public class AssignAttributeActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
+            ++pointToAssign;
+            setNumber();
             int number = addAttribute.get(attribute.getId());
             addAttribute.put(attribute.getId(),--number);
             attributesLayout.removeAllViews();
@@ -258,6 +282,18 @@ public class AssignAttributeActivity extends AppCompatActivity {
         nextActivity.setText(name);
     }
     public void nextAssign(View view){
+        if(pointToAssign != 0){
+            String text = "Vous n'avez pas assigné tout vos points !";
+            int duration = Toast.LENGTH_SHORT;
+            Toast toast = Toast.makeText(AssignAttributeActivity.this, text, duration);
+            toast.show();
+        }else{
+            Intent assignAttributeActivity = new Intent(AssignAttributeActivity.this, ResumeActivity.class);
+            player.setAttributeIdsRoll(addAttribute);
+            assignAttributeActivity.putExtra(ActivityConstant.EXTRA_PLAYER, player);
+            startActivity(assignAttributeActivity);
+
+        }
 
     }
 }

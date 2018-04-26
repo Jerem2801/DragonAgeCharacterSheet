@@ -9,6 +9,7 @@ import com.galaxia.dragonagecharactersheet.element.classe.Classe;
 import com.galaxia.dragonagecharactersheet.element.focus.Focus;
 import com.galaxia.dragonagecharactersheet.element.language.Language;
 import com.galaxia.dragonagecharactersheet.element.race.Race;
+import com.galaxia.dragonagecharactersheet.element.talent.Talent;
 import com.galaxia.dragonagecharactersheet.element.weapongroup.WeaponGroup;
 
 import java.util.Map;
@@ -24,6 +25,7 @@ public class DataPool {
     private Map<String,Classe> classes;
     private Map<String,Race> races;
     private Map<String,Background> backgrounds;
+    private Map<String,Talent> talents;
     private Map<Integer,Dice> dices;
 
     public Map<String, Language> getLanguages() {
@@ -82,12 +84,12 @@ public class DataPool {
         this.backgrounds = backgrounds;
     }
 
-    public static DataPool getDataPool() {
-        return dataPool;
+    public Map<String, Talent> getTalents() {
+        return talents;
     }
 
-    public static void setDataPool(DataPool dataPool) {
-        DataPool.dataPool = dataPool;
+    public void setTalents(Map<String, Talent> talents) {
+        this.talents = talents;
     }
 
     public Map<Integer, Dice> getDices() {

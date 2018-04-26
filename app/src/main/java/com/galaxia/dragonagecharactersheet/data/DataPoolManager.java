@@ -18,6 +18,8 @@ import com.galaxia.dragonagecharactersheet.element.language.Language;
 import com.galaxia.dragonagecharactersheet.element.language.LanguageManager;
 import com.galaxia.dragonagecharactersheet.element.race.Race;
 import com.galaxia.dragonagecharactersheet.element.race.RaceManager;
+import com.galaxia.dragonagecharactersheet.element.talent.Talent;
+import com.galaxia.dragonagecharactersheet.element.talent.TalentManager;
 import com.galaxia.dragonagecharactersheet.element.weapongroup.WeaponGroup;
 import com.galaxia.dragonagecharactersheet.element.weapongroup.WeaponGroupManager;
 
@@ -39,6 +41,7 @@ public class DataPoolManager {
         Map<String,Race> races = RaceManager.getRaceData(context);
         Map<String,List<BackgroundTable>> backgroundTables = BackgroundTableManager.getBackgroundTableData(context);
         Map<String,Background> backgrounds = BackgroundManager.getBackgroundData(context,backgroundTables);
+        Map<String,Talent> talents = TalentManager.getTalentData(context);
         Map<Integer,Dice> dices = DiceManager.getDiceData();
 
 
@@ -51,6 +54,7 @@ public class DataPoolManager {
         dataPool.setClasses(classes);
         dataPool.setRaces(races);
         dataPool.setBackgrounds(backgrounds);
+        dataPool.setTalents(talents);
         dataPool.setDices(dices);
 
         return dataPool;

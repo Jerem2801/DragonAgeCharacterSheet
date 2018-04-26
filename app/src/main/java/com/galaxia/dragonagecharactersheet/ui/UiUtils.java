@@ -11,6 +11,7 @@ import com.galaxia.dragonagecharactersheet.controller.create.ChooseClasseActivit
 import com.galaxia.dragonagecharactersheet.element.background.Background;
 import com.galaxia.dragonagecharactersheet.element.classe.Classe;
 import com.galaxia.dragonagecharactersheet.element.race.Race;
+import com.galaxia.dragonagecharactersheet.element.talent.Talent;
 
 import java.util.List;
 
@@ -35,6 +36,12 @@ public class UiUtils {
 
     public static void setSpinnerBackground(Context context, Spinner spinner, List<Background> backgrounds) {
         ArrayAdapter<Background> adapter = new ArrayAdapter<>(context.getApplicationContext(), R.layout.custom_spinner, backgrounds);
+        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+    }
+
+    public static void setSpinnerTalent(Context context, Spinner spinner, List<Talent> talents) {
+        ArrayAdapter<Talent> adapter = new ArrayAdapter<>(context.getApplicationContext(), R.layout.custom_spinner, taelnts);
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }

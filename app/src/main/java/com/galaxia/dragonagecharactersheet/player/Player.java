@@ -23,6 +23,8 @@ public class Player implements Parcelable {
     private List<String> weaponGroupIds;
     private List<String> spokenLanguages;
     private Map<String,Integer> attributeIdsRoll;
+    private String classeTalent;
+    private String langueBonus;
 
     public Player(){
        this.focusIdsRollFromBackgroundTable = Lists.newArrayList();
@@ -31,6 +33,7 @@ public class Player implements Parcelable {
        this.attributeIdsRollFromBackgroundTable = Lists.newArrayList();
        this.attributeIdsRoll = PlayerManager.initializeAttribute();
     }
+
 
     public String getRaceId() {
         return raceId;
@@ -104,6 +107,22 @@ public class Player implements Parcelable {
         this.attributeIdsRoll = attributeIdsRoll;
     }
 
+    public String getClasseTalent() {
+        return classeTalent;
+    }
+
+    public void setClasseTalent(String classeTalent) {
+        this.classeTalent = classeTalent;
+    }
+
+    public String getLangueBonus() {
+        return langueBonus;
+    }
+
+    public void setLangueBonus(String langueBonus) {
+        this.langueBonus = langueBonus;
+    }
+
 
     @Override
     public int describeContents() {
@@ -125,6 +144,8 @@ public class Player implements Parcelable {
             dest.writeString(entry.getKey());
             dest.writeValue(entry.getValue());
         }
+        dest.writeString(this.classeTalent);
+        dest.writeString(this.langueBonus);
     }
 
     protected Player(Parcel in) {
@@ -143,6 +164,8 @@ public class Player implements Parcelable {
             Integer value = (Integer) in.readValue(Integer.class.getClassLoader());
             this.attributeIdsRoll.put(key, value);
         }
+        this.classeTalent = in.readString();
+        this.langueBonus = in.readString();
     }
 
     public static final Parcelable.Creator<Player> CREATOR = new Parcelable.Creator<Player>() {
