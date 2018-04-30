@@ -8,6 +8,8 @@ public class RessourcePath {
     public static final String PLUS_PATH = DIVERS_DIR + "plus.png";
     public static final String MINUS_PATH = DIVERS_DIR + "minus.png";
     public static final String DONE_PATH = DIVERS_DIR + "done.png";
+    public static final String DOWN_PATH = DIVERS_DIR + "down.png";
+    public static final String LEFT_PATH = DIVERS_DIR + "left.png";
 
     public static final String DATA_PATH = "data/";
 

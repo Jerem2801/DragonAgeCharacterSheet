@@ -31,6 +31,12 @@ public class MainActivity extends AppCompatActivity {
         DataPool.initialize(MainActivity.this);
     }
 
+
+    /**
+     * @param view
+     *
+     * get to next activity, which is Race choice.
+     */
     public void nextActivityCreateCharacter(View view){
        Intent createCharacterIntent = new Intent(MainActivity.this, ChooseRaceActivity.class);
        startActivity(createCharacterIntent);

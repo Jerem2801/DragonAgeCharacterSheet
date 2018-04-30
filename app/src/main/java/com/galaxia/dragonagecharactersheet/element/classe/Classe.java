@@ -15,8 +15,10 @@ public class Classe implements Parcelable {
     private List<String> secondaryAttributesId;
     private List<String> weaponGroupStartingId;
     private String imagePath;
+    private List<String> startedTalents;
+    private int numberOfTalent;
 
-    public Classe(String id, String name, String description, int initialHealth, List<String> primaryAttributesId, List<String> secondaryAttributesId, List<String> weaponGroupStartingId, String imagePath) {
+    public Classe(String id, String name, String description, int initialHealth, List<String> primaryAttributesId, List<String> secondaryAttributesId, List<String> weaponGroupStartingId, String imagePath, List<String> startedTalents, int numberOfTalent) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -25,6 +27,8 @@ public class Classe implements Parcelable {
         this.secondaryAttributesId = secondaryAttributesId;
         this.weaponGroupStartingId = weaponGroupStartingId;
         this.imagePath = imagePath;
+        this.startedTalents = startedTalents;
+        this.numberOfTalent = numberOfTalent;
     }
 
     public String getId() {
@@ -91,6 +95,21 @@ public class Classe implements Parcelable {
         this.imagePath = imagePath;
     }
 
+    public List<String> getStartedTalents() {
+        return startedTalents;
+    }
+
+    public void setStartedTalents(List<String> startedTalents) {
+        this.startedTalents = startedTalents;
+    }
+
+    public int getNumberOfTalent() {
+        return numberOfTalent;
+    }
+
+    public void setNumberOfTalent(int numberOfTalent) {
+        this.numberOfTalent = numberOfTalent;
+    }
 
     @Override
     public int describeContents() {
@@ -107,6 +126,8 @@ public class Classe implements Parcelable {
         dest.writeStringList(this.secondaryAttributesId);
         dest.writeStringList(this.weaponGroupStartingId);
         dest.writeString(this.imagePath);
+        dest.writeStringList(this.startedTalents);
+        dest.writeInt(this.numberOfTalent);
     }
 
     protected Classe(Parcel in) {
@@ -118,6 +139,8 @@ public class Classe implements Parcelable {
         this.secondaryAttributesId = in.createStringArrayList();
         this.weaponGroupStartingId = in.createStringArrayList();
         this.imagePath = in.readString();
+        this.startedTalents = in.createStringArrayList();
+        this.numberOfTalent = in.readInt();
     }
 
     public static final Parcelable.Creator<Classe> CREATOR = new Parcelable.Creator<Classe>() {

@@ -5,11 +5,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.galaxia.dragonagecharactersheet.R;
 import com.galaxia.dragonagecharactersheet.controller.ActivityConstant;
+import com.galaxia.dragonagecharactersheet.controller.create.manager.ChooseTalentManager;
 import com.galaxia.dragonagecharactersheet.data.DataPool;
 import com.galaxia.dragonagecharactersheet.element.classe.Classe;
 import com.galaxia.dragonagecharactersheet.element.classe.ClasseManager;
@@ -17,10 +19,13 @@ import com.galaxia.dragonagecharactersheet.element.classe.ClasseUiManager;
 import com.galaxia.dragonagecharactersheet.element.race.Race;
 import com.galaxia.dragonagecharactersheet.element.race.RaceManager;
 import com.galaxia.dragonagecharactersheet.element.talent.Talent;
+import com.galaxia.dragonagecharactersheet.element.talent.TalentManager;
 import com.galaxia.dragonagecharactersheet.player.Player;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
 import com.galaxia.dragonagecharactersheet.ui.UiUtils;
 import com.galaxia.dragonagecharactersheet.ui.ViewFormaterString;
+
+import org.w3c.dom.Text;
 
 import java.util.List;
 import java.util.Map;
@@ -28,10 +33,10 @@ import java.util.Map;
 public class ChooseTalentActivity extends AppCompatActivity {
 
     private Player player;
+    private int restOfTalent;
 
-    private Spinner talentSpinner;
-    private TextView descriptionText;
-    private TextView noviceText;
+    private TextView countTalent;
+    private LinearLayout mother;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,44 +45,23 @@ public class ChooseTalentActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         player = intent.getParcelableExtra(ActivityConstant.EXTRA_PLAYER);
+        Classe classe = ClasseManager.getClasse(player.getClasseId());
+        List<Talent> talents = TalentManager.getTalents(classe.getStartedTalents());
 
+        restOfTalent = classe.getNumberOfTalent();
 
-        DataPool instance = DataPool.getInstance();
-        Map<String, Talent> talents = instance.getTalents();
+        countTalent = findViewById(R.id.choose_talent_number);
+        countTalent.setText(String.valueOf(restOfTalent));
 
-        talentSpinner = findViewById(R.id.choose_talent_spinner);
-        descriptionText = findViewById(R.id.choose_talent_description_txt);
-        noviceText = findViewById(R.id.choose_talent_novice_txt);
+        mother = findViewById(R.id.choose_talent_layout_mother);
 
-        initializeSpinner(talents);
-        onSelectedItem();
+        ChooseTalentManager.initialize(ChooseTalentActivity.this,talents,mother);
     }
 
 
-    private void initializeSpinner(List<Talent> talents) {
-        UiUtils.setSpinnerTalent(ChooseTalentActivity.this, talentSpinner,talents);
+    public void rollHealthActivity(View view){
+
     }
-
-    private void onSelectedItem() {
-        talentSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            @Override
-            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                Talent talent= (Talent) talentSpinner.getItemAtPosition(position);
-
-                descriptionText.setText(talent.getDescription());
-                noviceText.setText(talent.getNovice());
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // your code here
-            }
-
-        });
-    }
-
-
 
 
 

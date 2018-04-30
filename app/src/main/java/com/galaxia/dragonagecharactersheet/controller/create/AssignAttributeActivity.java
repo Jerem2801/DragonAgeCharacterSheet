@@ -122,7 +122,7 @@ public class AssignAttributeActivity extends AppCompatActivity {
     private TextView createTextViewForAttributeName(Context context, Attribute attribute) {
         TextView attributeName =  new TextView(context);
         LinearLayout.LayoutParams paramsAttributeName = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        paramsAttributeName.setMargins(sizeInDp(8), 0, 0, 0);
+        paramsAttributeName.setMargins(UiUtils.sizeInDp(context,8), 0, 0, 0);
         attributeName.setLayoutParams(paramsAttributeName);
         UiViewUtils.setTextViewTitle(attributeName);
         attributeName.setText(attribute.getName());
@@ -144,7 +144,7 @@ public class AssignAttributeActivity extends AppCompatActivity {
     private ImageView createImageMinusPlus(Context context,Attribute attribute) {
         ImageView minus = new ImageView(context);
         LinearLayout.LayoutParams paramsPlus = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
-        paramsPlus.setMargins(0, 0, sizeInDp(8), 0);
+        paramsPlus.setMargins(0, 0, UiUtils.sizeInDp(context,8), 0);
         minus.setLayoutParams(paramsPlus);
         minus.setImageBitmap(RessourceUtils.getImage(context, RessourcePath.MINUS_PATH));
         minus.setOnClickListener(new CustomClickMinusListener(attribute));
@@ -158,7 +158,7 @@ public class AssignAttributeActivity extends AppCompatActivity {
     private TextView createTextViewForAttributeValue(Context context,Attribute attribute) {
         TextView attributeValue = new TextView(context);
         LinearLayout.LayoutParams paramsAttributeValue = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        paramsAttributeValue.setMargins(0, 0, sizeInDp(8), 0);
+        paramsAttributeValue.setMargins(0, 0, UiUtils.sizeInDp(context,8), 0);
         attributeValue.setLayoutParams(paramsAttributeValue);
         UiViewUtils.setTextViewTitle(attributeValue);
         String value = getValue(attribute);
@@ -171,7 +171,7 @@ public class AssignAttributeActivity extends AppCompatActivity {
     private ImageView createImageForPlus(Context context,Attribute attribute) {
         ImageView plus = new ImageView(context);
         LinearLayout.LayoutParams paramsPlus = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
-        paramsPlus.setMargins(0, 0, sizeInDp(8), 0);
+        paramsPlus.setMargins(0, 0, UiUtils.sizeInDp(context,8), 0);
         plus.setLayoutParams(paramsPlus);
         plus.setImageBitmap(RessourceUtils.getImage(context, RessourcePath.PLUS_PATH));
         plus.setOnClickListener(new CustomClickPlusListener(attribute));
@@ -186,7 +186,7 @@ public class AssignAttributeActivity extends AppCompatActivity {
     private TextView createTextViewForAttributeDesc(Context context, Attribute attribute) {
         TextView attributeDesc = new TextView(context);
         LinearLayout.LayoutParams paramsAttributeDesc = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        paramsAttributeDesc.setMargins(0, 0, 0, sizeInDp(16));
+        paramsAttributeDesc.setMargins(0, 0, 0, UiUtils.sizeInDp(context,16));
         attributeDesc.setLayoutParams(paramsAttributeDesc);
         attributeDesc.setText(attribute.getDescription());
         attributeDesc.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD);
@@ -267,10 +267,7 @@ public class AssignAttributeActivity extends AppCompatActivity {
         return String.valueOf(valueTotal);
     }
 
-    private Integer sizeInDp( int sizeInDp){
-        float v = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, sizeInDp, AssignAttributeActivity.this.getResources().getDisplayMetrics());
-        return (Integer) Math.round(v);
-    }
+
 
     private void initializeButton(String classeId) {
         String name = AssignAttributeActivity.this.getString(R.string.next_to_talent);
@@ -288,7 +285,7 @@ public class AssignAttributeActivity extends AppCompatActivity {
             Toast toast = Toast.makeText(AssignAttributeActivity.this, text, duration);
             toast.show();
         }else{
-            Intent assignAttributeActivity = new Intent(AssignAttributeActivity.this, ResumeActivity.class);
+            Intent assignAttributeActivity = new Intent(AssignAttributeActivity.this, ChooseTalentActivity.class);
             player.setAttributeIdsRoll(addAttribute);
             assignAttributeActivity.putExtra(ActivityConstant.EXTRA_PLAYER, player);
             startActivity(assignAttributeActivity);

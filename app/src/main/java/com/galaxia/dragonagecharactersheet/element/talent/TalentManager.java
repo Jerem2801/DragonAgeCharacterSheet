@@ -3,9 +3,11 @@ package com.galaxia.dragonagecharactersheet.element.talent;
 import android.content.Context;
 
 import com.galaxia.dragonagecharactersheet.data.DataPool;
+import com.galaxia.dragonagecharactersheet.element.classe.Classe;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceConstant;
 import com.galaxia.dragonagecharactersheet.ressource.RessourcePath;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
 import org.apache.commons.lang3.StringUtils;
@@ -59,10 +61,22 @@ public class TalentManager {
         return talents;
     }
 
+
+
     public static Talent getTalent(String talentId){
         DataPool dataPool = DataPool.getInstance();
         Map<String, Talent> talents = dataPool.getTalents();
         return talents.get(talentId);
+    }
+
+    public static List<Talent> getTalents(List<String> talentIds) {
+        List<Talent> talents = Lists.newArrayList();
+
+        for(String talentId : talentIds){
+            talents.add(getTalent(talentId));
+        }
+
+        return talents;
     }
 
 

@@ -1,11 +1,13 @@
 package com.galaxia.dragonagecharactersheet.ui;
 
 import android.content.Context;
+import android.util.TypedValue;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.Spinner;
 
 import com.galaxia.dragonagecharactersheet.R;
+import com.galaxia.dragonagecharactersheet.controller.create.AssignAttributeActivity;
 import com.galaxia.dragonagecharactersheet.controller.create.ChooseBackgroundActivity;
 import com.galaxia.dragonagecharactersheet.controller.create.ChooseClasseActivity;
 import com.galaxia.dragonagecharactersheet.element.background.Background;
@@ -41,7 +43,7 @@ public class UiUtils {
     }
 
     public static void setSpinnerTalent(Context context, Spinner spinner, List<Talent> talents) {
-        ArrayAdapter<Talent> adapter = new ArrayAdapter<>(context.getApplicationContext(), R.layout.custom_spinner, taelnts);
+        ArrayAdapter<Talent> adapter = new ArrayAdapter<>(context.getApplicationContext(), R.layout.custom_spinner, talents);
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
@@ -49,5 +51,10 @@ public class UiUtils {
     public static ListAdapter getListAdapter(Context context, List<String> attributeRolls) {
         ListAdapter adapter = new ArrayAdapter<>(context.getApplicationContext(), android.R.layout.simple_list_item_1, attributeRolls);
         return adapter;
+    }
+
+    public static Integer sizeInDp(Context context,int sizeInDp){
+        float v = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, sizeInDp, context.getResources().getDisplayMetrics());
+        return (Integer) Math.round(v);
     }
 }
