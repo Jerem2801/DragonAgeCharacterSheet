@@ -42,5 +42,9 @@ public class MainActivity extends AppCompatActivity {
        startActivity(createCharacterIntent);
     }
 
+    public void nextActivitySheetCharacter(View view){
+
+    }
+
 
 }

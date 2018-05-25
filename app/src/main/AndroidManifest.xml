@@ -21,7 +21,9 @@
         <activity android:name=".controller.create.ChooseBackgroundActivity" />
         <activity android:name=".controller.create.ResumeActivity" />
         <activity android:name=".controller.create.AssignAttributeActivity" />
-        <activity android:name=".controller.create.ChooseTalentActivity"></activity>
+        <activity android:name=".controller.create.ChooseTalentActivity" />
+        <activity android:name=".controller.sheet.SheetMenu" />
+        <activity android:name=".controller.sheet.SheetMain"></activity>
     </application>
 
 </manifest>

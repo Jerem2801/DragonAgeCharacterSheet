@@ -17,8 +17,10 @@ public class Classe implements Parcelable {
     private String imagePath;
     private List<String> startedTalents;
     private int numberOfTalent;
+    private List<String> weaponGroupToChoose;
+    private int numberOfWeaponGroup;
 
-    public Classe(String id, String name, String description, int initialHealth, List<String> primaryAttributesId, List<String> secondaryAttributesId, List<String> weaponGroupStartingId, String imagePath, List<String> startedTalents, int numberOfTalent) {
+    public Classe(String id, String name, String description, int initialHealth, List<String> primaryAttributesId, List<String> secondaryAttributesId, List<String> weaponGroupStartingId, String imagePath, List<String> startedTalents, int numberOfTalent, List<String> weaponGroupToChoose, int numberOfWeaponGroup) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -29,6 +31,8 @@ public class Classe implements Parcelable {
         this.imagePath = imagePath;
         this.startedTalents = startedTalents;
         this.numberOfTalent = numberOfTalent;
+        this.weaponGroupToChoose = weaponGroupToChoose;
+        this.numberOfWeaponGroup = numberOfWeaponGroup;
     }
 
     public String getId() {
@@ -111,6 +115,29 @@ public class Classe implements Parcelable {
         this.numberOfTalent = numberOfTalent;
     }
 
+    public List<String> getWeaponGroupToChoose() {
+        return weaponGroupToChoose;
+    }
+
+    public void setWeaponGroupToChoose(List<String> weaponGroupToChoose) {
+        this.weaponGroupToChoose = weaponGroupToChoose;
+    }
+
+    public int getNumberOfWeaponGroup() {
+        return numberOfWeaponGroup;
+    }
+
+    public void setNumberOfWeaponGroup(int numberOfWeaponGroup) {
+        this.numberOfWeaponGroup = numberOfWeaponGroup;
+    }
+
+
+
+    @Override
+    public String toString() {
+        return name;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -128,6 +155,8 @@ public class Classe implements Parcelable {
         dest.writeString(this.imagePath);
         dest.writeStringList(this.startedTalents);
         dest.writeInt(this.numberOfTalent);
+        dest.writeStringList(this.weaponGroupToChoose);
+        dest.writeInt(this.numberOfWeaponGroup);
     }
 
     protected Classe(Parcel in) {
@@ -141,9 +170,11 @@ public class Classe implements Parcelable {
         this.imagePath = in.readString();
         this.startedTalents = in.createStringArrayList();
         this.numberOfTalent = in.readInt();
+        this.weaponGroupToChoose = in.createStringArrayList();
+        this.numberOfWeaponGroup = in.readInt();
     }
 
-    public static final Parcelable.Creator<Classe> CREATOR = new Parcelable.Creator<Classe>() {
+    public static final Creator<Classe> CREATOR = new Creator<Classe>() {
         @Override
         public Classe createFromParcel(Parcel source) {
             return new Classe(source);
@@ -154,9 +185,4 @@ public class Classe implements Parcelable {
             return new Classe[size];
         }
     };
-
-    @Override
-    public String toString() {
-        return name;
-    }
 }

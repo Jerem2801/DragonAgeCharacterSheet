@@ -32,6 +32,8 @@ public class ClasseManager {
     private static final int IMAGE_FILE_NAME = 7;
     private static final int STARTED_TALENT = 8;
     private static final int NUMBER_TALENT = 9;
+    private static final int WEAPON_GROUP_TO_CHOOSE = 10;
+    private static final int NUMBER_WEAPON_GROUP = 11;
 
     private ClasseManager(){
 
@@ -69,7 +71,17 @@ public class ClasseManager {
             String numberTalentString = splitData[NUMBER_TALENT];
             int numberTalent = Integer.valueOf(numberTalentString);
 
-            Classe classe = new Classe(id,name,description,initialHealth,primaryAttributesId,secondaryAttributesId,weaponGroupStartingId,imagePath,startedTalent,numberTalent);
+            List<String> weaponGroupToChoose = Lists.newArrayList();
+            int numberWeapongGroup = 0;
+            if(splitData.length > NUMBER_WEAPON_GROUP){
+                String weaponGroupToChooseString = splitData[WEAPON_GROUP_TO_CHOOSE];
+                weaponGroupToChoose = Arrays.asList(weaponGroupToChooseString.split(RessourceConstant.AND));
+
+                String numberWeapongGroupString = splitData[NUMBER_WEAPON_GROUP];
+                numberWeapongGroup = Integer.valueOf(numberWeapongGroupString);
+            }
+
+            Classe classe = new Classe(id,name,description,initialHealth,primaryAttributesId,secondaryAttributesId,weaponGroupStartingId,imagePath,startedTalent,numberTalent,weaponGroupToChoose,numberWeapongGroup);
             classes.put(id,classe);
         }
 
@@ -97,4 +109,5 @@ public class ClasseManager {
         Map<String, Classe> classes = dataPool.getClasses();
         return classes.get(classeId);
     }
+
 }

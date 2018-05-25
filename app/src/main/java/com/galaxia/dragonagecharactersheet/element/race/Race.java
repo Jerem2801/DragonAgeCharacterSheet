@@ -6,9 +6,10 @@ import android.os.Parcelable;
 import com.galaxia.dragonagecharactersheet.element.classe.Classe;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
-public class Race implements Parcelable {
+public class Race implements Parcelable,Comparator<Race> {
 
     private String id;
     private String name;
@@ -113,5 +114,10 @@ public class Race implements Parcelable {
     @Override
     public String toString() {
         return name;
+    }
+
+    @Override
+    public int compare(Race o1, Race o2) {
+        return o1.getName().compareTo(o2.getName());
     }
 }

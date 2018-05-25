@@ -7,6 +7,7 @@ import com.galaxia.dragonagecharactersheet.element.attribute.Attribute;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceConstant;
 import com.galaxia.dragonagecharactersheet.ressource.RessourcePath;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
+import com.google.common.collect.Lists;
 
 import java.util.HashMap;
 import java.util.List;
@@ -50,5 +51,14 @@ public class WeaponGroupManager {
         DataPool dataPool = DataPool.getInstance();
         Map<String, WeaponGroup> weaponGroups = dataPool.getWeaponGroups();
         return weaponGroups.get(weaponGroupId);
+    }
+
+    public static List<WeaponGroup> getWeaponGroups(List<String> weaponGroupIds) {
+        List<WeaponGroup> weaponGroups = Lists.newArrayList();
+        for(String weaponGroupId : weaponGroupIds){
+            WeaponGroup weaponGroup = getWeaponGroup(weaponGroupId);
+            weaponGroups.add(weaponGroup);
+        }
+        return weaponGroups;
     }
 }

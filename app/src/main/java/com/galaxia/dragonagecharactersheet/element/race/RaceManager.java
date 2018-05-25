@@ -12,6 +12,8 @@ import com.google.common.collect.Lists;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,5 +71,14 @@ public class RaceManager {
         DataPool dataPool = DataPool.getInstance();
         Map<String, Race> races = dataPool.getRaces();
         return races.get(raceId);
+    }
+
+    public static void sortRace(List<Race> races){
+        Collections.sort(races, new Comparator<Race>() {
+            @Override
+            public int compare(Race o1, Race o2) {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
     }
 }

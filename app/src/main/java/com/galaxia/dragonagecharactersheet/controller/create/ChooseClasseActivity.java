@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -13,17 +14,23 @@ import com.bluejamesbond.text.DocumentView;
 import com.bluejamesbond.text.style.TextAlignment;
 import com.galaxia.dragonagecharactersheet.R;
 import com.galaxia.dragonagecharactersheet.controller.ActivityConstant;
+import com.galaxia.dragonagecharactersheet.controller.create.manager.ChooseFocusManager;
 import com.galaxia.dragonagecharactersheet.element.classe.Classe;
 import com.galaxia.dragonagecharactersheet.element.classe.ClasseManager;
 import com.galaxia.dragonagecharactersheet.element.classe.ClasseUiManager;
+import com.galaxia.dragonagecharactersheet.element.focus.Focus;
+import com.galaxia.dragonagecharactersheet.element.focus.FocusManager;
 import com.galaxia.dragonagecharactersheet.element.race.Race;
 import com.galaxia.dragonagecharactersheet.element.race.RaceManager;
+import com.galaxia.dragonagecharactersheet.element.weapongroup.WeaponGroup;
+import com.galaxia.dragonagecharactersheet.element.weapongroup.WeaponGroupManager;
 import com.galaxia.dragonagecharactersheet.player.Player;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
 import com.galaxia.dragonagecharactersheet.ui.UiUtils;
 import com.galaxia.dragonagecharactersheet.ui.ViewFormaterString;
 
 import java.util.List;
+import java.util.Map;
 
 public class ChooseClasseActivity extends AppCompatActivity {
 
@@ -32,6 +39,8 @@ public class ChooseClasseActivity extends AppCompatActivity {
     private TextView descriptionText;
     private TextView healthText;
     private TextView weaponGroupList;
+    private RadioGroup radioGroup;
+    private Map<Integer,WeaponGroup> order;
     private TextView primaryAttributesList;
     private TextView secondaryAttributesList;
     private Player player;
@@ -53,6 +62,8 @@ public class ChooseClasseActivity extends AppCompatActivity {
         healthText= findViewById(R.id.choose_classe_health_txt);
 
         weaponGroupList = findViewById(R.id.choose_classe_weapon_group_txt);
+
+        radioGroup = findViewById(R.id.choose_classe_weapon_group_radio);
 
         primaryAttributesList = findViewById(R.id.choose_classe_primary_attributes_txt);
 
@@ -82,6 +93,14 @@ public class ChooseClasseActivity extends AppCompatActivity {
                 healthText.setText(ClasseUiManager.setHeatlh(classe,getString(R.string.health_classe)));
 
                 weaponGroupList.setText(ClasseUiManager.getWeaponGroupStarting(classe));
+
+                if(classe.getNumberOfWeaponGroup() != 0){
+                    radioGroup.setVisibility(View.VISIBLE);
+                    List<WeaponGroup> weaponGroups = WeaponGroupManager.getWeaponGroups(classe.getWeaponGroupToChoose());
+                    order = ChooseWeaponGroupManager.initializeChoice(ChooseClasseActivity.this,weaponGroups,radioGroup);
+                }else{
+                    radioGroup.setVisibility(View.GONE);
+                }
 
                 primaryAttributesList.setText(ClasseUiManager.getAttributes(classe.getPrimaryAttributesId()));
 

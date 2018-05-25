@@ -13,6 +13,7 @@ import com.galaxia.dragonagecharactersheet.R;
 import com.galaxia.dragonagecharactersheet.controller.ActivityConstant;
 import com.galaxia.dragonagecharactersheet.data.DataPool;
 import com.galaxia.dragonagecharactersheet.element.race.Race;
+import com.galaxia.dragonagecharactersheet.element.race.RaceManager;
 import com.galaxia.dragonagecharactersheet.element.race.RaceUiManager;
 import com.galaxia.dragonagecharactersheet.player.Player;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
@@ -48,6 +49,7 @@ public class ChooseRaceActivity extends AppCompatActivity {
 
     private void initializeSpinner() {
         List<Race> races = new ArrayList(DataPool.getInstance().getRaces().values());
+        RaceManager.sortRace(races);
         UiUtils.setSpinnerRace(ChooseRaceActivity.this, racesSpinner,races);
     }
 

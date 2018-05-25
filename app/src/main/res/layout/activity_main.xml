@@ -22,4 +22,11 @@
         android:onClick="nextActivityCreateCharacter"
         android:text="@string/create_character" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:onClick="nextActivitySheetCharacter"
+        android:text="Feuille de Personnage" />
+
 </LinearLayout>
