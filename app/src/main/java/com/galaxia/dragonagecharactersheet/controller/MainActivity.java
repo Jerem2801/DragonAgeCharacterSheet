@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 import com.galaxia.dragonagecharactersheet.R;
 import com.galaxia.dragonagecharactersheet.controller.create.ChooseRaceActivity;
+import com.galaxia.dragonagecharactersheet.controller.sheet.SheetMenu;
 import com.galaxia.dragonagecharactersheet.data.DataPool;
 import com.galaxia.dragonagecharactersheet.ressource.RessourcePath;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
@@ -43,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void nextActivitySheetCharacter(View view){
-
+        Intent sheetCharacterIntent = new Intent(MainActivity.this, SheetMenu.class);
+        startActivity(sheetCharacterIntent);
     }
 
 
