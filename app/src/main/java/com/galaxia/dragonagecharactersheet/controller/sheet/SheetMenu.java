@@ -21,6 +21,7 @@ public class SheetMenu extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private Fragment resume;
+    private Fragment attribute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,18 +82,10 @@ public class SheetMenu extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.menu_resume) {
             this.showResume();
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        } else if (id == R.id.menu_attribute) {
+            this.showAttribute();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -106,7 +99,13 @@ public class SheetMenu extends AppCompatActivity
             this.resume = SheetResume.newInstance();
         }
         this.startTransactionFragment(this.resume);
+    }
 
+    private void showAttribute(){
+        if(this.attribute == null){
+            this.attribute = SheetAttribute.newInstance();
+        }
+        this.startTransactionFragment(this.attribute);
     }
 
     private void startTransactionFragment(Fragment fragment){

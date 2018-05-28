@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 
 import com.galaxia.dragonagecharactersheet.log.LoggerUtils;
 import com.galaxia.dragonagecharactersheet.stream.ReaderUtils;
+import com.google.common.collect.Maps;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -13,6 +14,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class RessourceUtils {
 
@@ -29,6 +31,20 @@ public class RessourceUtils {
             data = ReaderUtils.readFileWithList(is,firstLineIsModel);
         } catch (IOException e) {
            LoggerUtils.log(context,e.getMessage());
+        }
+
+        return data;
+    }
+
+    public static Map<Integer,String> getData(Context context, String path){
+        Map<Integer,String> data = Maps.newHashMap();
+        InputStream is = null;
+
+        try {
+            is = context.getAssets().open(path);
+            data = ReaderUtils.readFileWithMap(is);
+        } catch (IOException e) {
+            LoggerUtils.log(context,e.getMessage());
         }
 
         return data;

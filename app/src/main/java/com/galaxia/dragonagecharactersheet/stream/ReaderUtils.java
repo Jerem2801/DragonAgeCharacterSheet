@@ -2,6 +2,8 @@ package com.galaxia.dragonagecharactersheet.stream;
 
 import android.content.Context;
 
+import com.google.common.collect.Maps;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,6 +13,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ReaderUtils {
 
@@ -34,6 +37,31 @@ public class ReaderUtils {
                 }else{
                     lines.add(line);
                 }
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+            StreamUtils.close(br,isr,is);
+        }
+
+        return lines;
+    }
+
+    public static Map<Integer,String> readFileWithMap(InputStream is)  {
+        Map<Integer,String> lines = Maps.newHashMap();
+        BufferedReader br = null;
+        InputStreamReader isr = null;
+
+        try {
+            isr = new InputStreamReader(is);
+            br = new BufferedReader(isr);
+            String line;
+            boolean firstLine = true;
+            int i = 1;
+            while(( line = br.readLine()) != null ) {
+                lines.put(i++,line);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
