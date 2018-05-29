@@ -16,6 +16,9 @@ import android.widget.TextView;
 import com.galaxia.dragonagecharactersheet.R;
 import com.galaxia.dragonagecharactersheet.controller.sheet.bean.PlayerResumeBean;
 import com.galaxia.dragonagecharactersheet.controller.sheet.manager.PlayerResumeManager;
+import com.galaxia.dragonagecharactersheet.element.background.BackgroundManager;
+import com.galaxia.dragonagecharactersheet.element.classe.ClasseManager;
+import com.galaxia.dragonagecharactersheet.element.race.RaceManager;
 import com.galaxia.dragonagecharactersheet.ui.UiUtils;
 import com.galaxia.dragonagecharactersheet.ui.UiViewUtils;
 
@@ -48,9 +51,12 @@ public class SheetResume extends Fragment {
 
         createView(mother,"Niveau : ",playerResume.getLevel());
         createView(mother,"Nom : ",playerResume.getName());
-        createView(mother,"Race : ",playerResume.getRace());
-        createView(mother,"Classe : ",playerResume.getClasse());
-        createView(mother,"Background : ",playerResume.getBackground());
+        String race = RaceManager.getRace(playerResume.getRace()).getName();
+        createView(mother,"Race : ",race);
+        String classe = ClasseManager.getClasse(playerResume.getClasse()).getName();
+        createView(mother,"Classe : ",classe);
+        String background = BackgroundManager.getBackground(playerResume.getBackground()).getName();
+        createView(mother,"Background : ",background);
 
         return inflate;
     }

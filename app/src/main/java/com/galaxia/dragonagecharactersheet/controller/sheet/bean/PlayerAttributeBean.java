@@ -39,4 +39,6 @@ public class PlayerAttributeBean {
     public void addFocuss(String focus) {
         this.focuss.add(focus);
     }
+
+
 }

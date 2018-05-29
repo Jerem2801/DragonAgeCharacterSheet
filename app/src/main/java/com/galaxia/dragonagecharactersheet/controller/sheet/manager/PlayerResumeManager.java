@@ -35,14 +35,11 @@ public class PlayerResumeManager {
             String[] splitData = StringUtils.split(data, RessourceConstant.SEPARATOR);
             String name = splitData[NAME];
 
-            String raceId = splitData[RACE];
-            String race = RaceManager.getRace(raceId).getName();
+            String race = splitData[RACE];
 
-            String classeId = splitData[CLASSE];
-            String classe = ClasseManager.getClasse(classeId).getName();
+            String classe = splitData[CLASSE];
 
-            String backgroundId = splitData[BACKGROUND];
-            String background = BackgroundManager.getBackground(backgroundId).getName();
+            String background = splitData[BACKGROUND];
 
             String level = splitData[LEVEL];
 
