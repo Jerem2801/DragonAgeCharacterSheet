@@ -31,4 +31,5 @@ dependencies {
     implementation 'org.apache.commons:commons-lang3:3.0'
     implementation 'com.uncopt:android.justified:1.0'
     implementation group: 'com.google.guava', name: 'guava', version: '11.0.2'
+    implementation 'com.google.android:flexbox:0.3.2'
 }

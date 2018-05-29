@@ -50,7 +50,8 @@ public class PlayerAttributeManager {
         for(String line : StringUtils.split(data, RessourceConstant.SEPARATOR)){
             Focus focus = FocusManager.getFocus(line);
             PlayerAttributeBean playerAttributeBean = beans.get(focus.getAttributeId());
-            playerAttributeBean.addFocuss(focus.getId());
+            playerAttributeBean.addFocuss(line);
+
         }
 
 

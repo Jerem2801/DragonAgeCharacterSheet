@@ -3,14 +3,18 @@ package com.galaxia.dragonagecharactersheet.controller.sheet;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.text.Layout;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.galaxia.dragonagecharactersheet.R;
@@ -23,6 +27,8 @@ import com.galaxia.dragonagecharactersheet.ressource.RessourcePath;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
 import com.galaxia.dragonagecharactersheet.ui.UiUtils;
 import com.galaxia.dragonagecharactersheet.ui.UiViewUtils;
+import com.google.android.flexbox.FlexWrap;
+import com.google.android.flexbox.FlexboxLayout;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -50,6 +56,9 @@ public class SheetAttribute extends Fragment {
 
         LinearLayout linear = (LinearLayout) inflate;
 
+        //ScrollView scrollView = createScrollView(context);
+
+        //scrollView.addView(motherLayout);
         LinearLayout motherLayout = createMotherLayout(context);
         linear.addView(motherLayout);
 
@@ -59,6 +68,13 @@ public class SheetAttribute extends Fragment {
 
 
         return inflate;
+    }
+
+    private ScrollView createScrollView(Context context) {
+        ScrollView scroll = new ScrollView(context);
+        scroll.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.MATCH_PARENT));
+        return scroll;
     }
 
     @SuppressLint("NewApi")
@@ -72,27 +88,38 @@ public class SheetAttribute extends Fragment {
         mother.addView(line);
 
         //FOCUS
-        LinearLayout focusLayout = createFocusLayout(context,bean);
+        FlexboxLayout focusLayout = createFocusLayout(context,bean);
         mother.addView(focusLayout);
     }
 
     @SuppressLint("NewApi")
-    private LinearLayout createFocusLayout(Context context, PlayerAttributeBean bean) {
-        LinearLayout focusLinear = new LinearLayout(context);
+    private FlexboxLayout createFocusLayout(Context context, PlayerAttributeBean bean) {
+        /*LinearLayout focusLinear = new LinearLayout(context);
         LinearLayout.LayoutParams focusParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         focusParam.setMargins(0,  0, 0,UiUtils.sizeInDp(context,8));
         focusLinear.setLayoutParams(focusParam);
-        focusLinear.setOrientation(LinearLayout.HORIZONTAL);
+        focusLinear.setOrientation(LinearLayout.HORIZONTAL);*/
+
+        FlexboxLayout flex = new FlexboxLayout(context);
+        flex.setFlexWrap(FlexWrap.WRAP);
+        LinearLayout.LayoutParams focusParam = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        focusParam.setMargins(0,  0, 0,UiUtils.sizeInDp(context,8));
+        flex.setLayoutParams(focusParam);
 
         for(String focus : bean.getFocuss()){
             TextView focusView =  new TextView(context);
+            LinearLayout.LayoutParams focusParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            focusParams.setMargins(UiUtils.sizeInDp(context,8),  0, 0,0);
+            focusView.setLayoutParams(focusParams);
             String name = FocusManager.getFocus(focus).getName();
             focusView.setText(name);
-            focusView.setJustificationMode(Layout.JUSTIFICATION_MODE_INTER_WORD);
-            focusLinear.addView(focusView);
+            focusView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 17);
+            focusView.setTextColor(context.getResources().getColor(R.color.colorAccent));
+            focusView.setBackground(getResources().getDrawable(R.drawable.custom_border_focus));
+            flex.addView(focusView);
         }
 
-        return focusLinear;
+        return flex;
     }
 
     private LinearLayout createAttributeValueHelpLayout(Context context,PlayerAttributeBean bean){
@@ -171,11 +198,11 @@ public class SheetAttribute extends Fragment {
     @SuppressLint("NewApi")
     private LinearLayout createMotherLayout(Context context){
         LinearLayout mother = new LinearLayout(context);
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        ScrollView.LayoutParams params = new ScrollView.LayoutParams(ScrollView.LayoutParams.MATCH_PARENT, ScrollView.LayoutParams.WRAP_CONTENT);
         params.setMargins(UiUtils.sizeInDp(context,16), 0, UiUtils.sizeInDp(context,16), 0);
         mother.setLayoutParams(params);
         mother.setOrientation(LinearLayout.VERTICAL);
-        mother.setBackground(getResources().getDrawable(R.drawable.custom_border));
+        //mother.setBackground(getResources().getDrawable(R.drawable.custom_border));
         return mother;
     }
 

@@ -46,7 +46,7 @@ public class SheetResume extends Fragment {
         params.setMargins(UiUtils.sizeInDp(context,16), 0, UiUtils.sizeInDp(context,16), 0);
         mother.setLayoutParams(params);
         mother.setOrientation(LinearLayout.VERTICAL);
-        mother.setBackground(getResources().getDrawable(R.drawable.custom_border));
+        //mother.setBackground(getResources().getDrawable(R.drawable.custom_border));
         linear.addView(mother);
 
         createView(mother,"Niveau : ",playerResume.getLevel());
