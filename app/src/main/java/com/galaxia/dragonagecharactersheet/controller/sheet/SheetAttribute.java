@@ -60,7 +60,6 @@ public class SheetAttribute extends Fragment {
             createView(motherLayout,bean);
         }
 
-
         return inflate;
     }
 
@@ -91,14 +90,17 @@ public class SheetAttribute extends Fragment {
 
     private TextView createValueTextView(PlayerAttributeBean bean){
         TextView valueView =  new TextView(context);
-        LinearLayout.LayoutParams paramsAttributeValue = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        paramsAttributeValue.setMargins(0, 0, UiUtils.sizeInDp(context,8), 0);
+        //LinearLayout.LayoutParams paramsAttributeValue = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        //paramsAttributeValue.setMargins(0, 0, UiUtils.sizeInDp(context,8), 0);
+        LinearLayout.LayoutParams paramsAttributeValue = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         valueView.setLayoutParams(paramsAttributeValue);
         UiViewUtils.setValue(valueView);
         valueView.setText(bean.getValue());
+        valueView.setGravity(Gravity.CENTER);
         return valueView;
     }
 
+    @SuppressLint("NewApi")
     private LinearLayout createValueLinearLayout() {
         LinearLayout attributeFocusLinearLayout = new LinearLayout(context);
         LinearLayout.LayoutParams attributeFocusLinearLayoutParams = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT);
@@ -106,6 +108,7 @@ public class SheetAttribute extends Fragment {
         attributeFocusLinearLayoutParams.setMargins(0,  0, 0,0);
         attributeFocusLinearLayout.setLayoutParams(attributeFocusLinearLayoutParams);
         attributeFocusLinearLayout.setOrientation(LinearLayout.VERTICAL);
+        attributeFocusLinearLayout.setBackground(context.getResources().getDrawable(R.drawable.custom_border_black));
         return attributeFocusLinearLayout;
     }
 
@@ -131,14 +134,26 @@ public class SheetAttribute extends Fragment {
             flex.addView(focusView);
         }
 
+        if(flex.getChildAt(0) == null){
+            TextView focusView = new TextView(context);
+            FlexboxLayout.LayoutParams focusParams = new FlexboxLayout.LayoutParams(FlexboxLayout.LayoutParams.WRAP_CONTENT, FlexboxLayout.LayoutParams.WRAP_CONTENT);
+            focusParams.setMargins(UiUtils.sizeInDp(context,4),  UiUtils.sizeInDp(context,4), UiUtils.sizeInDp(context,4),UiUtils.sizeInDp(context,4));
+            focusView.setLayoutParams(focusParams);
+            focusView.setText("NONE");
+            focusView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 17);
+            focusView.setBackground(getResources().getDrawable(R.drawable.custom_border_focus));
+            focusView.setVisibility(View.INVISIBLE);
+            flex.addView(focusView);
+        }
+
         return flex;
     }
 
     @SuppressLint("NewApi")
     private TextView createFocusList(String focus) {
         TextView focusView = new TextView(context);
-        LinearLayout.LayoutParams focusParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        focusParams.setMargins(UiUtils.sizeInDp(context,8),  0, 0,UiUtils.sizeInDp(context,8));
+        FlexboxLayout.LayoutParams focusParams = new FlexboxLayout.LayoutParams(FlexboxLayout.LayoutParams.WRAP_CONTENT, FlexboxLayout.LayoutParams.WRAP_CONTENT);
+        focusParams.setMargins(UiUtils.sizeInDp(context,4),  UiUtils.sizeInDp(context,4), UiUtils.sizeInDp(context,4),UiUtils.sizeInDp(context,4));
         focusView.setLayoutParams(focusParams);
         String name = FocusManager.getFocus(focus).getName();
         focusView.setText(name);
@@ -161,10 +176,12 @@ public class SheetAttribute extends Fragment {
     private TextView createAttributeNameView(PlayerAttributeBean bean){
         TextView attributeNameView =  new TextView(context);
         LinearLayout.LayoutParams attributeNameParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        attributeNameView.setPadding(UiUtils.sizeInDp(context,4),  UiUtils.sizeInDp(context,4), UiUtils.sizeInDp(context,4),UiUtils.sizeInDp(context,4));
         attributeNameView.setLayoutParams(attributeNameParams);
         UiViewUtils.setAttributeName(attributeNameView);
         String attributeNameValue = AttributeManager.getAttribute(bean.getName()).getName();
         attributeNameView.setText(attributeNameValue);
+        attributeNameView.setGravity(Gravity.CENTER);
         return attributeNameView;
     }
 
@@ -172,7 +189,6 @@ public class SheetAttribute extends Fragment {
         LinearLayout attributeFocusLinearLayout = new LinearLayout(context);
         LinearLayout.LayoutParams attributeFocusLinearLayoutParams = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT);
         attributeFocusLinearLayoutParams.weight = 1.5f;
-        attributeFocusLinearLayoutParams.setMargins(0,  UiUtils.sizeInDp(context,8), 0,0);
         attributeFocusLinearLayout.setLayoutParams(attributeFocusLinearLayoutParams);
         attributeFocusLinearLayout.setOrientation(LinearLayout.VERTICAL);
         return attributeFocusLinearLayout;
@@ -184,7 +200,6 @@ public class SheetAttribute extends Fragment {
         LinearLayout.LayoutParams attributeValueFocusLinearLayoutparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         attributeValueFocusLinearLayoutparams.setMargins(0,  UiUtils.sizeInDp(context,8), 0,0);
         attributeValueFocusLinearLayout.setLayoutParams(attributeValueFocusLinearLayoutparams);
-        attributeValueFocusLinearLayout.setPadding(UiUtils.sizeInDp(context,4),0,UiUtils.sizeInDp(context,4),UiUtils.sizeInDp(context,8));
         attributeValueFocusLinearLayout.setBackground(context.getResources().getDrawable(R.drawable.custom_border_black));
         attributeValueFocusLinearLayout.setOrientation(LinearLayout.HORIZONTAL);
         return attributeValueFocusLinearLayout;

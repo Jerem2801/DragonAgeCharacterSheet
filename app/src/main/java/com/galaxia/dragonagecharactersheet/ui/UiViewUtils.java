@@ -35,7 +35,7 @@ public class UiViewUtils {
         Context context = textView.getContext();
         textView.setTextColor(context.getResources().getColor(R.color.colorPrimary));
         textView.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
-        textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 30);
+        textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 40);
     }
 
     @SuppressLint("NewApi")
