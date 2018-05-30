@@ -9,7 +9,7 @@
             android:title="Résumé" />
         <item
             android:id="@+id/menu_attribute"
-            android:title="Attribute" />
+            android:title="Attribut" />
     </group>
 
 </menu>
