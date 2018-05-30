@@ -10,6 +10,8 @@ import com.galaxia.dragonagecharactersheet.ressource.RessourcePath;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
 import com.google.common.collect.Lists;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -30,8 +32,9 @@ public class ClasseManager {
     private static final int INITIAL_HEALTH = 5;
     private static final int WEAPON_GROUP_STARTING = 6;
     private static final int IMAGE_FILE_NAME = 7;
-    private static final int STARTED_TALENT = 8;
+    private static final int CHOICE_TALENT = 8;
     private static final int NUMBER_TALENT = 9;
+    private static final int STARTED_TALENT = 10;
 
     private ClasseManager(){
 
@@ -63,13 +66,19 @@ public class ClasseManager {
             String imageFileName = splitData[IMAGE_FILE_NAME];
             String imagePath = CLASSE_IMAGE_DIR + imageFileName;
 
-            String startedTalentString = splitData[STARTED_TALENT];
-            List<String> startedTalent = Arrays.asList(startedTalentString.split(RessourceConstant.AND));
+            String choiceTalentString = splitData[CHOICE_TALENT];
+            List<String> choiceTalents = Arrays.asList(choiceTalentString.split(RessourceConstant.AND));
 
             String numberTalentString = splitData[NUMBER_TALENT];
             int numberTalent = Integer.valueOf(numberTalentString);
 
-            Classe classe = new Classe(id,name,description,initialHealth,primaryAttributesId,secondaryAttributesId,weaponGroupStartingId,imagePath,startedTalent,numberTalent);
+            String startedTalent = StringUtils.EMPTY;
+
+            if(splitData.length > STARTED_TALENT){
+                startedTalent = splitData[STARTED_TALENT];
+            }
+
+            Classe classe = new Classe(id,name,description,initialHealth,primaryAttributesId,secondaryAttributesId,weaponGroupStartingId,imagePath,choiceTalents,numberTalent,startedTalent);
             classes.put(id,classe);
         }
 

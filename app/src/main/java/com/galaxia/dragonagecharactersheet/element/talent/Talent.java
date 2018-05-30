@@ -9,25 +9,22 @@ public class Talent implements Parcelable {
 
     private String id;
     private String name;
+    private List<String> classes;
+    private String requirement;
     private String description;
     private String novice;
-    private String typeChoice;
-    private List<String> choice;
+    private String journeyman;
+    private String master;
 
-    public Talent(String id, String name, String description, String novice) {
+    public Talent(String id, String name, List<String> classes, String requirement, String description, String novice, String journeyman, String master) {
         this.id = id;
         this.name = name;
+        this.classes = classes;
+        this.requirement = requirement;
         this.description = description;
         this.novice = novice;
-    }
-
-    public Talent(String id, String name, String description, String novice, String typeChoice, List<String> choice) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.novice = novice;
-        this.typeChoice = typeChoice;
-        this.choice = choice;
+        this.journeyman = journeyman;
+        this.master = master;
     }
 
     public String getId() {
@@ -46,6 +43,22 @@ public class Talent implements Parcelable {
         this.name = name;
     }
 
+    public List<String> getClasses() {
+        return classes;
+    }
+
+    public void setClasses(List<String> classes) {
+        this.classes = classes;
+    }
+
+    public String getRequirement() {
+        return requirement;
+    }
+
+    public void setRequirement(String requirement) {
+        this.requirement = requirement;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -62,22 +75,26 @@ public class Talent implements Parcelable {
         this.novice = novice;
     }
 
-    public String getTypeChoice() {
-        return typeChoice;
+    public String getJourneyman() {
+        return journeyman;
     }
 
-    public void setTypeChoice(String typeChoice) {
-        this.typeChoice = typeChoice;
+    public void setJourneyman(String journeyman) {
+        this.journeyman = journeyman;
     }
 
-    public List<String> getChoice() {
-        return choice;
+    public String getMaster() {
+        return master;
     }
 
-    public void setChoice(List<String> choice) {
-        this.choice = choice;
+    public void setMaster(String master) {
+        this.master = master;
     }
 
+    @Override
+    public String toString() {
+        return name;
+    }
 
     @Override
     public int describeContents() {
@@ -88,19 +105,23 @@ public class Talent implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(this.id);
         dest.writeString(this.name);
+        dest.writeStringList(this.classes);
+        dest.writeString(this.requirement);
         dest.writeString(this.description);
         dest.writeString(this.novice);
-        dest.writeString(this.typeChoice);
-        dest.writeStringList(this.choice);
+        dest.writeString(this.journeyman);
+        dest.writeString(this.master);
     }
 
     protected Talent(Parcel in) {
         this.id = in.readString();
         this.name = in.readString();
+        this.classes = in.createStringArrayList();
+        this.requirement = in.readString();
         this.description = in.readString();
         this.novice = in.readString();
-        this.typeChoice = in.readString();
-        this.choice = in.createStringArrayList();
+        this.journeyman = in.readString();
+        this.master = in.readString();
     }
 
     public static final Parcelable.Creator<Talent> CREATOR = new Parcelable.Creator<Talent>() {
@@ -114,9 +135,4 @@ public class Talent implements Parcelable {
             return new Talent[size];
         }
     };
-
-    @Override
-    public String toString() {
-        return name;
-    }
 }

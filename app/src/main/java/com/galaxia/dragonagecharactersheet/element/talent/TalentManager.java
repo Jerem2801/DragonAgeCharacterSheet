@@ -7,6 +7,7 @@ import com.galaxia.dragonagecharactersheet.element.classe.Classe;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceConstant;
 import com.galaxia.dragonagecharactersheet.ressource.RessourcePath;
 import com.galaxia.dragonagecharactersheet.ressource.RessourceUtils;
+import com.galaxia.dragonagecharactersheet.ui.ViewFormaterString;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 
@@ -23,10 +24,12 @@ public class TalentManager {
 
     private static final int ID = 0;
     private static final int NAME = 1;
-    private static final int DESCRIPTION = 2;
-    private static final int NOVICE = 3;
-    private static final int TYPE_CHOICE = 4;
-    private static final int CHOICES = 5;
+    private static final int CLASSES = 2;
+    private static final int REQUIREMENT = 3;
+    private static final int DESCRIPTION = 4;
+    private static final int NOVICE = 5;
+    private static final int JOURNEYMAN = 6;
+    private static final int MASTER = 7;
 
     private TalentManager(){
 
@@ -41,19 +44,15 @@ public class TalentManager {
             String[] splitData = line.split(RessourceConstant.SEPARATOR);
             String id = splitData[ID];
             String name = splitData[NAME];
+            String classesString = splitData[CLASSES];
+            List<String> classes = Arrays.asList(StringUtils.split(classesString, ViewFormaterString.SEPARATOR));
+            String requirement = splitData[REQUIREMENT];
             String description = splitData[DESCRIPTION];
             String novice = splitData[NOVICE];
+            String journeyman = splitData[JOURNEYMAN];
+            String master = splitData[MASTER];
 
-            Talent talent;
-
-            if(splitData.length > 4){
-                String type_choice= splitData[TYPE_CHOICE];
-                String choicesOneString = splitData[CHOICES];
-                List<String> choices = Arrays.asList(StringUtils.split(choicesOneString, RessourceConstant.AND));
-                talent = new Talent(id,name,description,novice,type_choice,choices);
-            }else{
-                talent = new Talent(id,name,description,novice);
-            }
+            Talent talent  = new Talent(id,name,classes,requirement,description,novice,journeyman,master);
 
             talents.put(id,talent);
         }

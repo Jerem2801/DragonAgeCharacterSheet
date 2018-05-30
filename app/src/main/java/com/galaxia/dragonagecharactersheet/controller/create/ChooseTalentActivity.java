@@ -46,7 +46,7 @@ public class ChooseTalentActivity extends AppCompatActivity {
         Intent intent = getIntent();
         player = intent.getParcelableExtra(ActivityConstant.EXTRA_PLAYER);
         Classe classe = ClasseManager.getClasse(player.getClasseId());
-        List<Talent> talents = TalentManager.getTalents(classe.getStartedTalents());
+        List<Talent> talents = TalentManager.getTalents(classe.getChoiceTalents());
 
         restOfTalent = classe.getNumberOfTalent();
 
