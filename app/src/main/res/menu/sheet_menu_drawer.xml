@@ -9,7 +9,9 @@
             android:title="Résumé" />
         <item
             android:id="@+id/menu_attribute"
-            android:title="Attribut" />
+            android:icon="@drawable/iconattribute"
+
+            android:title="Attribut et Compétence" />
     </group>
 
 </menu>

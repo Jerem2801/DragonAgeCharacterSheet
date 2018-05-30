@@ -176,6 +176,7 @@ public class SheetAttribute extends Fragment {
     }
 
 
+    @SuppressLint("NewApi")
     private TextView createAttributeNameView(PlayerAttributeBean bean){
         TextView attributeNameView =  new TextView(context);
         LinearLayout.LayoutParams attributeNameParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -185,6 +186,7 @@ public class SheetAttribute extends Fragment {
         String attributeNameValue = AttributeManager.getAttribute(bean.getName()).getName();
         attributeNameView.setText(attributeNameValue);
         attributeNameView.setGravity(Gravity.CENTER);
+        attributeNameView.setBackground(context.getResources().getDrawable(R.drawable.custom_border_attribute));
         attributeNameView.setOnClickListener(new CustomClickAttributeHelpListener(AttributeManager.getAttribute(bean.getName())));
         return attributeNameView;
     }

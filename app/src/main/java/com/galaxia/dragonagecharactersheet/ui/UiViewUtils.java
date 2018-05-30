@@ -28,12 +28,12 @@ public class UiViewUtils {
         textView.setTextColor(context.getResources().getColor(R.color.colorAccent));
         textView.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
         textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 20);
-        textView.setBackgroundColor(context.getResources().getColor(R.color.colorPrimaryDark));
+        textView.setBackgroundColor(context.getResources().getColor(R.color.colorPrimary));
     }
 
     public static void setValue(TextView textView){
         Context context = textView.getContext();
-        textView.setTextColor(context.getResources().getColor(R.color.colorPrimary));
+        textView.setTextColor(context.getResources().getColor(R.color.colorPrimaryDark));
         textView.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
         textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 40);
     }
