@@ -53,8 +53,11 @@ public class SheetAttribute extends Fragment {
         PlayerAttributeManager.sort(beans);
 
         LinearLayout linear = (LinearLayout) inflate;
+        ScrollView scroll = new ScrollView(context);
+        linear.addView(scroll);
         LinearLayout motherLayout = createMotherLayout(context);
-        linear.addView(motherLayout);
+        scroll.addView(motherLayout);
+        //linear.addView(motherLayout);
 
         for(PlayerAttributeBean bean : beans){
             createView(motherLayout,bean);
@@ -140,7 +143,7 @@ public class SheetAttribute extends Fragment {
             focusParams.setMargins(UiUtils.sizeInDp(context,4),  UiUtils.sizeInDp(context,4), UiUtils.sizeInDp(context,4),UiUtils.sizeInDp(context,4));
             focusView.setLayoutParams(focusParams);
             focusView.setText("NONE");
-            focusView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 17);
+            //focusView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 17);
             focusView.setBackground(getResources().getDrawable(R.drawable.custom_border_focus));
             focusView.setVisibility(View.INVISIBLE);
             flex.addView(focusView);
@@ -157,7 +160,7 @@ public class SheetAttribute extends Fragment {
         focusView.setLayoutParams(focusParams);
         String name = FocusManager.getFocus(focus).getName();
         focusView.setText(name);
-        focusView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 17);
+        //focusView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 17);
         focusView.setTextColor(context.getResources().getColor(R.color.colorAccent));
         focusView.setBackground(getResources().getDrawable(R.drawable.custom_border_focus));
         return focusView;
@@ -176,7 +179,7 @@ public class SheetAttribute extends Fragment {
     private TextView createAttributeNameView(PlayerAttributeBean bean){
         TextView attributeNameView =  new TextView(context);
         LinearLayout.LayoutParams attributeNameParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        attributeNameView.setPadding(UiUtils.sizeInDp(context,4),  UiUtils.sizeInDp(context,4), UiUtils.sizeInDp(context,4),UiUtils.sizeInDp(context,4));
+        attributeNameView.setPadding(UiUtils.sizeInDp(context,2),  UiUtils.sizeInDp(context,2), UiUtils.sizeInDp(context,2),UiUtils.sizeInDp(context,2));
         attributeNameView.setLayoutParams(attributeNameParams);
         UiViewUtils.setAttributeName(attributeNameView);
         String attributeNameValue = AttributeManager.getAttribute(bean.getName()).getName();

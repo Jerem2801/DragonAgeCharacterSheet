@@ -7,7 +7,7 @@ running;Course;se déplacer rapidement à la fois lors de sprints et de marathon
 dueling;Duel;combattre à l’aide d’armes du groupe des Armes de duel.;dexterity
 axes;Haches;combattre à l’aide d’armes du groupe des Haches.;strength
 light_blades;Lames légères;combattre à l’aide d’armes du groupe des Lames.;dexterity
-heavy blades;Lames lourdes;combattre à l’aide d’armes du groupe des Lames lourdes.;strength
+heavy_blades;Lames lourdes;combattre à l’aide d’armes du groupe des Lames lourdes.;strength
 spears;Lances;combattre à l’aide d’armes du groupe des Lances.;strength
 lances;Lances d’arçon;combattre à l’aide d’armes du groupe des Lances d’arçon.;strength
 acrobatics;Acrobatie;exécuter des manoeuvres de gymnastique, d’équilibre et de chute contrôlée.;dexterity
