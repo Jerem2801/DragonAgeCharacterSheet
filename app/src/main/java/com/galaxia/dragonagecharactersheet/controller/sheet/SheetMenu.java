@@ -22,6 +22,7 @@ public class SheetMenu extends AppCompatActivity
 
     private Fragment resume;
     private Fragment attribute;
+    private Fragment representative;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +87,8 @@ public class SheetMenu extends AppCompatActivity
             this.showResume();
         } else if (id == R.id.menu_attribute) {
             this.showAttribute();
+        } else if(id == R.id.menu_representative){
+            this.showRepresentatve();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -106,6 +109,13 @@ public class SheetMenu extends AppCompatActivity
             this.attribute = SheetAttribute.newInstance();
         }
         this.startTransactionFragment(this.attribute);
+    }
+
+    private void showRepresentatve(){
+        if(this.representative == null){
+            this.representative = SheetRepresentative.newInstance();
+        }
+        this.startTransactionFragment(this.representative);
     }
 
     private void startTransactionFragment(Fragment fragment){

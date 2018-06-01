@@ -20,6 +20,8 @@ import com.galaxia.dragonagecharactersheet.element.race.Race;
 import com.galaxia.dragonagecharactersheet.element.race.RaceManager;
 import com.galaxia.dragonagecharactersheet.element.talent.Talent;
 import com.galaxia.dragonagecharactersheet.element.talent.TalentManager;
+import com.galaxia.dragonagecharactersheet.element.weapon.Weapon;
+import com.galaxia.dragonagecharactersheet.element.weapon.WeaponManager;
 import com.galaxia.dragonagecharactersheet.element.weapongroup.WeaponGroup;
 import com.galaxia.dragonagecharactersheet.element.weapongroup.WeaponGroupManager;
 
@@ -37,6 +39,7 @@ public class DataPoolManager {
         Map<String,Attribute> attributes = AttributeManager.getAttributeData(context);
         Map<String,Focus> focuss = FocusManager.getFocusData(context);
         Map<String,WeaponGroup> weaponGroups = WeaponGroupManager.getWeaponGroupData(context);
+        Map<String, Weapon> weapons = WeaponManager.getWeaponData(context);
         Map<String,Classe> classes = ClasseManager.getClasseData(context);
         Map<String,Race> races = RaceManager.getRaceData(context);
         Map<String,List<BackgroundTable>> backgroundTables = BackgroundTableManager.getBackgroundTableData(context);
@@ -51,6 +54,7 @@ public class DataPoolManager {
         dataPool.setAttributes(attributes);
         dataPool.setFocus(focuss);
         dataPool.setWeaponGroups(weaponGroups);
+        dataPool.setWeapons(weapons);
         dataPool.setClasses(classes);
         dataPool.setRaces(races);
         dataPool.setBackgrounds(backgrounds);

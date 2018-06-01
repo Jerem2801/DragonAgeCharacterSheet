@@ -1,0 +1,34 @@
+Id;Name;Type;Weapon Group Id;Damage;Minimun Strenght;Cost;Description;Short Range;Long Rang;Reload
+battle_axe;Hache de bataille;close;axes;2&6&0;1;14;Une redoutable hache à large fer, plus grande qu’une hache normale, pouvant ouvrir une armure ou fendre un bouclier. Certaines haches de bataille possèdent deux lames.;;;
+throwing_axe;Hache de jet;range;axes;1&6&2;1;10;C’est une version martiale de la hachette, plus petite que la hache de bataille et équilibrée pour être lancée.;4;8;minor
+two_handed_axe;Hache à deux mains;close;axes;3&6&0;3;20;Grande soeur de la hache de bataille, cette arme imposante peut avoir une double tête ou comporter une pointe sur l’autre côté.;;;
+mace;Masse d'armes;close;bludgeons;2&6&0;1;12;Cette arme contondante est conçue pour fracasser les armures, et se compose d’une lourde tête de pierre ou de métal fixée sur un manche de bois ou de métal. La tête est souvent garnie d’ailettes ou de clous pour mieux pénétrer le métal.;;;
+maul;Marteau;close;bludgeons;1&6&3;1;14;Cet outil sert d’habitude aux forgerons et aux charpentiers. Doté d’un long manche, il peut être utilisé au combat pour écraser un adversaire.;;;
+two_handed_maul;Masse à deux Mains;close;bludgeons;2&6&3;3;19;Un solide manche de bois de plus de 1,20 mètre de long, surmonté d’une tête métallique dévastatrice. C’est une arme contondante extrêmement brutale. Elle représente aussi les massues de grande taille, grossièrement façonnée.;;;
+crossbow;Arbalète;range;bows;2&6&1;1;20;Une arbalète est une sorte d’arc mécanique monté sur un manche de bois et que l’on bande grâce à un levier.;30;60;major
+short_bow;Arc court;range;bows;1&6&1;-1;9;Parfois appelé arc de cavalier, cette arme est plus petite que l’arc long mais bien plus maniable.;16;32;minor
+long_bow;Arc long;range;bows;1&6&3;1;15;Un arc de la taille d’un homme, façonné dans un seul morceau de bois.;26;52;minor
+fist;Poing;close;brawling;1&3&0;none;none;L’arme de prédilection dans toutes les bagarres de taverne de Thédas.;;;
+gauntlet;Gantelet;close;brawling;1&3&1;none;4;Un lourd gant de cuir parfois renforcé de métal. Cette catégorie représente aussi des armes comme les cestes et les coups-de-poing américains.;;;
+improvised_weapon;Arme improvisée;close;brawling;1&6&-1;none;none;Lorsque vous essayez d’assommer quelqu’un avec ce qui vous tombe sous la main, vous utilisez une arme improvisée. Il peut s’agir d’à peu près n’importe quel objet qui peut être attrapé et écrasé sur la tête de son adversaire.;;;
+main_gauche;Main gauche;close;dueling;1&6&1;none;11;Cette dague assez longue est conçue pour être tenue de la main gauche (d’où son nom) et servir à la parade. Les Féreldiens préfèrent utiliser l’expression « dague de main gauche » plutôt que le terme orlésien de « main gauche ».;;;
+rapier;Rapière;close;dueling;1&6&3;0;18;C’est une arme longue et étroite, très appréciée des duellistes. Elle s’utilise tout en finesse, et ses propriétaires préfèrent largement sa maniabilité à la puissance brute de lames plus lourdes.;;;
+spiked_buckler;Targe à pointe;close;dueling;1&6&0;-1;15;Il s’agit d’un très petit bouclier pourvu d’une ou plusieurs pointes. Il permet de bloquer des coups ou de frapper l’adversaire. C’est une arme, mais elle donne à son porteur un bonus de +1 en Défense contre les attaques de mêlée.;;;
+bastard_sword;Épée bâtarde;close;heavy_blades;2&6&1;2;20;Aussi connue sous le nom d’épée à une main et demie, cette arme a une lame et une poignée plus longues que celles de l’épée longue.;;;
+longsword;Épée longue;close;heavy_blades;2&6&0;1;18;Cette lame qui se manie à une main est aussi appelée épée de taille, épée large ou tout simplement « épée ». Sa lame à double tranchant mesure un peu moins d’un mètre et possède une lourde garde en forme de croix.;;;
+two_handed_sword;Épée à deux mains;close;heavy_blades;3&6&0;3;23;Une arme longue et puissante qui ne se manie efficacement qu’à deux mains. Elle peut mesurer jusqu’à deux mètres de long.;;;
+heavy_lance;Lance d'arçon lourde;close;lances;2&6&1;3;20;Cette lance très longue ne s’utilise que couchée et maintenue sous le bras du cavalier.;;;
+jousting_lance;Lance de joute;close;lances;1&6&1;0;6;Aussi appelée lance de tournoi, cette arme ne possède pas la pointe métallique aiguisée des autres lances d’arçon. Elle ne sert que dans les compétitions, et non dans les batailles. Quand un cavalier réussit à porter une attaque avec une lance de joute, celle-ci se brise en plusieurs morceaux et est détruite.;;;
+light_lance;Lance d'arçon légère;close;lances;1&6&3;1;12;un cavalier peut utiliser cette lance assez longue en la tenant au-dessus de son épaule, ou en la couchant sous son bras.;;;
+dagger;Dague;close;light_blades;1&6&1;none;9;Ce long couteau servant à poignarder et à percer les chairs est utilisé aussi bien comme outil que comme arme. Une dague assez longue est parfois appelée poignard.;;;
+shortsword;Épée courte;close;light_blades;1&6&2;-1;14;Plus courte qu’une épée longue mais plus longue qu’une dague, cette arme est conçue pour frapper d’estoc.;;;
+throwing_knife;Couteau de lancer;range;light_blades;1&6&0;none;10;Il ressemble à une dague, mais est plus court et est équilibré pour être lancé.;6;12;minor
+glaive;Fauchard;close;polearms;2&6&1;1;23;Il s’agit d’une arme d’hast pourvue à son extrémité d’une longue lame courbe.;;;
+halberd;Hallebarde;close;polearms;2&6&3;3;25;Cette arme comporte un fer de hache et une pointe, montés à l’extrémité d’un long manche. Les chasseurs de dragon névarriens s’en servent avec un certain succès.;;;
+military_fork;Fource de guerre;close;polearms;2&6&0;2;18;Lointaine cousine de l’outil agricole, cette version militaire est conçue pour transpercer les armures.;;;
+spear;Lance;close;spear;1&6&3;0;12;Arme simple utilisée pour la chasse comme pour la guerre, elle est composée d’un manche de bois terminé par une pièce d’acier acérée et tranchante.;;;
+throwing_spear;Javelot;range;spear;1&6&3;0;12;Une lance légère dont on se sert exclusivement comme arme de jet.;8;16;minor
+two_handed_spear;Pique;close;spear;2&6&0;1;20;Aussi appelée lance longue, cette arme se manie à deux mains et possède une pointe d’acier fixée à l’extrémité d’un long manche de bois.;;;
+club;Gourdin;close;staves;1&6&0;none;1;C’est une petite massue en bois solide, parfois en métal. Cette catégorie comprend aussi les matraques.;;;
+morningstar;Morgenstern;close;staves;1&6&3;1;11;Une arme au manche court terminée par une tête recouverte de pointes.;;;
+quarterstaff;Grand bâton;close;staves;1&6&1;none;3;Un long morceau de bois robuste, quelquefois dotée de renforts métalliques.;;;

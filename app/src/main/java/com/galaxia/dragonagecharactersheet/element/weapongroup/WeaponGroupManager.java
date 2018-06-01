@@ -22,6 +22,7 @@ public class WeaponGroupManager {
     private static final int NAME = 1;
     private static final int DESCRIPTION = 2;
     private static final int ATTRIBUTE_ID_FOR_ATTACK = 3;
+    private static final int ATTRIBUTE_ID_FOR_DAMAGE = 4;
 
     private WeaponGroupManager(){
 
@@ -38,9 +39,10 @@ public class WeaponGroupManager {
             String name = splitData[NAME];
             String description = splitData[DESCRIPTION];
             String attributeIdForAttack = splitData[ATTRIBUTE_ID_FOR_ATTACK];
+            String attributeIdForDamage = splitData[ATTRIBUTE_ID_FOR_DAMAGE];
 
 
-            WeaponGroup weaponGroup = new WeaponGroup(id,name,description,attributeIdForAttack);
+            WeaponGroup weaponGroup = new WeaponGroup(id,name,description,attributeIdForAttack,attributeIdForDamage);
             weaponGroups.put(id,weaponGroup);
         }
 

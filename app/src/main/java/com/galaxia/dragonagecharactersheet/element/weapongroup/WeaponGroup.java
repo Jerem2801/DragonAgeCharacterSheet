@@ -9,12 +9,14 @@ public class WeaponGroup implements Parcelable {
     private String name;
     private String description;
     private String attributeIdForAttack;
+    private String attributeIdForDamage;
 
-    public WeaponGroup(String id, String name, String description, String attributeIdForAttack) {
+    public WeaponGroup(String id, String name, String description, String attributeIdForAttack, String attributeIdForDamage) {
         this.id = id;
         this.name = name;
         this.description = description;
         this.attributeIdForAttack = attributeIdForAttack;
+        this.attributeIdForDamage = attributeIdForDamage;
     }
 
     public String getId() {
@@ -49,6 +51,15 @@ public class WeaponGroup implements Parcelable {
         this.attributeIdForAttack = attributeIdForAttack;
     }
 
+    public String getAttributeIdForDamage() {
+        return attributeIdForDamage;
+    }
+
+    public void setAttributeIdForDamage(String attributeIdForDamage) {
+        this.attributeIdForDamage = attributeIdForDamage;
+    }
+
+
     @Override
     public int describeContents() {
         return 0;
@@ -60,6 +71,7 @@ public class WeaponGroup implements Parcelable {
         dest.writeString(this.name);
         dest.writeString(this.description);
         dest.writeString(this.attributeIdForAttack);
+        dest.writeString(this.attributeIdForDamage);
     }
 
     protected WeaponGroup(Parcel in) {
@@ -67,9 +79,10 @@ public class WeaponGroup implements Parcelable {
         this.name = in.readString();
         this.description = in.readString();
         this.attributeIdForAttack = in.readString();
+        this.attributeIdForDamage = in.readString();
     }
 
-    public static final Parcelable.Creator<WeaponGroup> CREATOR = new Parcelable.Creator<WeaponGroup>() {
+    public static final Creator<WeaponGroup> CREATOR = new Creator<WeaponGroup>() {
         @Override
         public WeaponGroup createFromParcel(Parcel source) {
             return new WeaponGroup(source);
@@ -80,4 +93,9 @@ public class WeaponGroup implements Parcelable {
             return new WeaponGroup[size];
         }
     };
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

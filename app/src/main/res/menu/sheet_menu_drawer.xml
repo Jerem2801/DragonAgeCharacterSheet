@@ -6,12 +6,16 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/menu_resume"
+            android:icon="@drawable/iconattribute"
             android:title="Résumé" />
         <item
             android:id="@+id/menu_attribute"
             android:icon="@drawable/iconattribute"
-
             android:title="Attribut et Compétence" />
+        <item
+            android:id="@+id/menu_representative"
+            android:icon="@drawable/iconattribute"
+            android:title="Caractéristique et Equipement" />
     </group>
 
 </menu>
